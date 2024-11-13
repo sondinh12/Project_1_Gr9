@@ -47,48 +47,55 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Products</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Best Selling Products</h4>
                                 </div><!-- end card header -->
 
                                 <div class="card-body">
                                     <div class="table-responsive table-card">
                                         <table class="table table-hover table-centered align-middle table-nowrap mb-0">
-                                            <tbody>
 
+                                            <tbody>
+                                            <?php foreach ($products as $product) : ?>
                                                 <tr>
                                                     <td>
                                                         <div class="d-flex align-items-center">
                                                             <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                <img src="assets/images/products/img-5.png" alt="" class="img-fluid d-block" />
+                                                                <img src="assets/images/products/<?=$product['image']?>" alt="" class="img-fluid d-block" />
                                                             </div>
                                                             <div>
-                                                                <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset">Stillbird Helmet</a></h5>
-                                                                <span class="text-muted">17 Jan 2021</span>
+                                                                <h5 class="fs-14 my-1"><a href="apps-ecommerce-product-details.html" class="text-reset"><?=$product['name']?></a></h5>
+                                                                <span class="text-muted"><?=$product['description']?></span>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <h5 class="fs-14 my-1 fw-normal">$54</h5>
+                                                        <h5 class="fs-14 my-1 fw-normal"><?=$product['color']?></h5>
+                                                        <span class="text-muted">Color</span>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="fs-14 my-1 fw-normal">$<?=$product['price']?></h5>
                                                         <span class="text-muted">Price</span>
                                                     </td>
                                                     <td>
-                                                        <h5 class="fs-14 my-1 fw-normal">74</h5>
-                                                        <span class="text-muted">Orders</span>
+                                                        <h5 class="fs-14 my-1 fw-normal"><?=$product['quantity']?></h5>
+                                                        <span class="text-muted">Quanlity</span>
                                                     </td>
                                                     <td>
-                                                        <h5 class="fs-14 my-1 fw-normal">805</h5>
-                                                        <span class="text-muted">Stock</span>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="fs-14 my-1 fw-normal">$3996</h5>
-                                                        <span class="text-muted">Amount</span>
+                                                        <h5 class="fs-14 my-1 fw-normal"><?=$product['view']?></h5>
+                                                        <span class="text-muted">View</span>
                                                     </td>
                                                 </tr>
+                                                <?php endforeach?>
                                             </tbody>
                                         </table>
                                     </div>
 
                                     <div class="align-items-center mt-4 pt-2 justify-content-between row text-center text-sm-start">
+                                        <div class="col-sm">
+                                            <div class="text-muted">
+                                                Showing <span class="fw-semibold">5</span> of <span class="fw-semibold">25</span> Results
+                                            </div>
+                                        </div>
                                         <div class="col-sm-auto  mt-3 mt-sm-0">
                                             <ul class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
                                                 <li class="page-item disabled">
