@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Dashboard | NN Shop</title>
+    <title>Danh mục sản phẩm | NN Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -49,7 +49,7 @@
                         <div class="card">
                                 <div class="card-header align-items-center d-flex">
                                     <h4 class="card-title mb-0 flex-grow-1">Quản lý danh mục sản phẩm</h4>
-                                    
+                                    <a href="?act=form-them-danh-muc" class="btn btn-soft-success material-shadow-none"><i class="ri-add-circle-line align-middle me-1"></i> Thêm danh mục</a>
                                 </div><!-- end card header -->
 
                                 <div class="card-body">
@@ -74,7 +74,20 @@
                                                         <td class="fw-medium"><?=$index + 1 ?></td>
                                                         <td><?=$danhMuc['name'] ?></td>
                                                    
-                                                        <td><span class="badge bg-success">Confirmed</span></td>
+                                                        <td>
+                                                           <?
+                                                           if($danhMuc['trang_thai'] == 1){
+                                                            ?>
+                                                            <span class="badge bg-success">Hiển thị</span>
+                                                            <?
+                                                           }else{
+                                                            ?>
+                                                             <span class="badge bg-danger">Không hiển thị</span>
+                                                            <?
+                                                           }
+                                                           ?> 
+                                                           
+                                                        </td>
                                                         <td>
                                                                     <div class="hstack gap-3 flex-wrap">
                                                                         <a href="javascript:void(0);" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
