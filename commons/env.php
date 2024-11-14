@@ -11,5 +11,5 @@ define('DB_NAME'    , 'duan1_gr9');  // Tên database
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 
-// define('PATH_ROOT'    , __DIR__ . '/../../Project_1');
-define('PATH_ROOT', dirname(__DIR__, 2) . '/');
+define('PATH_ROOT'    , __DIR__ . '/../');
+// define('PATH_ROOT', dirname(__DIR__, 2) . '/');

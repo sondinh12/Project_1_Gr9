@@ -11,12 +11,12 @@ class clientController {
 
     function login(){
         require_once 'views/login.php';
-        // $is_valid = $this->clientModel->checkAcc($user_name, $pass);
-        // var_dump($is_valid);
         if(isset($_POST['btn_login'])){
+            // $btn = $_POST['btn_login'];
+            // var_dump($btn);
             if($this->clientModel->checkAcc($_POST['user_name'],$_POST['pass'])>0){
                 $_SESSION['user_name'] = $_POST['user_name'];
-                header("location:?act=home");
+                header("location:?act=/");
             } else{
                 echo "<script>alert('Không đăng nhập thành công.')</script>";
             }
