@@ -21,7 +21,7 @@ class DanhMucController
 
      require_once 'views/danhmuc/create_danh_muc.php';
     }
-    // hàm xử lý them csdl
+    //xử lý them csdl
     public function store(){
      if($_SERVER['REQUEST_METHOD']=='POST'){
         $ten_danh_muc= $_POST['ten_danh_muc'];
