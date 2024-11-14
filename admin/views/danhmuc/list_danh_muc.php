@@ -90,8 +90,15 @@
                                                         </td>
                                                         <td>
                                                                     <div class="hstack gap-3 flex-wrap">
-                                                                        <a href="javascript:void(0);" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
-                                                                        <a href="javascript:void(0);" class="link-danger fs-15"><i class="ri-delete-bin-line"></i></a>
+                                                                        <a href="?act=form-sua-danh-muc&danh_muc_id=<?= $danhMuc['category_id']?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
+                                                                        <form action="?act=xoa-danh-mucs" method="post" 
+                                                                        onsubmit="return confirm('Bạn có đồng ý xóa không')">
+                                                                     <input type="hidden" name="danh_muc_id" value="<?= $danhMuc['category_id']?>">
+                                                                        <button 
+                                                                        type="submit" class="link-danger fs-15" style="border:none; background:none"><i class="ri-delete-bin-line" ></i>
+                                                                    </button>
+                                                                        </form>
+                                                                     
                                                                     </div>
                                                                 </td>
                                                     </tr>
