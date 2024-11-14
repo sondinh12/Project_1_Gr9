@@ -15,4 +15,6 @@ match ($act) {
     '/'                 => (new clientController())->home(),
     'login'             => (new clientController())->login(),
     'logout'            =>(new clientController())->logout(),
+    'register'          =>(new clientController())->register(), 
+    'editpass'          =>(new clientController())->updatePass(),
 };
