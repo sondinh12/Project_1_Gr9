@@ -72,7 +72,7 @@
                                                     ?>
                                                     <tr>
                                                         <td class="fw-medium"><?=$index + 1 ?></td>
-                                                        <td><?=$danhMuc['ten'] ?></td>
+                                                        <td><?=$danhMuc['name'] ?></td>
                                                    
                                                         <td>
                                                            <?

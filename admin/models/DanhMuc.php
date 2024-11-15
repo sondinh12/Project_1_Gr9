@@ -23,10 +23,10 @@ class DanhMuc
         echo $trang_thai;
         try {
         
-            $sql="INSERT INTO category(ten, trang_thai)
-            VALUES(:ten,:trang_thai)";
+            $sql="INSERT INTO category(name, trang_thai)
+            VALUES(:name,:trang_thai)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':ten',$ten_danh_muc);
+            $stmt->bindParam(':name',$ten_danh_muc);
             $stmt->bindParam(':trang_thai',$trang_thai);
             $stmt->execute();
             return true;
@@ -41,10 +41,10 @@ class DanhMuc
         echo $trang_thai;
         try {
         
-            $sql="UPDATE category SET ten_danh_muc=:ten, trang_thai=:trang_thai WHERE id = :id";
+            $sql="UPDATE category SET ten_danh_muc=:name, trang_thai=:trang_thai WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
              $stmt->bindParam(':id',$id);
-            $stmt->bindParam(':ten',$ten_danh_muc);
+            $stmt->bindParam(':name',$ten_danh_muc);
             $stmt->bindParam(':trang_thai',$trang_thai);
             $stmt->execute();
             return true;

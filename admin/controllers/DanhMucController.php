@@ -57,35 +57,35 @@ class DanhMucController
     require_once 'views/danhmuc/edit_danh_muc.php';
    // đổ dữ liệu ra form
     }
-    // //hàm cập nhật
-    // public function update(){
-    //     if($_SERVER['REQUEST_METHOD']=='POST'){
-    //         $id=$_POST['id'];
-    //         $ten_danh_muc= $_POST['ten_danh_muc'];
-    //         $trang_thai= $_POST['trang_thai'];
+    //hàm cập nhật
+    public function update(){
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $id=$_POST['id'];
+            $ten_danh_muc= $_POST['ten_danh_muc'];
+            $trang_thai= $_POST['trang_thai'];
           
-    //        //validate
-    //        $errors =[];
-    //        if(empty($ten_danh_muc)){
-    //         $errors['ten_danh_muc'] = 'Tên danh mục là bắt buộc';
-    //        }
-    //        if(empty($trang_thai)){
-    //         $errors['trang_thai'] = 'Tên trạng thái là bắt buộc';
-    //        }
-    //        //thêm dữ liệu
-    //        if(empty($errors)){
-    //         $this->modelDanhMuc->updateData($id, $ten_danh_muc, $trang_thai);
-    //         unset($_SESSION['errors']);
-    //         header('Location: ?act=danh-mucs');
-    //         exit();
-    //        }else{
-    //         $_SESSION['errors']=$errors;
-    //         header('Location: ?act=form-sua-danh-muc');
-    //         exit();
-    //        }
+           //validate
+           $errors =[];
+           if(empty($ten_danh_muc)){
+            $errors['ten_danh_muc'] = 'Tên danh mục là bắt buộc';
+           }
+           if(empty($trang_thai)){
+            $errors['trang_thai'] = 'Tên trạng thái là bắt buộc';
+           }
+           //thêm dữ liệu
+           if(empty($errors)){
+            $this->modelDanhMuc->updateData($id, $ten_danh_muc, $trang_thai);
+            unset($_SESSION['errors']);
+            header('Location: ?act=danh-mucs');
+            exit();
+           }else{
+            $_SESSION['errors']=$errors;
+            header('Location: ?act=form-sua-danh-muc');
+            exit();
+           }
           
-    //      }
-    // }
+         }
+    }
     public function destroy(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $id=$_POST['danh_muc_id'];

@@ -62,7 +62,7 @@
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="citynameInput" class="form-label">Tên danh mục</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc" value="<?=$danhMuc['ten']?>" ?>"
+                                                        <input type="text" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc" value="<?=$danhMuc['name']?>" ?>"
                                                    <span class="text-danger">
                                                     <?=!empty($_SESSION['errors']['ten_danh_muc']) ? $_SESSION['errors']['ten_danh_muc'] : '' ?>
 
