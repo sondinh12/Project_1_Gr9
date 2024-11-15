@@ -13,6 +13,7 @@
         <label for="">Mật khẩu</label>
         <input type="password" name="pass" id="pass_input" placeholder="Nhập mật khẩu">
         <button name="btn_login" type="submit">Đăng nhập</button>
+        <a href="?act=forgotpass">Quên mật khẩu</a>
     </form>
 </body>
 </html>

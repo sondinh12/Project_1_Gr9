@@ -145,10 +145,34 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="?act=login" class="nav-item nav-link">Login</a>
-                            <a href="?act=register" class="nav-item nav-link">Register</a>
+                            <?php
+                            if(isset($_SESSION['user_name'])){
+                                $user_name = $_SESSION['user_name'];
+                            ?>
+                            <span>Xin chào <?=$user_name?></span>
                             <a href="?act=logout" class="nav-item nav-link">Log Out</a>
                             <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <?php
+                                if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
+                                ?>
+                                <span>Là admin</span>
+                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <?php    
+                                } else{
+                                    var_dump($_SESSION['role']);
+                                   ?>
+                                <span>không phải admin</span>
+                                   <?php 
+                                }
+                                ?>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="?act=login" class="nav-item nav-link">Login</a>
+                                <a href="?act=register" class="nav-item nav-link">Register</a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </nav>

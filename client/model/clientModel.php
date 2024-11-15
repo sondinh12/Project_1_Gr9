@@ -11,6 +11,15 @@ class clientModel {
         return $this->conn->query($sql)->fetch();
     }
 
+    function getRoleByUsername($user_name){
+        $sql="select role from account where name_user='$user_name'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);  // Lấy kết quả
+        return $result ? $result['role'] : null;
+        // return $stsm->execute();
+    }
+
     function insertAcc($user_name,$pass,$email,$phone,$address){
         $sql="insert into account(name_user,pass,email,phone,address) value('$user_name','$pass','$email','$phone','$address')";
         $isacc = $this->conn->prepare($sql);
@@ -24,9 +33,9 @@ class clientModel {
         $checkPass->execute();
         $result = $checkPass->fetch(PDO::FETCH_ASSOC);
         if ($result && $result['pass'] === $oldPass) {
-            return true; // Nếu mật khẩu cũ đúng, trả về true
+            return true;
         } else {
-            return false; // Nếu mật khẩu cũ không đúng, trả về false
+            return false;
         }
     }
 
@@ -34,6 +43,32 @@ class clientModel {
         $sql="update account set pass='$newPass' where name_user='$user_name'";
         $updatePass = $this->conn->prepare($sql);
         return $updatePass->execute();
+    }
+    // Quên mật khẩu
+    function findByEmail($email){
+        $sql="select * from account where email='$email'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    function storeResetToken($email,$token,$expixy){
+        $sql="update account set reset_token='$token',token_expixy='$expixy' where email='$email'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+    }
+
+    function findByToken($token){
+        $sql="select * from account where reset_token='$token' and token_expixy > NOW()";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch();
+    }
+
+    function updatePassForgot($id,$newPassForgot){
+        $sql="update account set pass='$newPassForgot', reset_token=NULL, token_expixy=NULL where id='$id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
     }
 }
 ?>

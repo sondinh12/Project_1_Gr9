@@ -6,7 +6,7 @@ class clientController {
     }
 
     function home(){
-        require_once 'views/home.html';
+        require_once 'views/home.php';
     }
 
     function login(){
@@ -17,7 +17,9 @@ class clientController {
             // $btn = $_POST['btn_login'];
             // var_dump($btn);
             if($this->clientModel->checkAcc($user_name,$pass)>0){
+                $role = $this->clientModel->getRoleByUsername($user_name);
                 $_SESSION['user_name'] = $user_name;
+                $_SESSION['role'] = $role;
                 header("location:./");
             } else{
                 echo "<script>alert('Không đăng nhập thành công.')</script>";
@@ -26,7 +28,7 @@ class clientController {
     }
 
     function logout(){
-        unset($_SESSION['user']);
+        unset($_SESSION['user_name']);
         header("location:./");
     }
 
@@ -67,6 +69,62 @@ class clientController {
                 } else {
                     echo "Mật khẩu cũ không chính xác";
                 }
+            }
+        }
+    }
+
+    function forgotPass(){
+        require_once 'views/forgotpass.php';
+        if(isset($_POST['btn_forgot'])){
+            $email = $_POST['email'];
+            $user = $this->clientModel->findByEmail($email);
+            if($user){
+                $token = bin2hex(random_bytes(32));
+                $expixy = date("Y-m-d H:i:s", strtotime("+1 hour"));
+                $this->clientModel->storeResetToken($email,$token,$expixy);
+
+                // Chỉnh sửa lại
+                $resetLink = "http://yourwebsite.com/index.php?act=resetForm&token=$token";
+                $subject = "Khôi phục mật khẩu";
+                $message = "Nhấn vào liên kết sau để đặt lại mật khẩu: $resetLink";
+                //Thay mail() bằng thư viện
+                if(mail($email,$subject,$message,$headers)){
+                    echo "Email khôi phục đã được gửi";
+                } else {
+                    echo "Gửi email thất bại";
+                }
+            } else{
+                echo "Email không tồn tại trong hệ thống";
+            }
+        }
+    }
+
+    function resetForm(){
+        $token = $_GET['token'];
+        $user = $this->clientModel->findByToken($token);
+
+        if($user){
+            require_once 'views/resetPass.php';
+        } else{
+            echo "Token không hợp lệ hoặc hết hạn";
+        }
+    }
+
+    function resetPass(){
+        if(isset($_POST['btn_reset'])){
+            $token = $_POST['token'];
+            $newPass = $_POST['new_pass'];
+            $rePass = $_POST['re_pass'];
+            if($newPass === $rePass){
+                $user = $this->clientModel->findByToken($token);
+                if($user){
+                    $this->clientModel->updatePassForgot($user['id'], $newPass);
+                    echo "Mật khẩu đã được đặt lại thành công";
+                } else {
+                    echo "Token không hợp lệ hoặc đã hết hạn";
+                }
+            } else {
+                echo "Mật khẩu mới không khớp";
             }
         }
     }

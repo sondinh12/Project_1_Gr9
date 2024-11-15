@@ -17,4 +17,8 @@ match ($act) {
     'logout'            =>(new clientController())->logout(),
     'register'          =>(new clientController())->register(), 
     'editpass'          =>(new clientController())->updatePass(),
+    //Đang sửa
+    'forgotpass'        =>(new clientController())->forgotPass(),
+    'resetform'         =>(new clientController())->resetForm(),
+    'resetpass'         =>(new clientController())->resetPass(),
 };
