@@ -49,18 +49,23 @@ class clientController {
     function updatePass(){
         require_once 'views/editpass.php';
         if(isset($_SESSION['user_name'])){
-            $user_name = $_SESSION['user_name'];
+            $user_name = $_SESSION['user_name'];         
             if(isset($_POST['btn_editpass'])){
                 $newPass = $_POST['new_pass'];
                 $oldPass = $_POST['old_pass'];
+                $rePass = $_POST['re_pass'];
                 if($this->clientModel->checkOldPass($user_name,$oldPass)){
-                    if($this->clientModel->updatePass($user_name,$newPass)){
-                        echo "Thành công";
-                    } else {
-                        echo "Thất bại";
+                    if($rePass === $newPass){
+                        if($this->clientModel->updatePass($user_name,$newPass)){
+                            echo "Đổi mật khẩu thành công";    
+                        } else {
+                            echo "Đổi mật khẩu thất bại";
+                        }
+                    } else{
+                        echo "Mật khẩu mới không đồng nhất";
                     }
                 } else {
-                    echo "MK cũ không chính xác";
+                    echo "Mật khẩu cũ không chính xác";
                 }
             }
         }
