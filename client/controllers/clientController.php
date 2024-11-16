@@ -139,25 +139,21 @@ class clientController {
     }
 
     function resetForm(){
-        $token = $_GET['token'];
-        $user = $this->clientModel->findByToken($token);
-
-        if($user){
             require_once 'views/resetPass.php';
-        } else{
-            echo "Token không hợp lệ hoặc hết hạn";
-        }
     }
 
     function resetPass(){
+        require_once 'views/resetPass.php';
         if(isset($_POST['btn_reset'])){
             $token = $_POST['token'];
-            $newPass = $_POST['new_pass'];
-            $rePass = $_POST['re_pass'];
-            if($newPass === $rePass){
-                $user = $this->clientModel->findByToken($token);
+            $newPassForgot = $_POST['new_pass'];
+            $rePassForgot = $_POST['re_pass'];
+            // var_dump($token);
+            if($newPassForgot === $rePassForgot){
+                $user = $this->clientModel->findByToken( $token);
+                // var_dump($user);
                 if($user){
-                    $this->clientModel->updatePassForgot($user['id'], $newPass);
+                    $this->clientModel->updatePassForgot($user['id'], $newPassForgot);
                     echo "Mật khẩu đã được đặt lại thành công";
                 } else {
                     echo "Token không hợp lệ hoặc đã hết hạn";
@@ -165,7 +161,12 @@ class clientController {
             } else {
                 echo "Mật khẩu mới không khớp";
             }
-        }
+            // var_dump($_POST);
+            // die();
+        } 
+        // else {
+        //     echo "Form chưa được submit";
+        // }
     }
 }
 ?>

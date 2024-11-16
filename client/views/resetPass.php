@@ -6,12 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" method="POST">
-    <input type="hidden" name="token" value="<?php echo htmlspecialchars($_GET['token']); ?>">
+    <form action="?act=resetpass" method="POST">
+    <label for="token">Nhập mã OTP</label>
+    <input type="text" name="token" id="token">
     <label for="new_pass">Mật khẩu mới:</label>
-    <input type="password" id="new_pass" name="new_pass" required>
+    <input type="password" id="new_pass" name="new_pass">
     <label for="re_pass">Nhập lại mật khẩu mới:</label>
-    <input type="password" id="re_pass" name="re_pass" required>
+    <input type="password" id="re_pass" name="re_pass">
     <button type="submit" name="btn_reset">Đặt lại mật khẩu</button>
     </form>
 </body>
