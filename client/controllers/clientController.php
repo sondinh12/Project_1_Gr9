@@ -1,4 +1,10 @@
 <?php
+require_once 'PHPMailer/src/PHPMailer.php';
+require_once 'PHPMailer/src/Exception.php';
+require_once 'PHPMailer/src/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 class clientController {
     public $clientModel;
     function __construct(){
@@ -21,8 +27,9 @@ class clientController {
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['role'] = $role;
                 header("location:./");
-            } else{
-                echo "<script>alert('Không đăng nhập thành công.')</script>";
+            } 
+            else{
+                echo "Không đăng nhập thành công, vui lòng kiểm tra lại!";
             }
         }
     }
@@ -39,11 +46,25 @@ class clientController {
             $pass=$_POST['pass'];
             $email=$_POST['email'];
             $phone=$_POST['phone'];
-            // var_dump($address);
+            $address=$_POST['address'];
+
+            if (empty($user_name) || empty($pass) || empty($email) || empty($phone) || empty($address)) {
+                echo "Vui lòng điền đầy đủ thông tin.";
+                return;
+            }
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                echo "Email không hợp lệ. Vui lòng nhập đúng định dạng email";
+                return;
+            }
+    
+            if (!preg_match("/^0[0-9]{7,10}$/", $phone)) {
+                echo "Số điện thoại không hợp lệ. Vui lòng nhập số bắt đầu bằng 0 và từ 8-11 số";
+                return;
+            }
             if($this->clientModel->insertAcc($user_name,$pass,$email,$phone,$address)){      
                 header("location:?act=login");
             } else {
-                echo "<script>alert('Không đăng ký thành công.')</script>";
+                echo "Không đăng ký thành công";
             }
         }
     }
@@ -73,6 +94,8 @@ class clientController {
         }
     }
 
+
+
     function forgotPass(){
         require_once 'views/forgotpass.php';
         if(isset($_POST['btn_forgot'])){
@@ -84,14 +107,30 @@ class clientController {
                 $this->clientModel->storeResetToken($email,$token,$expixy);
 
                 // Chỉnh sửa lại
-                $resetLink = "http://yourwebsite.com/index.php?act=resetForm&token=$token";
+                $resetLink = "$token";
                 $subject = "Khôi phục mật khẩu";
-                $message = "Nhấn vào liên kết sau để đặt lại mật khẩu: $resetLink";
-                //Thay mail() bằng thư viện
-                if(mail($email,$subject,$message,$headers)){
-                    echo "Email khôi phục đã được gửi";
-                } else {
-                    echo "Gửi email thất bại";
+                $message = "Mã khôi phục mật khẩu của bạn: $resetLink";
+                try {
+                    $mail = new PHPMailer(true); 
+                    $mail->isSMTP();
+                    $mail->Host = 'smtp.gmail.com';
+                    $mail->SMTPAuth = true;
+                    $mail->Username = 'nguyendinhson92005@gmail.com';
+                    $mail->Password = 'ibmf izuh rvlc mpyv';
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port = 587;
+                    $mail->setFrom('no-reply@yourwebsite.com', 'Your Website');
+                    $mail->addAddress($email);
+    
+                    $mail->isHTML(true);
+                    $mail->Subject = $subject;
+                    $mail->Body    = $message;
+                    $mail->AltBody = strip_tags($message);
+                    $mail->send();
+                    echo "Email khôi phục đã được gửi!";
+                    header("location:?act=resetform");
+                } catch (Exception $e) {
+                    echo "Gửi email thất bại. Lỗi: {$mail->ErrorInfo}";
                 }
             } else{
                 echo "Email không tồn tại trong hệ thống";

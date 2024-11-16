@@ -21,7 +21,7 @@ class clientModel {
     }
 
     function insertAcc($user_name,$pass,$email,$phone,$address){
-        $sql="insert into account(name_user,pass,email,phone,address) value('$user_name','$pass','$email','$phone','$address')";
+        $sql="insert into account(name_user,pass,email,phone,address,reset_token) value('$user_name','$pass','$email','$phone','$address','')";
         $isacc = $this->conn->prepare($sql);
         return $isacc->execute();
     }
