@@ -61,7 +61,7 @@
                     <div class="collapse menu-dropdown" id="sidebarDanhMuc">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-sweet-alerts">
+                                <a href="?act=danh-mucs" class="nav-link" data-key="t-sweet-alerts">
                                     Danh sách
                                 </a>
                             </li>
