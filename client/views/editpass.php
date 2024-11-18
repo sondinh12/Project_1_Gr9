@@ -9,13 +9,13 @@
     <h3>Đổi mật khẩu</h3>
     <form action="" method="POST">
         <label for="old_pass">Mật khẩu hiện tại:</label>
-        <input type="text" id="old_pass" name="old_pass" required>
+        <input type="password" id="old_pass" name="old_pass" required>
         <br><br>
         <label for="new_pass">Mật khẩu mới:</label>
-        <input type="text" id="new_pass" name="new_pass" required>
+        <input type="password" id="new_pass" name="new_pass" required>
         <br><br>
         <label for="re_pass">Nhập lại mật khẩu mới:</label>
-        <input type="text" name="re_pass" id="re_pass">
+        <input type="password" name="re_pass" id="re_pass">
         <br><br>
         <button type="submit" name="btn_editpass">Đổi mật khẩu</button>
     </form>

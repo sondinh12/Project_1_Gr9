@@ -20,8 +20,8 @@ class clientModel {
         // return $stsm->execute();
     }
 
-    function insertAcc($user_name,$pass,$email,$phone,$address){
-        $sql="insert into account(name_user,pass,email,phone,address,reset_token) value('$user_name','$pass','$email','$phone','$address','')";
+    function insertAcc($user_name,$pass,$email,$phone,$address,$create_at,$update_at){
+        $sql="insert into account(name_user,pass,email,phone,address,reset_token,token_expixy,create_at,update_at) value('$user_name','$pass','$email','$phone','$address',null,null,'$create_at','$update_at')";
         $isacc = $this->conn->prepare($sql);
         return $isacc->execute();
     }
@@ -31,7 +31,7 @@ class clientModel {
         $sql="select pass from account where name_user='$user_name'";
         $checkPass = $this->conn->prepare($sql);
         $checkPass->execute();
-        $result = $checkPass->fetch(PDO::FETCH_ASSOC);
+        $result = $checkPass->fetch();
         if ($result && $result['pass'] === $oldPass) {
             return true;
         } else {
@@ -39,8 +39,8 @@ class clientModel {
         }
     }
 
-    function updatePass($user_name,$newPass){
-        $sql="update account set pass='$newPass' where name_user='$user_name'";
+    function updatePass($user_name,$newPass,$update_at){
+        $sql="update account set pass='$newPass',update_at='$update_at' where name_user='$user_name'";
         $updatePass = $this->conn->prepare($sql);
         return $updatePass->execute();
     }
@@ -59,14 +59,14 @@ class clientModel {
     }
 
     function findByToken($token){
-        $sql="select * from account where reset_token='$token' and token_expixy > NOW()";
+        $sql="select * from account where reset_token='$token' and token_expixy > UTC_TIMESTAMP()";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return $stmt->fetch();
     }
 
-    function updatePassForgot($id,$newPassForgot){
-        $sql="update account set pass='$newPassForgot', reset_token=NULL, token_expixy=NULL where id='$id'";
+    function updatePassForgot($id,$newPassForgot,$update_at){
+        $sql="update account set pass='$newPassForgot', reset_token=NULL, token_expixy=NULL,update_at='$update_at' where id='$id'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }

@@ -47,6 +47,8 @@ class clientController {
             $email=$_POST['email'];
             $phone=$_POST['phone'];
             $address=$_POST['address'];
+            $created_at = date('Y-m-d H:i:s');
+            $updated_at = $created_at;
 
             if (empty($user_name) || empty($pass) || empty($email) || empty($phone) || empty($address)) {
                 echo "Vui lòng điền đầy đủ thông tin.";
@@ -61,7 +63,7 @@ class clientController {
                 echo "Số điện thoại không hợp lệ. Vui lòng nhập số bắt đầu bằng 0 và từ 8-11 số";
                 return;
             }
-            if($this->clientModel->insertAcc($user_name,$pass,$email,$phone,$address)){      
+            if($this->clientModel->insertAcc($user_name,$pass,$email,$phone,$address,$created_at,$updated_at)){      
                 header("location:?act=login");
             } else {
                 echo "Không đăng ký thành công";
@@ -77,9 +79,10 @@ class clientController {
                 $newPass = $_POST['new_pass'];
                 $oldPass = $_POST['old_pass'];
                 $rePass = $_POST['re_pass'];
+                $update_at = date('Y-m-d H:i:s');
                 if($this->clientModel->checkOldPass($user_name,$oldPass)){
                     if($rePass === $newPass){
-                        if($this->clientModel->updatePass($user_name,$newPass)){
+                        if($this->clientModel->updatePass($user_name,$newPass,$update_at)){
                             echo "Đổi mật khẩu thành công";    
                         } else {
                             echo "Đổi mật khẩu thất bại";
@@ -98,12 +101,14 @@ class clientController {
 
     function forgotPass(){
         require_once 'views/forgotpass.php';
+        // echo date("Y-m-d H:i:s");
         if(isset($_POST['btn_forgot'])){
             $email = $_POST['email'];
             $user = $this->clientModel->findByEmail($email);
             if($user){
                 $token = bin2hex(random_bytes(32));
                 $expixy = date("Y-m-d H:i:s", strtotime("+1 hour"));
+                // var_dump($expixy);
                 $this->clientModel->storeResetToken($email,$token,$expixy);
 
                 // Chỉnh sửa lại
@@ -148,12 +153,13 @@ class clientController {
             $token = $_POST['token'];
             $newPassForgot = $_POST['new_pass'];
             $rePassForgot = $_POST['re_pass'];
+            $update_at = date('Y-m-d H:i:s');
             // var_dump($token);
             if($newPassForgot === $rePassForgot){
                 $user = $this->clientModel->findByToken( $token);
                 // var_dump($user);
                 if($user){
-                    $this->clientModel->updatePassForgot($user['id'], $newPassForgot);
+                    $this->clientModel->updatePassForgot($user['id'], $newPassForgot,$update_at);
                     echo "Mật khẩu đã được đặt lại thành công";
                 } else {
                     echo "Token không hợp lệ hoặc đã hết hạn";
