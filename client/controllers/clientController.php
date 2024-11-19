@@ -83,7 +83,7 @@ class clientController {
                 if($this->clientModel->checkOldPass($user_name,$oldPass)){
                     if($rePass === $newPass){
                         if($this->clientModel->updatePass($user_name,$newPass,$update_at)){
-                            echo "Đổi mật khẩu thành công";    
+                            echo "Đổi mật khẩu thành công";                             
                         } else {
                             echo "Đổi mật khẩu thất bại";
                         }
