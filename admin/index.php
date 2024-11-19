@@ -19,4 +19,8 @@ match ($act) {
     // Dashboards
     '/'            => (new DashboardController())->index(),
     'product'      => (new ProductsController())->list(),
+    'delete-product'       => (new ProductsController())->delete(), 
+    'add-product'       => (new ProductsController())->add(), 
+    'store-product'       => (new ProductsController())->store(), 
+    'update-product'       => (new ProductsController())->edit(), 
 };
