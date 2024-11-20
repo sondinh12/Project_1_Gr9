@@ -9,7 +9,8 @@
     <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <!-- <link href="img/favicon.ico" rel="icon"> -->
+     <link rel="icon" href="../client/assets/img/favicon.ico">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,10 +20,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="../../eshopper-1.0.0/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../eshopper-1.0.0/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../client/assets/css/style.css" rel="stylesheet">
 </head>
 
 <body>
@@ -144,8 +145,28 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            <?php
+                            if(isset($_SESSION['user_name'])){
+                                $user_name = $_SESSION['user_name'];
+                            ?>
+                            <span class="nav-link nav-item">Xin chào <?=$user_name?></span>
+                            <a href="?act=logout" class="nav-item nav-link">Log Out</a>
+                            <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <?php
+                                if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
+                                ?>
+                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <?php    
+                                }                                                             
+                                ?>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="?act=login" class="nav-item nav-link">Login</a>
+                                <a href="?act=register" class="nav-item nav-link">Register</a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </nav>
@@ -495,7 +516,7 @@
                         <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
                         <div class="d-flex justify-content-center">
                             <h6>$123.00</h6><h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                        </div>
+                          </div>
                     </div>
                     <div class="card-footer d-flex justify-content-between bg-light border">
                         <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
@@ -741,15 +762,19 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- <script src="lib/easing/easing.min.js"></script> -->
+    <script src="../eshopper-1.0.0/lib/easing/easing.min.js"></script>
+    <!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
+     <script src="../eshopper-1.0.0/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
+    <!-- <script src="mail/jqBootstrapValidation.min.js"></script> -->
+     <script src="../eshopper-1.0.0/mail/jqBootstrapValidation.min.js"></script>
+    <!-- <script src="mail/contact.js"></script> -->
+     <script src="../eshopper-1.0.0/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="../eshopper-1.0.0/js/main.js"></script>
 </body>
 
 </html>

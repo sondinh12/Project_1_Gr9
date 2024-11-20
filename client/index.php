@@ -1,20 +1,25 @@
 <?php 
-
+session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Require file Common
-require_once './commons/env.php'; // Khai báo biến môi trường
-require_once './commons/function.php'; // Hàm hỗ trợ
+require_once '../commons/env.php'; 
+require_once '../commons/function.php'; 
 
 // Require toàn bộ file Controllers
-require_once './controllers/HomeController.php';
+require_once './controllers/clientController.php';
 
 // Require toàn bộ file Models
-
+require_once './model/clientModel.php';
 // Route
 $act = $_GET['act'] ?? '/';
-
-// Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
-
 match ($act) {
-    // Trang chủ
-    '/'                 => (new HomeController())->index(),
+    '/'                 => (new clientController())->home(),
+    'login'             => (new clientController())->login(),
+    'logout'            =>(new clientController())->logout(),
+    'register'          =>(new clientController())->register(), 
+    'editpass'          =>(new clientController())->updatePass(),
+    //Đang sửa
+    'forgotpass'        =>(new clientController())->forgotPass(),
+    'resetform'         =>(new clientController())->resetForm(),
+    'resetpass'         =>(new clientController())->resetPass(),
 };
