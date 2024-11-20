@@ -1,5 +1,6 @@
 <?php 
 session_start();
+date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Require file Common
 require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ

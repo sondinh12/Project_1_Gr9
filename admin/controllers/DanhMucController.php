@@ -26,8 +26,9 @@ class DanhMucController
      if($_SERVER['REQUEST_METHOD']=='POST'){
         $ten_danh_muc= $_POST['ten_danh_muc'];
         $trang_thai= $_POST['trang_thai'];
-      
-       //validate
+        $create_at=date('Y-m-d H:i:s');
+        $update_at=$create_at;
+       //validateD
        $errors =[];
        if(empty($ten_danh_muc)){
         $errors['ten_danh_muc'] = 'Tên danh mục là bắt buộc';
@@ -37,7 +38,7 @@ class DanhMucController
        }
        //thêm dữ liệu
        if(empty($errors)){
-        $this->modelDanhMuc->postData( $ten_danh_muc, $trang_thai);
+        $this->modelDanhMuc->postData( $ten_danh_muc, $trang_thai, $create_at,$update_at);
         unset($_SESSION['errors']);
         header('Location: ?act=danh-mucs');
         exit();
@@ -63,6 +64,8 @@ class DanhMucController
             $id=$_POST['id'];
             $ten_danh_muc= $_POST['ten_danh_muc'];
             $trang_thai= $_POST['trang_thai'];
+          
+          
           
            //validate
            $errors =[];

@@ -18,16 +18,18 @@ class DanhMuc
         }
     }
     //thêm dữ liệu mới vào data
-    public function postData( $ten_danh_muc, $trang_thai){
+    public function postData( $ten_danh_muc, $trang_thai,$create_at,$update_at){
         echo $ten_danh_muc;
         echo $trang_thai;
         try {
         
-            $sql="INSERT INTO category(name, trang_thai)
-            VALUES(:name,:trang_thai)";
+            $sql="INSERT INTO category(cate_name, trang_thai,create_at,update_at)
+            VALUES(:cate_name,:trang_thai,:create_at,:update_at)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':name',$ten_danh_muc);
+            $stmt->bindParam(':cate_name',$ten_danh_muc);
             $stmt->bindParam(':trang_thai',$trang_thai);
+            $stmt->bindParam(':create_at',$create_at);
+            $stmt->bindParam(':update_at',$update_at);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
@@ -43,7 +45,7 @@ class DanhMuc
         
             $sql="UPDATE category SET ten_danh_muc=:name, trang_thai=:trang_thai WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
-             $stmt->bindParam(':id',$id);
+            $stmt->bindParam(':id',$id);
             $stmt->bindParam(':name',$ten_danh_muc);
             $stmt->bindParam(':trang_thai',$trang_thai);
             $stmt->execute();

@@ -62,7 +62,8 @@
                                                         <th scope="col">STT</th>
                                                         <th scope="col">Tên danh mục</th>
                                                         <th scope="col">Trạng thái</th>
-                                                       
+                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Ngày cập nhật</th>
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
@@ -72,7 +73,7 @@
                                                     ?>
                                                     <tr>
                                                         <td class="fw-medium"><?=$index + 1 ?></td>
-                                                        <td><?=$danhMuc['name'] ?></td>
+                                                        <td><?=$danhMuc['cate_name'] ?></td>
                                                    
                                                         <td>
                                                            <?
@@ -88,6 +89,8 @@
                                                            ?> 
                                                            
                                                         </td>
+                                                        <td><?= $danhMuc['create_at'] ?? 'Không có dữ liệu' ?></td>
+                                                        <td><?= $danhMuc['update_at'] ?? 'Không có dữ liệu' ?></td>
                                                         <td>
                                                                     <div class="hstack gap-3 flex-wrap">
                                                                         <a href="?act=form-sua-danh-muc&danh_muc_id=<?= $danhMuc['category_id']?>" class="link-success fs-15"><i class="ri-edit-2-line"></i></a>
