@@ -62,9 +62,9 @@
                                                         <th scope="col">STT</th>
                                                         <th scope="col">Tên danh mục</th>
                                                         <th scope="col">Trạng thái</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Ngày sửa</th>
                                                         <th scope="col">Ngày cập nhật</th>
-                                                        <th scope="col">Action</th>
+                                                        <th scope="col">Hành đông</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

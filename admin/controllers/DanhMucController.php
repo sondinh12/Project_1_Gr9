@@ -64,7 +64,9 @@ class DanhMucController
             $id=$_POST['id'];
             $ten_danh_muc= $_POST['ten_danh_muc'];
             $trang_thai= $_POST['trang_thai'];
-          
+            $update_at=date('Y-m-d H:i:s');
+
+           
           
           
            //validate
@@ -77,7 +79,7 @@ class DanhMucController
            }
            //thêm dữ liệu
            if(empty($errors)){
-            $this->modelDanhMuc->updateData($id, $ten_danh_muc, $trang_thai);
+            $this->modelDanhMuc->updateData($id, $ten_danh_muc, $trang_thai, $update_at);
             unset($_SESSION['errors']);
             header('Location: ?act=danh-mucs');
             exit();

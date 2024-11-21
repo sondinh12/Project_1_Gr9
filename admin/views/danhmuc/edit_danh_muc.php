@@ -55,7 +55,7 @@
                                 <div class="card-body">
                                    
                                     <div class="live-preview">
-                                        <form action="?act=them-danh-muc" method="Post">
+                                        <form action="?act=sua-danh-muc" method="Post">
                                             <div class="row">
                                                
                                                 <!--end col-->

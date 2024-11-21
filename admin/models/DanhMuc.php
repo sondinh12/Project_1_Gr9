@@ -38,16 +38,17 @@ class DanhMuc
 
     }
 //cap nhat du lieu
-    public function updateData ($id, $ten_danh_muc, $trang_thai){
+    public function updateData ($id, $ten_danh_muc, $trang_thai, $update_at){
         echo $ten_danh_muc;
         echo $trang_thai;
         try {
         
-            $sql="UPDATE category SET ten_danh_muc=:name, trang_thai=:trang_thai WHERE id = :id";
+            $sql="UPDATE category SET ten_danh_muc=:cate_name, trang_thai=:trang_thai WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id',$id);
-            $stmt->bindParam(':name',$ten_danh_muc);
+            $stmt->bindParam(':cate_name',$ten_danh_muc);
             $stmt->bindParam(':trang_thai',$trang_thai);
+            $stmt->bindParam(':update_at',$update_at);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
