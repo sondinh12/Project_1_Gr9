@@ -55,13 +55,16 @@ class DanhMucController
     $id = $_GET['danh_muc_id'];
 // lấy thông tin danhmuc
     $danhMuc =$this->modelDanhMuc->getDetailData($id);
+    // echo '<pre>';
+    // print_r($danhMuc);
+    // echo '<pre>';
     require_once 'views/danhmuc/edit_danh_muc.php';
    // đổ dữ liệu ra form
     }
     //hàm cập nhật
     public function update(){
         if($_SERVER['REQUEST_METHOD']=='POST'){
-            $id=$_POST['id'];
+            $id=$_GET['danh_muc_id'];
             $ten_danh_muc= $_POST['ten_danh_muc'];
             $trang_thai= $_POST['trang_thai'];
             $update_at=date('Y-m-d H:i:s');
@@ -79,13 +82,13 @@ class DanhMucController
            }
            //thêm dữ liệu
            if(empty($errors)){
-            $this->modelDanhMuc->updateData($id, $ten_danh_muc, $trang_thai, $update_at);
+            $this->modelDanhMuc->updateData($id, $ten_danh_muc, $trang_thai);
             unset($_SESSION['errors']);
             header('Location: ?act=danh-mucs');
             exit();
            }else{
             $_SESSION['errors']=$errors;
-            header('Location: ?act=form-sua-danh-muc');
+            header('Location:'.$_SERVER['HTTP_REFERER']);
             exit();
            }
           

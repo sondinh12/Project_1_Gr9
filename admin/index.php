@@ -7,17 +7,17 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once 'controllers/DashboardController.php';
-<<<<<<< HEAD
+
 require_once 'controllers/DanhMucController.php';
 
 // Require toàn bộ file Models
 require_once 'models/DanhMuc.php';
-=======
+
 require_once 'controllers/ProductsAdminController.php';
 
 // Require toàn bộ file Models
 require_once 'model/Products.php';
->>>>>>> 5e4867ec9c1a4982b47495a43552aff55e10ceb3
+
 // Route
 $act = $_GET['act'] ?? '/';
 
@@ -25,7 +25,7 @@ $act = $_GET['act'] ?? '/';
 
 match ($act) {
     // Dashboards
-<<<<<<< HEAD
+
     '/'                 => (new DashboardController())->index(),
     //quản lý dm sp
     'danh-mucs'  => (new DanhMucController())->index(),
@@ -34,12 +34,12 @@ match ($act) {
     'form-sua-danh-muc'  => (new DanhMucController())->edit(),
     'sua-danh-muc'  => (new DanhMucController())->update(),
     'xoa-danh-mucs'  => (new DanhMucController())->destroy(),
-=======
+
     '/'            => (new DashboardController())->index(),
     'product'      => (new ProductsController())->list(),
     'delete-product'       => (new ProductsController())->delete(), 
     'add-product'       => (new ProductsController())->add(), 
     'store-product'       => (new ProductsController())->store(), 
     'update-product'       => (new ProductsController())->edit(), 
->>>>>>> 5e4867ec9c1a4982b47495a43552aff55e10ceb3
+
 };
