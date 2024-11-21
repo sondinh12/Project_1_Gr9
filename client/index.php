@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php
+=======
+<?php 
+>>>>>>> d8dd6eabdb9ce46c14bf9fad087f3e4d6945bbab
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -17,6 +21,10 @@ require_once './model/clientModel.php';
 // Route
 $act = $_GET['act'] ?? '/';
 match ($act) {
+
+    // Trang chủ
+   
+
     '/'                 => (new clientController())->home(),
     'login'             => (new clientController())->login(),
     'logout'            =>(new clientController())->logout(),
@@ -26,4 +34,8 @@ match ($act) {
     'forgotpass'        =>(new clientController())->forgotPass(),
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
+<<<<<<< HEAD
+=======
+
+>>>>>>> d8dd6eabdb9ce46c14bf9fad087f3e4d6945bbab
 };
