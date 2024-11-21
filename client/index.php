@@ -5,8 +5,8 @@ date_default_timezone_set('Asia/Ho_Chi_Minh');
 
 
 // Require file Common
-require_once './common/env.php'; // Khai báo biến môi trường
-require_once './common/function.php'; // Hàm hỗ trợ
+require_once '../commons/env.php'; // Khai báo biến môi trường
+require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once './controllers/clientController.php';
