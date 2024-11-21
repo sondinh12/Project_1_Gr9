@@ -45,11 +45,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="color">Màu sắc</label>
-                            <input type="text" id="color" name="color" class="form-control">
-                        </div>
-
-                        <div class="form-group">
                             <label for="price">Giá</label>
                             <input type="number" id="price" name="price" class="form-control" required>
                         </div>

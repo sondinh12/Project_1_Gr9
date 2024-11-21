@@ -26,18 +26,14 @@
                     <h2>Chỉnh sửa sản phẩm</h2>
 
                     <!-- Cập nhật form để hỗ trợ upload file -->
-                    <form method="POST" action="">
+                    <form method="POST" action="" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="name">Tên sản phẩm</label>
-                            <input type="text" id="name" name="name" class="form-control" value="<?=($product['name']) ?>" required>
+                            <input type="text" id="name" name="name" class="form-control" value="<?= ($product['name']) ?>" required>
                         </div>
                         <div class="form-group">
                             <label for="description">Mô tả</label>
-                            <textarea id="description" name="description" class="form-control" rows="4"><?=($product['description']) ?></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="color">Màu sắc</label>
-                            <input type="text" id="color" name="color" class="form-control" value="<?=($product['color']) ?>">
+                            <textarea id="description" name="description" class="form-control" rows="4"><?= ($product['description']) ?></textarea>
                         </div>
                         <div class="form-group">
                             <label for="price">Giá</label>
@@ -52,6 +48,7 @@
                         <div class="form-group">
                             <label for="image">Hình ảnh</label>
                             <input type="file" id="image" name="image" class="form-control">
+                            <img src="../admin/assets/images/<?= $product['image'] ?>"  class="img-fluid d-block" />
                         </div>
                         <input type="hidden" name="id_pro" id="id_pro" value="<?= $product['id_pro'] ?>">
                         <br>

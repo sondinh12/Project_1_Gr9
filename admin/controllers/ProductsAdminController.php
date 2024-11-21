@@ -49,7 +49,7 @@ class ProductsController
                         return;
                     }
                     if (move_uploaded_file($imageTmp, $imagePath)) {
-                        $data['image'] = 'assets/images/' . $imageName;
+                        $data['image'] = $imageName;
                         echo "Ảnh đã được tải lên: " . $data['image'];
                     } else {
                         echo "Lỗi khi tải ảnh lên!";
@@ -65,25 +65,29 @@ class ProductsController
             exit;
         }
     }
-    public function edit() {
+    public function edit()
+    {
         if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data = $_POST;
-            if (isset($_FILES['image'])) {
-            $file_hinh = $_FILES['image'];
-            } else { 
-            $file_hinh = null;
-            }
-            if ($file_hinh['size'] > 0) {
+            $file_hinh = $_FILES['image'] ?? null;
+
+            if ($file_hinh && $file_hinh['size'] > 0) {
                 $imagePath = __DIR__ . '/../assets/images/' . $file_hinh['name'];
+                $data['image'] = $file_hinh['name'];
                 move_uploaded_file($file_hinh['tmp_name'], $imagePath);
-                $data['image'] = $imagePath;
+            }
+            if (!isset($data['id_pro'])) {
+                die("Error: Product ID is missing.");
             }
             (new Product)->update($data, $data['id_pro']);
             header("location: ?act=product");
+            exit;
         }
-        $id = $_GET['id'];
+        $id = $_GET['id'] ?? null;
+        if (!$id) {
+            die("Error: No product ID provided.");
+        }
         $product = (new Product)->find_one($id);
         require_once __DIR__ . '/../views/products/update-product.php';
     }
 }
-?>

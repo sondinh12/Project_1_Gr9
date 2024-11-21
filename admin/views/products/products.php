@@ -41,7 +41,7 @@
                                                             <td>
                                                                 <div class="d-flex align-items-center">
                                                                     <div class="avatar-sm bg-light rounded p-1 me-2">
-                                                                        <img src="<?= $product['image'] ?>" alt="Product Image" class="img-fluid d-block" />
+                                                                        <img src="../admin/assets/images/<?= $product['image'] ?>" alt="Product Image" class="img-fluid d-block" />
                                                                     </div>
                                                                     <div>
                                                                         <h5 class="fs-14 my-1">
@@ -52,16 +52,16 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <h5 class="fs-14 my-1 fw-normal"><?= ($product['color']) ?></h5><span class="text-muted">Color</span>
-                                                            </td>
-                                                            <td>
                                                                 <h5 class="fs-14 my-1 fw-normal">$<?= ($product['price']) ?></h5><span class="text-muted">Price</span>
                                                             </td>
                                                             <td>
                                                                 <h5 class="fs-14 my-1 fw-normal"><?= ($product['quantity']) ?></h5><span class="text-muted">Quantity</span>
                                                             </td>
                                                             <td>
-                                                                <h5 class="fs-14 my-1 fw-normal"><?= ($product['view']) ?></h5><span class="text-muted">Views</span>
+                                                                <h5 class="fs-14 my-1 fw-normal"><?= ($product['create_at']) ?></h5><span class="text-muted">Create date</span>
+                                                            </td>
+                                                            <td>
+                                                                <h5 class="fs-14 my-1 fw-normal"><?= ($product['update_at']) ?></h5><span class="text-muted">Update date</span>
                                                             </td>
                                                             <td>
                                                                 <div class="hstack gap-3 flex-wrap">
