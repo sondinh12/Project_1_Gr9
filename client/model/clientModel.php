@@ -15,7 +15,7 @@ class clientModel {
         $sql="select role from account where name_user='$user_name'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);  // Lấy kết quả
+        $result = $stmt->fetch();  // Lấy kết quả
         return $result ? $result['role'] : null;
         // return $stsm->execute();
     }
