@@ -35,7 +35,7 @@ match ($act) {
     'sua-danh-muc'  => (new DanhMucController())->update(),
     'xoa-danh-mucs'  => (new DanhMucController())->destroy(),
 
-    '/'            => (new DashboardController())->index(),
+    // '/'            => (new DashboardController())->index(),
     'product'      => (new ProductsController())->list(),
     'delete-product'       => (new ProductsController())->delete(), 
     'add-product'       => (new ProductsController())->add(), 
