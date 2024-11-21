@@ -5,7 +5,7 @@
 
 
 
-define('BASE_URL'   , 'http://localhost/demogit/Project_1/');
+define('BASE_URL'   , 'http://localhost/Project_1/');
 
 define('DB_HOST'    , 'localhost');
 define('DB_PORT'    , 3306);
