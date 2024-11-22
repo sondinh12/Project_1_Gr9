@@ -17,7 +17,6 @@ class clientModel {
         $stmt->execute();
         $result = $stmt->fetch();  // Lấy kết quả
         return $result ? $result['role'] : null;
-        // return $stsm->execute();
     }
 
     function insertAcc($user_name,$pass,$email,$phone,$address,$create_at,$update_at){
@@ -69,6 +68,22 @@ class clientModel {
         $sql="update account set pass='$newPassForgot', reset_token=NULL, token_expixy=NULL,update_at='$update_at' where id='$id'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
+    }
+
+    //user
+    function getIdUser($user_name){
+        $sql="select id from account where name_user='$user_name'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();  // Lấy kết quả
+        return $result;
+    }
+    function getAllInfoUser($id){
+        $sql="select * from account where id='$id'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm->execute();
+        $result = $stsm->fetch();
+        return $result;
     }
 }
 ?>

@@ -24,8 +24,10 @@ class clientController {
             // var_dump($btn);
             if($this->clientModel->checkAcc($user_name,$pass)>0){
                 $role = $this->clientModel->getRoleByUsername($user_name);
+                $id = $this->clientModel->getIdUser($user_name);
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['role'] = $role;
+                $_SESSION['id'] = $id;
                 header("location:./");
             } 
             else{
@@ -173,6 +175,15 @@ class clientController {
         // else {
         //     echo "Form chưa được submit";
         // }
+    }
+
+    function profileUser(){ 
+            if(isset($_SESSION['id'])){       
+            $id = $_SESSION['id'];
+            $info = $this->clientModel->getAllInfoUser($id);
+            echo $info;
+            require_once 'views/profile.php';
+            }
     }
 }
 ?>

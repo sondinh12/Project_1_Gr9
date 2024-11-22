@@ -149,7 +149,7 @@
                             if(isset($_SESSION['user_name'])){
                                 $user_name = $_SESSION['user_name'];
                             ?>
-                            <span class="nav-link nav-item">Xin chào <?=$user_name?></span>
+                            <a href="?act=profile"><span class="nav-link nav-item">Xin chào <?=$user_name?></span></a>
                             <a href="?act=logout" class="nav-item nav-link">Log Out</a>
                             <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
                                 <?php
