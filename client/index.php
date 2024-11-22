@@ -1,6 +1,11 @@
 
 <?php
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> a1b7513fb876bbeb79810ba525de7695070ad9ec
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 
@@ -34,5 +39,10 @@ match ($act) {
     'resetpass'         =>(new clientController())->resetPass(),
 
 
+<<<<<<< HEAD
 };
 ?>
+=======
+
+};
+>>>>>>> a1b7513fb876bbeb79810ba525de7695070ad9ec
