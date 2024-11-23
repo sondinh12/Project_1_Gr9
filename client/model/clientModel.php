@@ -85,5 +85,11 @@ class clientModel {
         $result = $stsm->fetch();
         return $result;
     }
+
+    function updateUser($id,$user_name,$email,$phone,$address,$update_at){
+        $sql="update account set name_user='$user_name',email='$email',phone='$phone',address='$address',update_at='$update_at' where id='$id'";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute();
+    }
 }
 ?>

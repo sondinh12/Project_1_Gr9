@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Trang chủ</a>
+                        <a class="nav-link active" aria-current="page" href="?act=/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Shop</a>
@@ -94,17 +94,17 @@
                         </div>
                         <div class="col-md-6">
                             <h5>Email:</h5>
-                            <p><span id="email">johndoe@example.com</span></p>
+                            <p><span id="email"></span><?=$info['email']?></span></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <h5>Số điện thoại:</h5>
-                            <p><span id="phone">+123456789</span></p>
+                            <p><span id="phone"><?=$info['phone']?></span></p>
                         </div>
                         <div class="col-md-6">
                             <h5>Địa chỉ:</h5>
-                            <p><span id="address">123 Main St, City, Country</span></p>
+                            <p><span id="address"><?=$info['address']?></span></p>
                         </div>
                     </div>
                 </div>
@@ -113,24 +113,24 @@
                 <!-- Cập nhật thông tin cá nhân -->
                 <div class="update-profile mt-5">
                     <h3>Cập nhật thông tin cá nhân</h3>
-                    <form method="post">
+                    <form method="post" action="?act=updateuser">
                         <div class="mb-3">
                             <label for="updateName" class="form-label">Họ và tên</label>
-                            <input type="text" class="form-control" id="updateName" value="John Doe">
+                            <input type="text" class="form-control" id="updateName" value="<?=$info['name_user']?>" name="user_name">
                         </div>
                         <div class="mb-3">
                             <label for="updateEmail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="updateEmail" value="johndoe@example.com">
+                            <input type="email" class="form-control" id="updateEmail" value="<?=$info['email']?>" name="email">
                         </div>
                         <div class="mb-3">
                             <label for="updatePhone" class="form-label">Số điện thoại</label>
-                            <input type="tel" class="form-control" id="updatePhone" value="+123456789">
+                            <input type="tel" class="form-control" id="updatePhone" value="<?=$info['phone']?>" name="phone">
                         </div>
                         <div class="mb-3">
                             <label for="updateAddress" class="form-label">Địa chỉ</label>
-                            <input type="text" class="form-control" id="updateAddress" value="123 Main St, City, Country">
+                            <input type="text" class="form-control" id="updateAddress" value="<?=$info['address']?>" name="address">
                         </div>
-                        <button type="submit" class="btn btn-primary">Cập nhật</button>
+                        <button type="submit" class="btn btn-primary" name="btn_updateUs">Cập nhật</button>
                     </form>
                 </div>
             </div>

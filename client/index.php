@@ -23,4 +23,5 @@ match ($act) {
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
     'profile'           =>(new clientController())->profileUser(),
+    'updateuser'        =>(new clientController())->updateUser(),
 };

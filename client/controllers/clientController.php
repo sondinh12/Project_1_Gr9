@@ -24,10 +24,13 @@ class clientController {
             // var_dump($btn);
             if($this->clientModel->checkAcc($user_name,$pass)>0){
                 $role = $this->clientModel->getRoleByUsername($user_name);
-                $id = $this->clientModel->getIdUser($user_name);
+                $idUs = $this->clientModel->getIdUser($user_name);
+                // var_dump($idUs);
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['role'] = $role;
+                $id=$idUs['id'];
                 $_SESSION['id'] = $id;
+                // var_dump($_SESSION['id']);
                 header("location:./");
             } 
             else{
@@ -180,10 +183,24 @@ class clientController {
     function profileUser(){ 
             if(isset($_SESSION['id'])){       
             $id = $_SESSION['id'];
+            // var_dump($id);
             $info = $this->clientModel->getAllInfoUser($id);
-            echo $info;
             require_once 'views/profile.php';
             }
+    }
+
+    function updateUser(){
+        if(isset($_POST['btn_updateUs'])){
+            $id = $_SESSION['id'];
+            $user_name = $_POST['user_name'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $update_at = date('Y-m-d H:i:s');
+            if($this->clientModel->updateUser($id,$user_name,$email,$phone,$address,$update_at)){
+                header("location:?act=profile");
+            }
+        }
     }
 }
 ?>
