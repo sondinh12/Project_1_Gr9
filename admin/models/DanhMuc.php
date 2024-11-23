@@ -1,4 +1,4 @@
-<?
+<?php
 class DanhMuc
 {
     public $conn;

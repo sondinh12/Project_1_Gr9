@@ -48,7 +48,7 @@ class Product
                 ':image' => $data['image'] ?? null,
                 ':price' => $data['price'] ?? null,
                 ':description' => $data['description'] ?? null,
-                ':id_cate' => $data['id_cate'] ?? 1,
+                ':id_cate' => $data['id_cate'] ?? null,
                 ':quantity' => $data['quantity'] ?? null,
                 ':update_at' => $data['update_at'] ?? date('Y-m-d H:i:s'),
                 ':id_pro' => $id

@@ -44,11 +44,15 @@
                             <label for="quantity">Số lượng</label>
                             <input type="number" id="quantity" name="quantity" class="form-control" value="<?= ($product['quantity']) ?>" required>
                         </div>
-
                         <div class="form-group">
-                            <label for="image">Hình ảnh</label>
-                            <input type="file" id="image" name="image" class="form-control">
-                            <img src="../admin/assets/images/<?= $product['image'] ?>"  class="img-fluid d-block" />
+                        <label for="quantity">Danh mục</label>
+                            <select name="category_id" id="category_id">
+                                <?php foreach ($danhMucs as $danhmuc) : ?>
+                                    <option value="<?= $danhmuc['category_id'] ?>" <?= ($danhmuc['category_id'] == $product['id_pro']) ? 'selected' : '' ?>>
+                                        <?= $danhmuc['tendm'] ?>
+                                    </option>
+                                <?php endforeach ?>
+                            </select>
                         </div>
                         <input type="hidden" name="id_pro" id="id_pro" value="<?= $product['id_pro'] ?>">
                         <br>

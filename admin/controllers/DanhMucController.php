@@ -1,4 +1,4 @@
-<?
+<?php
 class DanhMucController
 {
     //ket noi den model

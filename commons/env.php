@@ -8,7 +8,7 @@ define('BASE_URL'   , 'http://localhost/demogit/Project_1_Gr9/');
 
 define('DB_HOST'    , 'localhost');
 define('DB_PORT'    , 3306);
-define('DB_NAME'    , value: 'duan1_gr9');  // Tên database
+define('DB_NAME'    , value: 'duan1-gr9');  // Tên database
 
 
 // define('DB_PORT'    , 3306);

@@ -53,6 +53,16 @@
                             <label for="quantity">Số lượng</label>
                             <input type="number" id="quantity" name="quantity" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                            <label for="category">Danh mục</label>
+                            <select name="category_id" id="category_id">
+                                <?php foreach ($danhMucs as $danhmuc) : ?>
+                                    <option value="<?= $danhmuc['category_id'] ?>">
+                                        <?= $danhmuc['cate_name'] ?>
+                                    </option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label for="image">Hình ảnh</label>
