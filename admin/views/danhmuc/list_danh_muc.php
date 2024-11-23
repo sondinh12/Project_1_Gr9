@@ -14,7 +14,7 @@
 
     <!-- CSS -->
     <?php
-    require_once "views/layouts/libs_css.php";
+    require_once "./views/layouts/libs_css.php";
     ?>
 
 </head>
@@ -26,18 +26,16 @@
 
         <!-- HEADER -->
         <?php
-        require_once "views/layouts/header.php";
+        require_once "./views/layouts/header.php";
 
-        require_once "views/layouts/siderbar.php";
+        require_once "./views/layouts/siderbar.php";
         ?>
         
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
 
-        <!-- ============================================================== -->
         <!-- Start right Content here -->
-        <!-- ============================================================== -->
         <div class="main-content">
          
             <div class="page-content">
@@ -68,7 +66,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <? foreach ($danhMucs as $index => $danhMuc ):
+                                                    <?php foreach ($danhMucs as $index => $danhMuc ):
 
                                                     ?>
                                                     <tr>
@@ -107,7 +105,7 @@
                                                     </tr>
                                                   
                                                    
-                                                    <? endforeach;
+                                                    <?php endforeach;
                                                     ?>
                                                 </tbody>
                                             </table>
@@ -173,7 +171,7 @@
 
     <!-- JAVASCRIPT -->
     <?php
-    require_once "views/layouts/libs_js.php";
+    require_once "./views/layouts/libs_js.php";
     ?>
 
 </body>
