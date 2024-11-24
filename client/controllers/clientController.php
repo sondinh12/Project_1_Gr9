@@ -12,7 +12,28 @@ class clientController {
     }
 
     function home(){
+        $product = $this->clientModel->getAllProduct();
         require_once 'views/home.php';
+    }
+
+    function checkoutShow(){
+        require_once 'views/checkout.php';
+    }
+
+    function contactShow(){
+        require_once 'views/contact.php';
+    }
+
+    function detailShow(){
+        require_once 'views/detail.php';
+    }
+
+    function cartShow(){
+        require_once 'views/cart.php';
+    }
+
+    function shopShow(){
+        require_once 'views/shop.php';
     }
 
     function login(){
@@ -200,6 +221,19 @@ class clientController {
             if($this->clientModel->updateUser($id,$user_name,$email,$phone,$address,$update_at)){
                 header("location:?act=profile");
             }
+        }
+    }
+
+    //cart
+    function addToCaart(){
+        if(!isset($_SESSION['user_name'])){
+            header("location:?act=login");
+        }
+        if(isset($_POST['btn_addcart'])){
+            $pro_id=$_POST['pro_id'];
+            $quantity=$_POST['quantity'];
+
+            
         }
     }
 }

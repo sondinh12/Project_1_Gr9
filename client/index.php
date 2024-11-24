@@ -18,10 +18,15 @@ match ($act) {
     'logout'            =>(new clientController())->logout(),
     'register'          =>(new clientController())->register(), 
     'editpass'          =>(new clientController())->updatePass(),
-    //Đang sửa
     'forgotpass'        =>(new clientController())->forgotPass(),
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
     'profile'           =>(new clientController())->profileUser(),
     'updateuser'        =>(new clientController())->updateUser(),
+    'cart'              =>(new clientController())->cartShow(),
+    'contact'           =>(new clientController())->contactShow(),
+    'detail'            =>(new clientController())->detailShow(),
+    'checkout'          =>(new clientController())->checkoutShow(),
+    'shop'              =>(new clientController())->shopShow(),
+
 };

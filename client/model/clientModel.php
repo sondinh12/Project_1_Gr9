@@ -91,5 +91,14 @@ class clientModel {
         $stmt = $this->conn->prepare($sql);
         return $stmt->execute();
     }
+
+    function getAllProduct(){
+        $sql="select * from products order by id_pro desc";
+        return $this->conn->query($sql);
+    }
+
+    function addToCart(){
+        
+    }
 }
 ?>
