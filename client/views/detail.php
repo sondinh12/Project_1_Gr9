@@ -187,6 +187,32 @@
         </div>
     </div>
     </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="mb-4">Comment</h4>
+                <div class="media mb-4">
+                    <div class="media-body">
+                        <h6>Tên<small> - <i>Ngày bình luận</i></small></h6>
+                        <p>Nội dung commet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="mb-4">Leave a review</h4>
+                <small>Your email address will not be published. Required fields are marked *</small>
+                <form>
+                    <div class="form-group">
+                        <label for="message">Your Review *</label>
+                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group mb-0">
+                        <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Related Products Section -->
     <div class="container mt-5">
         <h3>Related Products</h3>
@@ -226,32 +252,6 @@
                         <p class="card-text text-danger">$24.99</p>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <h4 class="mb-4">Comment</h4>
-                <div class="media mb-4">
-                    <div class="media-body">
-                        <h6>Tên<small> - <i>Ngày bình luận</i></small></h6>
-                        <p>Nội dung commet</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <h4 class="mb-4">Leave a review</h4>
-                <small>Your email address will not be published. Required fields are marked *</small>
-                <form>
-                    <div class="form-group">
-                        <label for="message">Your Review *</label>
-                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
-                    </div>
-                    <div class="form-group mb-0">
-                        <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
-                    </div>
-                </form>
             </div>
         </div>
     </div>
