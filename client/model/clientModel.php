@@ -134,7 +134,7 @@ class clientModel {
     }
 
     function insertProToCart($id_user,$pro_id,$pro_name,$quantity,$price){
-        $sql="insert into cart(id_user,pro_id,pro_name,quantity,price,create_at) values('$id_user','$pro_id','$pro_name','$quantity','$price',NOW())";
+        $sql="insert into cart(id_user,pro_id,pro_name,quantity,price,create_at,update_at) values('$id_user','$pro_id','$pro_name','$quantity','$price',NOW(),NOW())";
         $stmt = $this->conn->prepare($sql);
         $stmt -> execute();
         return true;
@@ -145,6 +145,13 @@ class clientModel {
         $stmt = $this->conn->prepare($sql);
         $stmt -> execute();
         return $stmt->fetchAll();
+    }
+
+    function deleteToCart($id_user,$pro_id){
+        $sql="delete from cart where id_user='$id_user' and pro_id='$pro_id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return true;
     }
 }
 ?>

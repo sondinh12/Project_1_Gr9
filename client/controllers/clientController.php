@@ -239,15 +239,28 @@ class clientController {
             if(isset($_POST['btn_addcart'])){
                 $pro_id=$_POST['pro_id'];
                 $quantity=$_POST['quantity']; 
+                $price = $_POST['price'];
+                $pro_name=$_POST['pro_name'];
                 $addProToCart = $this->clientModel->addToCart($id_user,$pro_id,$pro_name,$quantity,$price);
                 if($addProToCart === true){
-                    header("location:?act=cart");
+                    header("location:./");
                 } else{
                     echo $addProToCart;
                 }
             }
         }
-        
+    }
+
+    function deleteToCart(){
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_deletecart'])){
+                $pro_id = $_POST['btn_deletecart'];
+                if($this->clientModel->deleteToCart($id_user, $pro_id)){
+                    header("location:?act=cart");
+                }
+            }
+        }
     }
 }
 ?>

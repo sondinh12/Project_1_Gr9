@@ -28,5 +28,6 @@ match ($act) {
     'detail'            =>(new clientController())->detailShow(),
     'checkout'          =>(new clientController())->checkoutShow(),
     'shop'              =>(new clientController())->shopShow(),
-    'addcart'           =>(new clientController())->addToCart(),       
+    'addcart'           =>(new clientController())->addToCart(),     
+    'deletecart'        =>(new clientController())->deleteToCart(),  
 };
