@@ -1,14 +1,22 @@
-<?php 
+
+<?php
+
+
+
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+
+
+
 // Require file Common
-require_once '../commons/env.php'; 
-require_once '../commons/function.php'; 
+require_once '../commons/env.php'; // Khai báo biến môi trường
+require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
 require_once './controllers/clientController.php';
 
 // Require toàn bộ file Models
+
 require_once './model/clientModel.php';
 // Route
 $act = $_GET['act'] ?? '/';
@@ -26,5 +34,7 @@ match ($act) {
     'forgotpass'        =>(new clientController())->forgotPass(),
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
+
+
 
 };

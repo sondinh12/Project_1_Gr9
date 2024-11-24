@@ -18,15 +18,15 @@ class Comment {
         $stmt->execute();
     }
 
-    // // Thêm mới một bình luận
-    // public static function add($data) {
-    //     $db = connectDB(); 
-    //     $stmt = $db->prepare("INSERT INTO comment (id, content, date, id_pro) VALUES (:id, :content, :date, :id_pro)");
-    //     $stmt->bindParam(':id', $data['id']);
-    //     $stmt->bindParam(':content', $data['content']);
-    //     $stmt->bindParam(':date', $data['date']);
-    //     $stmt->bindParam(':id_pro', $data['id_pro']);
-    //     $stmt->execute();
-    // }
+    // Thêm mới một bình luận
+    public static function add($data) {
+        $db = connectDB(); 
+        $stmt = $db->prepare("INSERT INTO comment (id, content, date, id_pro) VALUES (:id, :content, :date, :id_pro)");
+        $stmt->bindParam(':id', $data['id']);
+        $stmt->bindParam(':content', $data['content']);
+        $stmt->bindParam(':date', $data['date']);
+        $stmt->bindParam(':id_pro', $data['id_pro']);
+        $stmt->execute();
+    }
 }
 ?>

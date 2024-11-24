@@ -19,7 +19,7 @@ class CommentController {
     public function addComment($data) {
         // Thêm bình luận mới
         if (!empty($data['content']) && !empty($data['id_pro'])) {
-            Comment::add($data);
+            Comment:: add($data);
         }
         header("Location: ?act=comments");
     }
