@@ -59,7 +59,7 @@ class ProductsController
 
             // Insert data into database
             (new Product)->insert($data);
-
+            $danhMucs = (new DanhMuc)->getAll();
             // Redirect to product list page after successful insertion
             header("location: ?act=product");
             exit;
