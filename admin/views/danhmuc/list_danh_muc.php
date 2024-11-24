@@ -68,7 +68,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <? foreach ($danhMucs as $index => $danhMuc ):
+                                                    <?php foreach ($danhMucs as $index => $danhMuc ):
 
                                                     ?>
                                                     <tr>
@@ -107,7 +107,7 @@
                                                     </tr>
                                                   
                                                    
-                                                    <? endforeach;
+                                                    <?php endforeach;
                                                     ?>
                                                 </tbody>
                                             </table>
