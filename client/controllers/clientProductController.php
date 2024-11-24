@@ -68,6 +68,7 @@ public function detail()
         header("Location: index.php");
         exit;
     }
+    $categories = (new DanhMuc)->all();
 
     // Hiển thị view chi tiết sản phẩm
     require_once __DIR__ . '/../views/detail.php';

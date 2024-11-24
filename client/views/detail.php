@@ -87,43 +87,105 @@
             </div>
         </div>
     </div>
-    <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
-        <a href="" class="text-decoration-none d-block d-lg-none">
-            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
-        </a>
-        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse " id="navbarCollapse">
-            <div class="navbar-nav mr-auto py-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="index.php?act=list-product" class="nav-item nav-link">Shop</a>
-                <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu rounded-0 m-0">
-                        <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                        <a href="checkout.html" class="dropdown-item">Checkout</a>
+    <!-- Navbar Start -->
+    <div class="container-fluid">
+        <div class="row border-top px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                    <h6 class="m-0">Categories</h6>
+                    <i class="fa fa-angle-down text-dark"></i>
+                </a>
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div class="navbar-nav w-100" style="height: 210px; overflow-y: auto;">
+                        <?php foreach ($categories as $category): ?>
+                            <a href="index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>" class="btn btn-primary">
+                                <?= htmlspecialchars($category['cate_name']) ?>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                </nav>
+            </div>
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <a href="" class="text-decoration-none d-block d-lg-none">
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                    </a>
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="index.html" class="nav-item nav-link active">Home</a>
+                            <a href="index.php?act=list-product" class="nav-item nav-link">Shop</a>
+                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                <div class="dropdown-menu rounded-0 m-0">
+                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                </div>
+                            </div>
+                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        </div>
+                        <div class="navbar-nav ml-auto py-0">
+                            <?php
+                            if (isset($_SESSION['user_name'])) {
+                                $user_name = $_SESSION['user_name'];
+                            ?>
+                                <span class="nav-link nav-item">Xin chào <?= $user_name ?></span>
+                                <a href="?act=logout" class="nav-item nav-link">Log Out</a>
+                                <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <?php
+                                if (isset($_SESSION['role']) && $_SESSION['role'] === 1) {
+                                ?>
+                                    <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <?php
+                                }
+                                ?>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="?act=login" class="nav-item nav-link">Login</a>
+                                <a href="?act=register" class="nav-item nav-link">Register</a>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div>
-    </nav>
+    </div>
+    <!-- Navbar End -->
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop Detail</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Shop Detail</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>" class="img-fluid" alt="<?= htmlspecialchars($product['name']) ?>">
+                <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>" class="img-fluid border border-color:gray" alt="<?= htmlspecialchars($product['name']) ?>">
             </div>
             <div class="col-md-6">
                 <h2><?= htmlspecialchars($product['name']) ?></h2>
                 <p><strong>Giá: $<?= htmlspecialchars($product['price']) ?></strong></p>
+                <p><strong>Số Lượng: <?= htmlspecialchars($product['quantity']) ?></strong></p>
                 <p><strong>Mô tả:</strong></p>
                 <p><?= htmlspecialchars($product['description']) ?></p>
-
+                <input type="number" class="btn btn-primary btn-lg form-control w-50" id="counter" value="1" min="1">
                 <button class="btn btn-primary btn-lg">Add to Cart</button>
             </div>
         </div>
+    </div>
     </div>
     <!-- Related Products Section -->
     <div class="container mt-5">
@@ -167,6 +229,32 @@
             </div>
         </div>
     </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h4 class="mb-4">Comment</h4>
+                <div class="media mb-4">
+                    <div class="media-body">
+                        <h6>Tên<small> - <i>Ngày bình luận</i></small></h6>
+                        <p>Nội dung commet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h4 class="mb-4">Leave a review</h4>
+                <small>Your email address will not be published. Required fields are marked *</small>
+                <form>
+                    <div class="form-group">
+                        <label for="message">Your Review *</label>
+                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group mb-0">
+                        <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
     <?php require_once './views/layout/footer.php' ?>
@@ -175,4 +263,5 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
