@@ -9,9 +9,11 @@ require_once '../commons/function.php'; // Hàm hỗ trợ
 require_once 'controllers/DashboardController.php';
 
 require_once 'controllers/DanhMucController.php';
+require_once 'controllers/CommentController.php';
 
 // Require toàn bộ file Models
 require_once 'models/DanhMuc.php';
+require_once 'models/Comment.php';
 
 require_once 'controllers/ProductsAdminController.php';
 
@@ -41,5 +43,9 @@ match ($act) {
     'add-product'       => (new ProductsController())->add(), 
     'store-product'       => (new ProductsController())->store(), 
     'update-product'       => (new ProductsController())->edit(), 
+
+    'comments' => (new CommentController())->listComments(),
+    'delete-comment' => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
+    
 
 };
