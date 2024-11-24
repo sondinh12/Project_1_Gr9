@@ -23,10 +23,10 @@ match ($act) {
     'resetpass'         =>(new clientController())->resetPass(),
     'profile'           =>(new clientController())->profileUser(),
     'updateuser'        =>(new clientController())->updateUser(),
-    'cart'              =>(new clientController())->cartShow(),
+    'cart'              =>(new clientController())->showCart(),
     'contact'           =>(new clientController())->contactShow(),
     'detail'            =>(new clientController())->detailShow(),
     'checkout'          =>(new clientController())->checkoutShow(),
     'shop'              =>(new clientController())->shopShow(),
-
+    'addcart'           =>(new clientController())->addToCart(),       
 };

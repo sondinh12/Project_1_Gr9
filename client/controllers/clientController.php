@@ -28,10 +28,6 @@ class clientController {
         require_once 'views/detail.php';
     }
 
-    function cartShow(){
-        require_once 'views/cart.php';
-    }
-
     function shopShow(){
         require_once 'views/shop.php';
     }
@@ -225,16 +221,33 @@ class clientController {
     }
 
     //cart
-    function addToCaart(){
-        if(!isset($_SESSION['user_name'])){
+
+    function showCart(){
+        if(!isset($_SESSION['id'])){
             header("location:?act=login");
         }
-        if(isset($_POST['btn_addcart'])){
-            $pro_id=$_POST['pro_id'];
-            $quantity=$_POST['quantity'];
+        $id=$_SESSION['id'];
+        $cartShow = $this->clientModel->showCart($id);
+        require_once 'views/cart.php';
+    }
 
-            
+    function addToCart(){
+        if(!isset($_SESSION['id'])){
+            header("location:?act=login");
+        } else{
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_addcart'])){
+                $pro_id=$_POST['pro_id'];
+                $quantity=$_POST['quantity']; 
+                $addProToCart = $this->clientModel->addToCart($id_user,$pro_id,$pro_name,$quantity,$price);
+                if($addProToCart === true){
+                    header("location:?act=cart");
+                } else{
+                    echo $addProToCart;
+                }
+            }
         }
+        
     }
 }
 ?>

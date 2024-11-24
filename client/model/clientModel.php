@@ -97,8 +97,54 @@ class clientModel {
         return $this->conn->query($sql);
     }
 
-    function addToCart(){
-        
+    function checkProQuantity($pro_id){
+        $sql="select quantity from products where id_pro='$pro_id'";
+        // var_dump($pro_id);
+        $stmt=$this->conn->prepare($sql);
+        $stmt->execute();
+        $products = $stmt->fetch();
+        return $products['quantity'];
+    }
+    function addToCart($id_user,$pro_id,$pro_name,$quantity,$price){
+        $stoke = $this->checkProQuantity($pro_id);
+        if($stoke < $quantity){
+            return "Số lượng trong kho không đủ";
+        }
+        $existingCart = $this->getCartProducts($id_user,$pro_id);
+        if($existingCart){
+            return $this->updateCartQuantity($id_user,$pro_id,$existingCart['quantity'] + $quantity);
+        } else {
+            return $this->insertProToCart($id_user,$pro_id,$pro_name,$quantity,$price);
+        }
+
+    }   
+
+    function getCartProducts($id_user,$pro_id){
+        $sql="select * from cart where id_user='$id_user' and pro_id='$pro_id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt ->execute();
+        return $stmt->fetch();
+    }
+
+    function updateCartQuantity($id_user,$pro_id,$newQuantity,){
+        $sql="update cart set quantity='$newQuantity',update_at=NOW() where id_user='$id_user' and pro_id='$pro_id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return true;
+    }
+
+    function insertProToCart($id_user,$pro_id,$pro_name,$quantity,$price){
+        $sql="insert into cart(id_user,pro_id,pro_name,quantity,price,create_at) values('$id_user','$pro_id','$pro_name','$quantity','$price',NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return true;
+    }
+
+    function showCart($id){
+        $sql="select cart.cart_id,cart.pro_id,cart.quantity,products.name,products.price from cart inner join products on products.id_pro = cart.pro_id where id_user='$id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return $stmt->fetchAll();
     }
 }
 ?>

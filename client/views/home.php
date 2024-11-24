@@ -351,10 +351,10 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <form action="" method="post" class="w-100 d-flex justify-content-between">
-                                <input type="hidden" name="pro_id">
-                                <input type="text" name="quantity">
-                            <button type="submit" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</button>
+                            <form action="?act=addcart" method="post" class="w-100 d-flex justify-content-between">
+                                <input type="hidden" name="pro_id" value="<?=$item['id_pro']?>">
+                                <input type="number" min="1" value="1" name="quantity">
+                            <button type="button" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</button>
                             <button type="submit" class="btn btn-sm text-dark p-0" name="btn_addcart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                             </form>
                         </div>
