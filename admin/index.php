@@ -10,10 +10,16 @@ require_once 'controllers/DashboardController.php';
 
 require_once 'controllers/DanhMucController.php';
 
+require_once 'controllers/DonHangController.php';
+
+require_once 'controllers/ProductsAdminController.php';
+
+
 // Require toàn bộ file Models
 require_once 'models/DanhMuc.php';
 
-require_once 'controllers/ProductsAdminController.php';
+require_once 'models/DonHang.php';
+
 
 // Require toàn bộ file Models
 require_once 'model/Products.php';
@@ -41,4 +47,11 @@ match ($act) {
     'add-product'       => (new ProductsController())->add(),
     'store-product'       => (new ProductsController())->store(),
     'update-product'       => (new ProductsController())->edit(),
+
+    // quan li don hang
+    'don-hang'      => (new DonHangController())->danhSachDonHang(),
+    'form-sua-don-hang'      => (new DonHangController())->formEditDonHang(),
+    'sua-don-hang'      => (new DonHangController())->postDonHang(),
+    // 'chi-tiet-don-hang'      => (new DonHangController())->chiTietDonHang(),
+
 };

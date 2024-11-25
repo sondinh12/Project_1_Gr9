@@ -46,39 +46,30 @@
 
                         <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Cập nhật danh mục</h4>
+                                    <h4 class="card-title mb-0 flex-grow-1">Sửa đơn hàng</h4>
                                     
                                 </div><!-- end card header -->
 
                                 <div class="card-body">
                                    
                                     <div class="live-preview">
-                                        <form action="?act=sua-danh-muc&danh_muc_id=<?=$danhMuc['category_id']?>" method="Post">
+                                        <form action="?act=sua-don-hang" method="Post" enctype="multipart/form-data">
                                             <div class="row">
-                                               
-                                                <!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="citynameInput" class="form-label">Tên danh mục</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc" value="<?=$danhMuc['cate_name']?>" ?>"
-                                                   <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['ten_danh_muc']) ? $_SESSION['errors']['ten_danh_muc'] : '' ?>
-
-                                                   </span>
-                                                    </div>
-                                                </div>
+                                              
                                                 <!--end col-->
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
                                                         <label for="ForminputState" class="form-label" >Trạng thái</label>
-                                                      <select  class="form-select" name="trang_thai">
-                                                     <option selected disabled >Chọn trạng thái</option>
-                                                     <option value="1">Hiển thị</option>
-                                                     <option value="2">Không hiển thị  </option>
+                                                      <select  class="form-select" name="status">
+                                                     <option  disabled >Chọn trạng thái</option>
+                                                     <option value="1">Đang chờ duyệt</option>
+                                                     <option value="2">Đã xác nhận</option>
+                                                     <option value="3">Đang vận chuyển</option>
+                                                     <option value="4">Đã giao </option>
 
                                                       </select>
                                                       <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['trang_thai']) ? $_SESSION['errors']['trang_thai'] : '' ?>
+                                                    <?=!empty($_SESSION['errors']['status']) ? $_SESSION['errors']['status'] : '' ?>
 
                                                    </span>
                                                   
@@ -86,21 +77,21 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="mb-3">
-                                                        <label for="ForminputState" class="form-label" >Trạng thái</label>
-                                                      <select  class="form-select" name="trang_thai">
-                                                     <option selected disabled >Chọn trạng thái</option>
-                                                     <option value="1">Hiển thị</option>
-                                                     <option value="2">Không hiển thị  </option>
+                                                        <label for="ForminputState" class="form-label" >Phương thức thanh toán</label>
+                                                      <select  class="form-select" name="payment">
+                                                     <option  disabled >Chọn phương thức thanh toán</option>
+                                                     <option value="1">Thanh toán khi nhận hàng</option>
+                                                     <option value="2">Đã thanh toán</option>
 
                                                       </select>
                                                       <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['trang_thai']) ? $_SESSION['errors']['trang_thai'] : '' ?>
+                                                    <?=!empty($_SESSION['errors']['Payment']) ? $_SESSION['errors']['Payment'] : '' ?>
 
                                                    </span>
                                                   
                                                     </div>
                                                 </div>
-                                                <!--end col-->
+                                                <input type="hidden"  name="id_orders" value="<?=$donhang['id_orders'] ?>">
                                                 <div class="col-lg-12">
                                                     <div class="text-center">
                                                         <button type="submit" class="btn btn-primary">Submit</button>

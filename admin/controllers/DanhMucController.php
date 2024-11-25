@@ -73,9 +73,6 @@ class DanhMucController
             $trang_thai = $_POST['trang_thai'];
             $update_at = date('Y-m-d H:i:s');
 
-
-
-
             //validate
             $errors = [];
             if (empty($ten_danh_muc)) {
