@@ -52,6 +52,9 @@
                                                                 </div>
                                                             </td>
                                                             <td>
+                                                                <h5 class="fs-14 my-1 fw-normal"><?= ($product['id_cate']) ?></h5><span class="text-muted">ID_Category</span>
+                                                            </td>
+                                                            <td>
                                                                 <h5 class="fs-14 my-1 fw-normal">$<?= ($product['price']) ?></h5><span class="text-muted">Price</span>
                                                             </td>
                                                             <td>
@@ -65,8 +68,8 @@
                                                             </td>
                                                             <td>
                                                                 <div class="hstack gap-3 flex-wrap">
-                                                                <a href="?act=update-product&id=<?= ($product['id_pro']) ?>" class="link-success fs-15" aria-label="Edit Product"><i class="ri-edit-2-line"></i></a>
-                                                                <a href="?act=delete-product&id=<?= ($product['id_pro']) ?>" class="link-danger fs-15" aria-label="Delete Product"><i class="ri-delete-bin-line"></i></a>
+                                                                    <a href="?act=update-product&id=<?= ($product['id_pro']) ?>" class="link-success fs-15" aria-label="Edit Product"><i class="ri-edit-2-line"></i></a>
+                                                                    <a href="?act=delete-product&id=<?= ($product['id_pro']) ?>" class="link-danger fs-15" aria-label="Delete Product"><i class="ri-delete-bin-line"></i></a>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -141,7 +144,7 @@
             <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
         </button>
     </div>
-    
+
     <!-- JavaScript -->
     <?php require_once "./views/layouts/libs_js.php"; ?>
 </body>

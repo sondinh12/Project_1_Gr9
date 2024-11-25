@@ -53,15 +53,18 @@
                             <label for="quantity">Số lượng</label>
                             <input type="number" id="quantity" name="quantity" class="form-control" required>
                         </div>
+                        <!-- Danh mục -->
                         <div class="form-group">
-                            <label for="category">Danh mục</label>
-                            <select name="category_id" id="category_id">
-                                <?php foreach ($danhMucs as $danhmuc) : ?>
-                                    <option value="<?= $danhmuc['category_id'] ?>">
-                                        <?= $danhmuc['cate_name'] ?>
-                                    </option>
-                                <?php endforeach ?>
+                            <label for="id_cate">Danh mục</label>
+                            <select name="id_cate" class="form-select">
+                                <option value="" selected disabled>Chọn danh mục</option>
+                                <?php foreach ((new DanhMuc())->getAll() as $category) : ?>
+                                    <option value="<?= $category['category_id'] ?>"><?= $category['cate_name'] ?></option>
+                                <?php endforeach; ?>
                             </select>
+                            <span class="text-danger">
+                                <?= !empty($_SESSION['errors']['id_cate']) ? $_SESSION['errors']['id_cate'] : '' ?>
+                            </span>
                         </div>
 
                         <div class="form-group">
