@@ -23,5 +23,6 @@ class CommentController {
         }
         header("Location: ?act=comments");
     }
+    
 }
 ?>

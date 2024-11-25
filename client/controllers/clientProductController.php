@@ -69,6 +69,7 @@ public function detail()
         exit;
     }
     $categories = (new DanhMuc)->all();
+    $comments = (new Comment())->getCommentByProduct($id);
 
     // Hiển thị view chi tiết sản phẩm
     require_once __DIR__ . '/../views/detail.php';
