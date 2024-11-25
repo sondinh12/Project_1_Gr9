@@ -205,7 +205,7 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                    <form action="?act=deletecart" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này khỏi giỏ hàng không')">
+                    <form action="?act=handleaction" method="post">
                         <?php foreach($cartShow as $key => $item){?>
                             <tr>                      
                                 <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"><?=$item['name']?></td>
@@ -213,13 +213,14 @@
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-minus" >
+                                            <button class="btn btn-sm btn-primary btn-minus" name="action" value="decrease" type="button">
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" value="<?=$item['quantity']?>">
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" name="quantity" value="<?=$item['quantity']?>">
+                                        
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-plus">
+                                            <button class="btn btn-sm btn-primary btn-plus" name="action" value="increase" type="button">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
@@ -227,7 +228,7 @@
                                 </td>
                                 <td class="align-middle">$150</td>
                                 <td class="align-middle">
-                                    <button class="btn btn-sm btn-primary" style="width: 30px; height: 30px;">
+                                    <button class="btn btn-sm btn-primary" style="width: 30px; height: 30px;" name="btn_updatecart" value="<?=$item['pro_id']?>"1>
                                         <i class="fa fa-check"></i>
                                     </button>
                                     <button class="btn btn-sm btn-primary"  name="btn_deletecart" value="<?=$item['pro_id']?>" style="width: 30px; height: 30px;">

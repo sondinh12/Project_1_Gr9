@@ -30,4 +30,6 @@ match ($act) {
     'shop'              =>(new clientController())->shopShow(),
     'addcart'           =>(new clientController())->addToCart(),     
     'deletecart'        =>(new clientController())->deleteToCart(),  
+    'handleaction'      =>(new clientController())->handleCartAction(),
+    'updatecart'        =>(new clientController())->updateToCart(),
 };

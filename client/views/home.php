@@ -351,7 +351,7 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between bg-light border">
-                            <form action="?act=addcart" method="post" class="w-100 d-flex justify-content-between" onsubmit="return alert('Đã thêm thành công')">
+                            <form action="?act=addcart" method="post" class="w-100 d-flex justify-content-between">
                                 <input type="hidden" name="pro_id" value="<?=$item['id_pro']?>">
                                 <input type="hidden" name="pro_name" value="<?=$item['name']?>">
                                 <input type="hidden" name="price" value="<?=$item['price']?>">

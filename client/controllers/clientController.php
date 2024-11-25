@@ -257,6 +257,33 @@ class clientController {
             if(isset($_POST['btn_deletecart'])){
                 $pro_id = $_POST['btn_deletecart'];
                 if($this->clientModel->deleteToCart($id_user, $pro_id)){
+                    // echo "<script>confirm('Bạn muốn xóa sản phẩm khỏi giỏ hàng chứ!');</script>";
+                    header("location:?act=cart");
+                }
+            }
+        }
+    }
+    
+    function handleCartAction(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Kiểm tra nút xóa sản phẩm
+            if (isset($_POST['btn_deletecart'])) {
+                $this->deleteToCart();
+                
+            } else {
+                $this->updateToCart();
+                
+            }
+        }
+    }
+    function updateToCart(){
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_updatecart'])){
+                $pro_id = $_POST['btn_updatecart'];
+                $newQuantity = $_POST['quantity'];
+                if($newQuantity > 0){
+                    $this->clientModel->updateCartQuantity($id_user,$pro_id,$newQuantity);
                     header("location:?act=cart");
                 }
             }
