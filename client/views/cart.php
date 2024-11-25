@@ -226,7 +226,14 @@
                                     </div>
                                 </td>
                                 <td class="align-middle">$150</td>
-                                <td class="align-middle"><button class="btn btn-sm btn-primary"  name="btn_deletecart" value="<?=$item['pro_id']?>"><i class="fa fa-times"></i></button></td>                          
+                                <td class="align-middle">
+                                    <button class="btn btn-sm btn-primary" style="width: 30px; height: 30px;">
+                                        <i class="fa fa-check"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-primary"  name="btn_deletecart" value="<?=$item['pro_id']?>" style="width: 30px; height: 30px;">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </td>                          
                             </tr>
                         <?php } ?>
                     </form>
