@@ -28,5 +28,6 @@ class Comment {
         $stmt->bindParam(':id_pro', $data['id_pro']);
         $stmt->execute();
     }
+  
 }
 ?>

@@ -46,6 +46,7 @@ match ($act) {
 
     'comments' => (new CommentController())->listComments(),
     'delete-comment' => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
+    'add-comment' => (new CommentController())->addComment($_POST),
     
 
 };
