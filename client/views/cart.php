@@ -209,33 +209,33 @@
                         <?php foreach($cartShow as $key => $item){?>
                             <tr>                      
                                 <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"><?=$item['name']?></td>
-                                <td class="align-middle">$150</td>
+                                <td class="align-middle"><?= number_format($item['price'], 0, ',', '.') ?> VNĐ</td>
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-minus" name="action" value="decrease" type="button">
+                                            <button class="btn btn-sm btn-primary btn-minus"type="button">
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
-                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" name="quantity" value="<?=$item['quantity']?>">
+                                        <input type="text" class="form-control form-control-sm bg-secondary text-center" name="quantity-<?=$item['pro_id']?>" value="<?=$item['quantity']?>">
                                         
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-plus" name="action" value="increase" type="button">
+                                            <button class="btn btn-sm btn-primary btn-plus" type="button">
                                                 <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </td>
-                                <td class="align-middle">$150</td>
+                                <td class="align-middle"><?=number_format($item['price'] * $item['quantity'],0, ',', '.')?> VNĐ</td>
                                 <td class="align-middle">
-                                    <button class="btn btn-sm btn-primary" style="width: 30px; height: 30px;" name="btn_updatecart" value="<?=$item['pro_id']?>"1>
+                                    <button class="btn btn-sm btn-primary" style="width: 30px; height: 30px;" name="btn_updatecart" value="<?=$item['pro_id']?>">
                                         <i class="fa fa-check"></i>
                                     </button>
                                     <button class="btn btn-sm btn-primary"  name="btn_deletecart" value="<?=$item['pro_id']?>" style="width: 30px; height: 30px;">
                                         <i class="fa fa-times"></i>
                                     </button>
-                                </td>                          
-                            </tr>
+                                </td>                                                       
+                            </tr>                            
                         <?php } ?>
                     </form>
                         <!-- <tr>
@@ -323,6 +323,12 @@
                             <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
                         </tr> -->
                     </tbody>
+                    <tfoot>
+                    <tr>
+                        <td><strong>Tổng tiền</strong></td>
+                        <td colspan="4"><strong><?= number_format($totalPrice, 0, ',', '.') ?> VNĐ</strong></td>  
+                    </tr>
+                    </tfoot>
                 </table>
             </div>
             <div class="col-lg-4">

@@ -355,7 +355,7 @@
                                 <input type="hidden" name="pro_id" value="<?=$item['id_pro']?>">
                                 <input type="hidden" name="pro_name" value="<?=$item['name']?>">
                                 <input type="hidden" name="price" value="<?=$item['price']?>">
-                                <input type="number" min="1" value="1" name="quantity">
+                                <input type="hidden" min="1" value="1" name="quantity">
                             <button type="button" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</button>
                             <button type="submit" class="btn btn-sm text-dark p-0" name="btn_addcart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                             </form>

@@ -153,5 +153,13 @@ class clientModel {
         $stmt -> execute();
         return true;
     }
+
+    function totalCartPrice($id){
+        $sql="select sum(price*quantity) as total_price from cart where id_user='$id'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm->execute();
+        $result = $stsm->fetch();
+        return $result['total_price'] ?? 0;
+    }
 }
 ?>

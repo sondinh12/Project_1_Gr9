@@ -228,6 +228,7 @@ class clientController {
         }
         $id=$_SESSION['id'];
         $cartShow = $this->clientModel->showCart($id);
+        $totalPrice = $this->clientModel->totalCartPrice($id);
         require_once 'views/cart.php';
     }
 
@@ -270,10 +271,9 @@ class clientController {
             if (isset($_POST['btn_deletecart'])) {
                 $this->deleteToCart();
                 
-            } else {
-                $this->updateToCart();
-                
-            }
+            } elseif(isset($_POST['btn_updatecart'])) {
+                $this->updateToCart();              
+            } 
         }
     }
     function updateToCart(){
@@ -281,7 +281,12 @@ class clientController {
             $id_user = $_SESSION['id'];
             if(isset($_POST['btn_updatecart'])){
                 $pro_id = $_POST['btn_updatecart'];
-                $newQuantity = $_POST['quantity'];
+                // $newQuantity = $_POST['quantity'];
+                $quantityField = 'quantity-' . $pro_id;
+                $newQuantity = isset($_POST[$quantityField]) ? $_POST[$quantityField] : 1;
+                if(empty($newQuantity) || $newQuantity <= 0){
+                    $newQuantity = 1;
+                }
                 if($newQuantity > 0){
                     $this->clientModel->updateCartQuantity($id_user,$pro_id,$newQuantity);
                     header("location:?act=cart");
