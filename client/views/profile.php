@@ -46,13 +46,13 @@
                         <a class="nav-link active" aria-current="page" href="?act=/">Trang chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Shop</a>
+                        <a class="nav-link" href="?act=shop">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Đăng xuất</a>
+                        <a class="nav-link" href="?act=logout">Đăng xuất</a>
                     </li>
                 </ul>
             </div>
@@ -67,15 +67,21 @@
                 <div class="profile-card card">
                     <img class="card-img-top profile-image mx-auto" src="https://via.placeholder.com/150" alt="Profile Image">
                     <div class="card-body text-center">
-                        <h5 class="card-title">Tên Người Dùng</h5>
+                        <?php
+                        if(isset($_SESSION['user_name'])){
+                            $user_name = $_SESSION['user_name'];
+                        ?>
+                        <h5 class="card-title"><?=$user_name?></h5>
+                        <?php } ?>
+                        
                         <p class="card-text">Chức vụ: Founder</p>
                     </div>
                 </div>
 
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
+                    <a href="?act=profile" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
                     <a href="#" class="list-group-item list-group-item-action">Đơn hàng</a>
-                    <a href="#" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
+                    <a href="?act=editpass" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
                     <a href="#" class="list-group-item list-group-item-action">Hỗ trợ</a>
                 </div>
             </div>
