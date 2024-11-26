@@ -50,9 +50,11 @@ class DonHang
     public function getDetailData($id)
     {
         try {
-            $sql = 'SELECT * FROM orders WHERE id_orders = :id';
+            $sql = 'SELECT * FROM orders_detail WHERE id_ordt = :id_ordt';
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id', $id);
+            $stmt->bindParam(':id_ordt', $id);
+            $stmt->bindParam(':id_orders',$id_orders);
+
             $stmt->execute();
             return $stmt->fetch();
         } catch (PDOException $e) {

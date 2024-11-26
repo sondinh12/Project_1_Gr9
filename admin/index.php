@@ -52,6 +52,6 @@ match ($act) {
     'don-hang'      => (new DonHangController())->danhSachDonHang(),
     'form-sua-don-hang'      => (new DonHangController())->formEditDonHang(),
     'sua-don-hang'      => (new DonHangController())->postDonHang(),
-    // 'chi-tiet-don-hang'      => (new DonHangController())->chiTietDonHang(),
+    // 'chi-tiet-don-hang'      => (new DonHangController())->getDetailData(),
 
 };
