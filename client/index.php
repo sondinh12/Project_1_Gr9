@@ -23,15 +23,13 @@ require_once './model/clientProduct.php';
 $act = $_GET['act'] ?? '/';
 match ($act) {
 
-    // Trang chủ
-   
+    // Trang chủ  
 
     '/'                 => (new ClientProductController())->index(),
     'login'             => (new clientController())->login(),
     'logout'            =>(new clientController())->logout(),
     'register'          =>(new clientController())->register(), 
     'editpass'          =>(new clientController())->updatePass(),
-    //Đang sửa
     'forgotpass'        =>(new clientController())->forgotPass(),
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
@@ -39,8 +37,17 @@ match ($act) {
     'list-product'      =>(new clientProductController())->list_product(),
     'product_in_category' =>(new clientProductController())->list(),
     'detail_product'    =>(new ClientProductController())->detail(),
-    
+    'profile'           =>(new clientController())->profileUser(),
+    'updateuser'        =>(new clientController())->updateUser(),
+    'cart'              =>(new clientController())->showCart(),
+    'contact'           =>(new clientController())->contactShow(),
+    'detail'            =>(new clientController())->detailShow(),
+    'checkout'          =>(new clientController())->checkoutShow(),
+    'shop'              =>(new clientController())->shopShow(),
+    'addcart'           =>(new clientController())->addToCart(),     
+    'deletecart'        =>(new clientController())->deleteToCart(),  
+    'handleaction'      =>(new clientController())->handleCartAction(),
+    'updatecart'        =>(new clientController())->updateToCart(),
 
 };
 ?>
-
