@@ -11,6 +11,27 @@ class clientModel {
         return $this->conn->query($sql)->fetch();
     }
 
+    function checkUsername($user_name){
+        $sql="select name_user from account where name_user='$user_name'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm ->execute();
+        return $stsm->fetch();
+    }
+
+    function checkEmail($email){
+        $sql="select email from account where email='$email'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm ->execute();
+        return $stsm->fetch();
+    }
+
+    function checkPhone($phone){
+        $sql="select phone from account where phone='$phone'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm ->execute();
+        return $stsm->fetch();
+    }
+
     function getRoleByUsername($user_name){
         $sql="select role from account where name_user='$user_name'";
         $stmt = $this->conn->prepare($sql);

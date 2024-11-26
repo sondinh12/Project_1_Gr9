@@ -155,7 +155,7 @@
                                 <?php
                                 if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
                                 ?>
-                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <a href="../admin/index.php" class="nav-item nav-link">Đăng nhập Admin</a>
                                 <?php    
                                 }                                                             
                                 ?>

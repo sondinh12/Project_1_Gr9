@@ -213,7 +213,7 @@
                                 <td class="align-middle">
                                     <div class="input-group quantity mx-auto" style="width: 100px;">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-sm btn-primary btn-minus"type="button">
+                                            <button class="btn btn-sm btn-primary btn-minus" type="button">
                                             <i class="fa fa-minus"></i>
                                             </button>
                                         </div>
