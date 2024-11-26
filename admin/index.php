@@ -6,7 +6,8 @@ require_once '../commons/env.php'; // Khai báo biến môi trường
 require_once '../commons/function.php'; // Hàm hỗ trợ
 
 // Require toàn bộ file Controllers
-require_once 'controllers/DashboardController.php';
+require_once './controllers/DashboardController.php';
+
 
 require_once 'controllers/DanhMucController.php';
 require_once 'controllers/CommentController.php';
@@ -15,10 +16,16 @@ require_once 'controllers/CommentController.php';
 require_once 'models/DanhMuc.php';
 require_once 'models/Comment.php';
 
-require_once 'controllers/ProductsAdminController.php';
+require_once './controllers/DanhMucController.php';
 
 // Require toàn bộ file Models
-require_once 'model/Products.php';
+require_once './models/DanhMuc.php';
+
+
+require_once './controllers/ProductsAdminController.php';
+
+// Require toàn bộ file Models
+require_once './model/Products.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
@@ -28,7 +35,7 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Dashboards
 
-    '/'                 => (new DashboardController())->index(),
+    '/'                => (new DashboardController())->index(),
     //quản lý dm sp
     'danh-mucs'  => (new DanhMucController())->index(),
     'form-them-danh-muc'  => (new DanhMucController())->create(),
@@ -37,7 +44,7 @@ match ($act) {
     'sua-danh-muc'  => (new DanhMucController())->update(),
     'xoa-danh-mucs'  => (new DanhMucController())->destroy(),
 
-    '/'            => (new DashboardController())->index(),
+    // '/'            => (new DashboardController())->index(),
     'product'      => (new ProductsController())->list(),
     'delete-product'       => (new ProductsController())->delete(), 
     'add-product'       => (new ProductsController())->add(), 
