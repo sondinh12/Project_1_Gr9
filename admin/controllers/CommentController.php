@@ -18,10 +18,17 @@ class CommentController {
 
     public function addComment($data) {
         // Thêm bình luận mới
+        if(!isset($_SESSION['id'])){
+            header("location:?act=login");
+        }
+       else{
+        $id=$_SESSION['id'];
         if (!empty($data['content']) && !empty($data['id_pro'])) {
             Comment:: add($data);
+            header("Location: ?act=comments");
         }
-        header("Location: ?act=comments");
+       }
+      
     }
     
 }
