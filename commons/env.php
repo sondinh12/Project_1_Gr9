@@ -12,6 +12,7 @@ define('DB_PORT'    , 3306);
 define('DB_NAME'    , 'duan1_gr9');  // Tên database
 
 
+
 // define('DB_PORT'    , 3306);
 // define('DB_NAME'    , 'duan1_gr9');  // Tên database
 define('DB_USERNAME', 'root');
