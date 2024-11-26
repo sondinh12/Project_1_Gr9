@@ -195,12 +195,25 @@
         <div class="row">
             <div class="col-md-6">
                 <h4 class="mb-4">Comment</h4>
-                <div class="media mb-4">
-                    <div class="media-body">
-                        <h6>Tên<small> - <i>Ngày bình luận</i></small></h6>
-                        <p>Nội dung commet</p>
+                <?php
+                foreach ($comments as $key => $comment) {
+                    ?>
+                    <div class="media mb-4">
+                        <div class="media-body w-full">
+                            <h6><small><i>Ngày bình luận:
+                                        <?php echo date('d/m/Y', strtotime($comment['date'])) ?>
+                                    </i></small></h6>
+                            <p>
+                                <?php echo $comment['content']; ?>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
+
+
+
             </div>
             <div class="col-md-6">
                 <h4 class="mb-4">Leave a review</h4>
