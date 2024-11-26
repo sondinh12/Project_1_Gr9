@@ -23,6 +23,9 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../client/assets/css/style.css" rel="stylesheet">
+    <?php
+   
+?>
 </head>
 
 <body>

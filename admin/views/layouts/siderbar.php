@@ -55,26 +55,17 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarDanhMuc" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDanhMuc">
-                        <i class="ri-stack-line"></i> <span data-key="t-advance-ui">Danh mục sản phẩm</span>
+                    <a class="nav-link menu-link" href="?act=danh-mucs">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Quản lý Danh Mục</span>
                     </a>
-                    <div class="collapse menu-dropdown" id="sidebarDanhMuc">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="?act=danh-mucs" class="nav-link" data-key="t-sweet-alerts">
-                                    Danh sách
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="" class="nav-link" data-key="t-nestable-list">
-                                    Thêm mới
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
                 </li>
 
-                <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Bán hàng</span></li>
+             
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="?act=comments">
+                        <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Quản lý Bình Luận</span>
+                    </a>
+                </li>
 
             </ul>
         </div>
