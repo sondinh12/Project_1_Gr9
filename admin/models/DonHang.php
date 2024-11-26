@@ -23,18 +23,16 @@ class DonHang
     }
 
     // Cập nhật dữ liệu đơn hàng
-    public function updateData($id_orders, $trang_thai, $phuong_thuc_thanh_toan, $update_at)
+    public function updateData($id_orders, $trang_thai, $update_at)
     {
         try {
             $sql = "UPDATE orders 
                     SET status = :status, 
-                        payment = :payment, 
                         update_at = :update_at 
                     WHERE id_orders = :id_orders";
 
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':status', $trang_thai);
-            $stmt->bindParam(':payment', $phuong_thuc_thanh_toan);
             $stmt->bindParam(':update_at', $update_at);
             $stmt->bindParam(':id_orders', $id_orders);
 
@@ -47,15 +45,16 @@ class DonHang
     }
 
     // Lấy thông tin chi tiết của đơn hàng
-    public function getDetailData($id)
+    public function DetailData($id)
     {
         try {
-            $sql = 'SELECT * FROM orders_detail WHERE id_ordt = :id_ordt';
+            $sql = 'SELECT * FROM orders WHERE id_orders = :id';
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':id_ordt', $id);
-            $stmt->bindParam(':id_orders',$id_orders);
-
+            $stmt->bindParam(':id', $id);
+            
             $stmt->execute();
+
+
             return $stmt->fetch();
         } catch (PDOException $e) {
             echo 'Lỗi: ' . $e->getMessage();

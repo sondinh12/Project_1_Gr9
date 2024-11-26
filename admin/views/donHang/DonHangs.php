@@ -58,17 +58,13 @@
                                                             <td><?= number_format($donhang['total'], 0, ',', '.') ?> VNĐ</td>
                                                             <td>
                                                                 <?php
-                                                                if ($donhang['status'] == 1) {
-                                                                    echo '<span class="badge bg-warning">Đang chờ duyệt</span>';
-                                                                } elseif ($donhang['status'] == 2) {
-                                                                    echo '<span class="badge bg-success">Đã xác nhận</span>';
-                                                                } elseif ($donhang['status'] == 3) {
-                                                                    echo '<span class="badge bg-primary">Đang vận chuyển</span>';
-                                                                } elseif ($donhang['status'] == 4) {
-                                                                    echo '<span class="badge bg-success">Đã hoàn thành</span>';
-                                                                } else {
-                                                                    echo '<span class="badge bg-danger">Không xác định</span>';
-                                                                }
+                                                                echo $donhang['status'] == 1
+                                                                    ? '<span class="badge bg-success">Đang chờ duyệt</span>'
+                                                                    : ($donhang['status'] == 2
+                                                                        ? '<span class="badge bg-success">Đã xác nhận</span>'
+                                                                        : ($donhang['status'] == 3
+                                                                            ? '<span class="badge bg-success">Đang vận chuyển</span>'
+                                                                            : '<span class="badge bg-success">Đã giao</span>'));
                                                                 ?>
                                                             </td>
                                                             <td>
@@ -85,9 +81,13 @@
                                                             <td><?= $donhang['create_at'] ?? 'Không có dữ liệu' ?></td>
                                                             <td><?= $donhang['update_at'] ?? 'Không có dữ liệu' ?></td>
                                                             <td>
-                                                                <a href="?act=form-sua-don-hang&id_orders=<?= $donhang['id_orders'] ?>" 
+                                                                <a href="?act=form-sua-don-hang&id_orders=<?= $donhang['id_orders'] ?>"
                                                                     class="btn btn-soft-success">
-                                                                    <i class="ri-edit-2-line"></i> Sửa
+                                                                    <i class="ri-edit-2-line"></i>
+                                                                </a>
+                                                                <a href="?act=chi-tiet-don-hang&id_orders=<?= $donhang['id_orders'] ?>"
+                                                                    class="btn btn-soft-success">
+                                                                    <i class="fa-solid fa-eye"></i>
                                                                 </a>
                                                             </td>
                                                         </tr>
@@ -110,7 +110,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <script>document.write(new Date().getFullYear())</script> © NN Shop.
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script> © NN Shop.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">

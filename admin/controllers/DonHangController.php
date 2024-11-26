@@ -19,7 +19,7 @@ class DonHangController
     public function formEditDonHang()
     {
         $id = $_GET['id_orders']; 
-        $donhang = $this->donhang->getDetailData($id); 
+        $donhang = $this->donhang->DetailData($id); 
         require_once './views/donhang/editDonHang.php';
     }
 
@@ -29,16 +29,16 @@ class DonHangController
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $id_orders = $_POST['id_orders'];
             $trang_thai = $_POST['status'];
-            $phuong_thuc_thanh_toan = $_POST['payment'];
             $update_at = date('Y-m-d H:i:s');
 
             // Gọi phương thức cập nhật
-            $result = $this->donhang->updateData($id_orders, $trang_thai, $phuong_thuc_thanh_toan, $update_at);
+            $result = $this->donhang->updateData($id_orders, $trang_thai,  $update_at);
             // var_dump($_REQUEST);die;
 
             if ($result) {
                 // Cập nhật thành công
                 header('Location: ?act=don-hang');
+                // var_dump($result);
                 exit();
             } else {
                 // Xử lý lỗi cập nhật
