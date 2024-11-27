@@ -32,4 +32,5 @@ match ($act) {
     'deletecart'        =>(new clientController())->deleteToCart(),  
     'handleaction'      =>(new clientController())->handleCartAction(),
     'updatecart'        =>(new clientController())->updateToCart(),
+    'checkoutpro'       =>(new clientController())->checkoutPro(),
 };

@@ -182,5 +182,14 @@ class clientModel {
         $result = $stsm->fetch();
         return $result['total_price'] ?? 0;
     }
+
+    //select checkbox
+    function getSelectedPro($id_user,$pro_id){
+        $placeholders = implode(',', array_fill(0, count($pro_id), '?'));
+        $sql="select products.id_pro,products.name,products.price,cart.quantity from products inner join cart on products.id_pro = cart.pro_id where  cart.id_user = ? and cart.pro_id IN ($placeholders)";
+        $stsm = $this->conn->prepare($sql);
+        $stsm -> execute(array_merge([$id_user],$pro_id));
+        return $stsm->fetchAll();
+    }
 }
 ?>

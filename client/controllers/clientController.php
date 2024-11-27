@@ -288,7 +288,10 @@ class clientController {
                 
             } elseif(isset($_POST['btn_updatecart'])) {
                 $this->updateToCart();              
+            } elseif(isset($_POST['btn_checkout'])){
+                $this->checkoutPro();
             } 
+
         }
     }
     function updateToCart(){
@@ -307,6 +310,26 @@ class clientController {
                     header("location:?act=cart");
                 }
             }
+        }
+    }
+
+    //selected product
+    function checkoutPro(){
+        if(isset($_POST['btn_checkout'])){
+            $id_user = $_SESSION['id'];
+            $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
+            if(empty($selectedPro)){
+                echo "Vui lòng chọn sản phẩm để thanh toán";
+                return;
+            }
+            $productsSelect = $this->clientModel->getSelectedPro($id_user, $selectedPro);
+
+            $totalCheckout = 0;
+            foreach ($productsSelect as $products){
+                $totalCheckout += $products['price'] * $products['quantity'];
+            }
+            // var_dump($productsSelect);
+            require_once 'views/checkout.php';
         }
     }
 }
