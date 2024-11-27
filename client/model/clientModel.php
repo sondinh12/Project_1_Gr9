@@ -70,5 +70,18 @@ class clientModel {
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
     }
+      // Hàm tìm kiếm sản phẩm theo tên
+      function searchProductByName($keyword) {
+        $sql = "SELECT id_pro, name, price, image, description, quantity, id_cate, create_at, update_at 
+                FROM products 
+                WHERE name LIKE :keyword";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':keyword' => '%' . $keyword . '%']); // Sử dụng bind để tránh SQL Injection
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về danh sách sản phẩm tìm được
+    }
 }
+
+
+    
+
 ?>

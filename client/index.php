@@ -43,7 +43,7 @@ match ($act) {
     'product_in_category' => (new clientProductController())->list(),
     'detail_product'      => (new ClientProductController())->detail(),
     'add_commet'          => (new ClientCommentController())->addComment(),
-
+    'search_product'      => (new ClientProductController())->searchProduct(),
 
 
 

@@ -67,16 +67,21 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </form>
+            <form action="index.php" method="GET">
+    <!-- Truyền act để router nhận biết chức năng -->
+    <input type="hidden" name="act" value="search_product">
+    <div class="input-group">
+        <!-- Trường nhập từ khóa tìm kiếm -->
+        <input type="text" name="keyword" class="form-control" placeholder="Search for products" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+
+
             </div>
             <div class="col-lg-3 col-6 text-right">
                 <a href="" class="btn border">

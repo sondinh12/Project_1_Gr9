@@ -3,6 +3,10 @@ class ClientCommentController
 {
     public function addComment()
     {
+        if(!isset($_SESSION['id'])){
+            header("location:?act=login");
+            return;
+        }
         $data = [
             ...$_POST,
             'date' => date('Y-m-d H:i:s'),

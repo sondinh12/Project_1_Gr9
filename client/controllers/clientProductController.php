@@ -74,6 +74,18 @@ public function detail()
     // Hiển thị view chi tiết sản phẩm
     require_once __DIR__ . '/../views/detail.php';
 }
+ public function searchProduct() {
+    
+        $keyword = $_GET['keyword'] ?? ''; // Lấy từ khóa từ URL
+
+        // Sử dụng model để tìm kiếm sản phẩm
+        $model = new clientModel();
+        $products = $model->searchProductByName($keyword);
+        $categories = (new DanhMuc)->all();
+
+        // Gửi kết quả sang view
+        require_once __DIR__ . '/../views/home.php';
+    }
 
 
 }
