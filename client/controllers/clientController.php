@@ -13,7 +13,24 @@ class clientController {
     }
 
     function home(){
+        $product = $this->clientModel->getAllProduct();
         require_once 'views/home.php';
+    }
+
+    function checkoutShow(){
+        require_once 'views/checkout.php';
+    }
+
+    function contactShow(){
+        require_once 'views/contact.php';
+    }
+
+    function detailShow(){
+        require_once 'views/detail.php';
+    }
+
+    function shopShow(){
+        require_once 'views/shop.php';
     }
 
     function login(){
@@ -25,8 +42,13 @@ class clientController {
             // var_dump($btn);
             if($this->clientModel->checkAcc($user_name,$pass)>0){
                 $role = $this->clientModel->getRoleByUsername($user_name);
+                $idUs = $this->clientModel->getIdUser($user_name);
+                // var_dump($idUs);
                 $_SESSION['user_name'] = $user_name;
                 $_SESSION['role'] = $role;
+                $id=$idUs['id'];
+                $_SESSION['id'] = $id;
+                // var_dump($_SESSION['id']);
                 header("location:./");
             } 
             else{
@@ -174,6 +196,104 @@ class clientController {
         // else {
         //     echo "Form chưa được submit";
         // }
+    }
+
+    function profileUser(){ 
+            if(isset($_SESSION['id'])){       
+            $id = $_SESSION['id'];
+            // var_dump($id);
+            $info = $this->clientModel->getAllInfoUser($id);
+            require_once 'views/profile.php';
+            }
+    }
+
+    function updateUser(){
+        if(isset($_POST['btn_updateUs'])){
+            $id = $_SESSION['id'];
+            $user_name = $_POST['user_name'];
+            $email = $_POST['email'];
+            $phone = $_POST['phone'];
+            $address = $_POST['address'];
+            $update_at = date('Y-m-d H:i:s');
+            if($this->clientModel->updateUser($id,$user_name,$email,$phone,$address,$update_at)){
+                header("location:?act=profile");
+            }
+        }
+    }
+
+    //cart
+
+    function showCart(){
+        if(!isset($_SESSION['id'])){
+            header("location:?act=login");
+        }
+        $id=$_SESSION['id'];
+        $cartShow = $this->clientModel->showCart($id);
+        $totalPrice = $this->clientModel->totalCartPrice($id);
+        require_once 'views/cart.php';
+    }
+
+    function addToCart(){
+        if(!isset($_SESSION['id'])){
+            header("location:?act=login");
+        } else{
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_addcart'])){
+                $pro_id=$_POST['pro_id'];
+                $quantity=$_POST['quantity']; 
+                $price = $_POST['price'];
+                $pro_name=$_POST['pro_name'];
+                $addProToCart = $this->clientModel->addToCart($id_user,$pro_id,$pro_name,$quantity,$price);
+                if($addProToCart === true){
+                    header("location:./");
+                } else{
+                    echo $addProToCart;
+                }
+            }
+        }
+    }
+
+    function deleteToCart(){
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_deletecart'])){
+                $pro_id = $_POST['btn_deletecart'];
+                if($this->clientModel->deleteToCart($id_user, $pro_id)){
+                    // echo "<script>confirm('Bạn muốn xóa sản phẩm khỏi giỏ hàng chứ!');</script>";
+                    header("location:?act=cart");
+                }
+            }
+        }
+    }
+    
+    function handleCartAction(){
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Kiểm tra nút xóa sản phẩm
+            if (isset($_POST['btn_deletecart'])) {
+                $this->deleteToCart();
+                
+            } elseif(isset($_POST['btn_updatecart'])) {
+                $this->updateToCart();              
+            } 
+        }
+    }
+    function updateToCart(){
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_updatecart'])){
+                $pro_id = $_POST['btn_updatecart'];
+                // $newQuantity = $_POST['quantity'];
+                $quantityField = 'quantity-' . $pro_id;
+                $newQuantity = isset($_POST[$quantityField]) ? $_POST[$quantityField] : 1;
+                if(empty($newQuantity) || $newQuantity <= 0){
+                    $newQuantity = 1;
+                }
+                if($newQuantity > 0){
+                    $this->clientModel->updateCartQuantity($id_user,$pro_id,$newQuantity);
+                    header("location:?act=cart");
+                }
+            }
+        }
     }
 }
 ?>

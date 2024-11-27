@@ -15,9 +15,8 @@ class clientModel {
         $sql="select role from account where name_user='$user_name'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);  // Lấy kết quả
+        $result = $stmt->fetch();  // Lấy kết quả
         return $result ? $result['role'] : null;
-        // return $stsm->execute();
     }
 
     function insertAcc($user_name,$pass,$email,$phone,$address,$create_at,$update_at){
@@ -69,6 +68,98 @@ class clientModel {
         $sql="update account set pass='$newPassForgot', reset_token=NULL, token_expixy=NULL,update_at='$update_at' where id='$id'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
+    }
+
+    //user
+    function getIdUser($user_name){
+        $sql="select id from account where name_user='$user_name'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();  // Lấy kết quả
+        return $result;
+    }
+    function getAllInfoUser($id){
+        $sql="select * from account where id='$id'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm->execute();
+        $result = $stsm->fetch();
+        return $result;
+    }
+
+    function updateUser($id,$user_name,$email,$phone,$address,$update_at){
+        $sql="update account set name_user='$user_name',email='$email',phone='$phone',address='$address',update_at='$update_at' where id='$id'";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute();
+    }
+
+    function getAllProduct(){
+        $sql="select * from products order by id_pro desc";
+        return $this->conn->query($sql);
+    }
+
+    function checkProQuantity($pro_id){
+        $sql="select quantity from products where id_pro='$pro_id'";
+        // var_dump($pro_id);
+        $stmt=$this->conn->prepare($sql);
+        $stmt->execute();
+        $products = $stmt->fetch();
+        return $products['quantity'];
+    }
+    function addToCart($id_user,$pro_id,$pro_name,$quantity,$price){
+        $stoke = $this->checkProQuantity($pro_id);
+        if($stoke < $quantity){
+            return "Số lượng trong kho không đủ";
+        }
+        $existingCart = $this->getCartProducts($id_user,$pro_id);
+        if($existingCart){
+            return $this->updateCartQuantity($id_user,$pro_id,$existingCart['quantity'] + $quantity);
+        } else {
+            return $this->insertProToCart($id_user,$pro_id,$pro_name,$quantity,$price);
+        }
+
+    }   
+
+    function getCartProducts($id_user,$pro_id){
+        $sql="select * from cart where id_user='$id_user' and pro_id='$pro_id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt ->execute();
+        return $stmt->fetch();
+    }
+
+    function updateCartQuantity($id_user,$pro_id,$newQuantity,){
+        $sql="update cart set quantity='$newQuantity',update_at=NOW() where id_user='$id_user' and pro_id='$pro_id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return true;
+    }
+
+    function insertProToCart($id_user,$pro_id,$pro_name,$quantity,$price){
+        $sql="insert into cart(id_user,pro_id,pro_name,quantity,price,create_at,update_at) values('$id_user','$pro_id','$pro_name','$quantity','$price',NOW(),NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return true;
+    }
+
+    function showCart($id){
+        $sql="select cart.cart_id,cart.pro_id,cart.quantity,products.name,products.price from cart inner join products on products.id_pro = cart.pro_id where id_user='$id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return $stmt->fetchAll();
+    }
+
+    function deleteToCart($id_user,$pro_id){
+        $sql="delete from cart where id_user='$id_user' and pro_id='$pro_id'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return true;
+    }
+
+    function totalCartPrice($id){
+        $sql="select sum(price*quantity) as total_price from cart where id_user='$id'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm->execute();
+        $result = $stsm->fetch();
+        return $result['total_price'] ?? 0;
     }
 }
 ?>

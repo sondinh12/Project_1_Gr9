@@ -44,11 +44,23 @@
                             <label for="quantity">Số lượng</label>
                             <input type="number" id="quantity" name="quantity" class="form-control" value="<?= ($product['quantity']) ?>" required>
                         </div>
+                        <!-- Dropdown chọn danh mục -->
+                        <div class="form-group">
+                            <label for="id_cate">Danh mục</label>
+                            <select name="id_cate" class="form-control" required>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option value="<?= $category['category_id'] ?>"
+                                        <?= ($category['category_id'] == $product['id_cate']) ? 'selected' : '' ?>>
+                                        <?= $category['cate_name'] ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
                         <div class="form-group">
                             <label for="image">Hình ảnh</label>
                             <input type="file" id="image" name="image" class="form-control">
-                            <img src="../admin/assets/images/<?= $product['image'] ?>"  class="img-fluid d-block" />
+                            <img src="../admin/assets/images/<?= $product['image'] ?>" class="img-fluid d-block" />
                         </div>
                         <input type="hidden" name="id_pro" id="id_pro" value="<?= $product['id_pro'] ?>">
                         <br>

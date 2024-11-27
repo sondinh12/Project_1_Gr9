@@ -66,9 +66,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($danhMucs as $index => $danhMuc ):
 
-                                                    ?>
+                                                  
+                                                    <?php foreach ($danhMucs as $index => $danhMuc ):?>
+
                                                     <tr>
                                                         <td class="fw-medium"><?=$index + 1 ?></td>
                                                         <td><?=$danhMuc['cate_name'] ?></td>
