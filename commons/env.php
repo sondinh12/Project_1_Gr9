@@ -4,18 +4,17 @@
 // Khai báo dưới dạng HẰNG SỐ để không phải dùng $GLOBALS
 
 
-define('BASE_URL'   , 'http://localhost/demogit/PROJECT_1_GR9/');
+define('BASE_URL'   , 'http://localhost/Project_1/');
+
 
 define('DB_HOST'    , 'localhost');
 define('DB_PORT'    , 3306);
+define('DB_NAME'    , 'duan1_gr9');  // Tên database
 
-define('DB_NAME'    , value: 'duan1-gr9');  // Tên database
 
 
 // define('DB_PORT'    , 3306);
 // define('DB_NAME'    , 'duan1_gr9');  // Tên database
-
-
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 
