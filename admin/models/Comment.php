@@ -34,6 +34,7 @@ class Comment
     }
 
 
+
     public static function getCommentByProduct(int $idPro)
     {
         $db   = connectDB();
@@ -41,6 +42,9 @@ class Comment
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
+  
 
 }
 ?>

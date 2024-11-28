@@ -26,7 +26,12 @@
     <link href="../client/assets/css/style.css" rel="stylesheet">
     <?php
 
+
     ?>
+
+   
+?>
+>>>>>>> fcff319ccfb15e034265f2d5525294118bd1422e
 </head>
 
 <body>
