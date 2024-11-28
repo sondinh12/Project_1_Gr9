@@ -44,27 +44,46 @@ $act = $_GET['act'] ?? '/';
 match ($act) {
     // Dashboards
 
+
     '/'                => (new DashboardController())->index(),
     //quản lý dm sp
     'danh-mucs'  => (new DanhMucController())->listCategory(),
     'form-them-danh-muc'  => (new DanhMucController())->create(),
     'them-danh-muc'  => (new DanhMucController())->store(),
+
+
+   
+
     'form-sua-danh-muc'  => (new DanhMucController())->edit(),
-    'sua-danh-muc'  => (new DanhMucController())->update(),
-    'xoa-danh-mucs'  => (new DanhMucController())->destroy(),
+    'sua-danh-muc'       => (new DanhMucController())->update(),
+    'xoa-danh-mucs'      => (new DanhMucController())->destroy(),
 
-    // '/'            => (new DashboardController())->index(),
-    'product'      => (new ProductsController())->list(),
-    'delete-product'       => (new ProductsController())->delete(),
-    'add-product'       => (new ProductsController())->add(),
-    'store-product'       => (new ProductsController())->store(),
-    'update-product'       => (new ProductsController())->edit(),
+    '/'                  => (new DashboardController())->index(),
+    'product'            => (new ProductsController())->list(),
+    'delete-product'     => (new ProductsController())->delete(),
+    'add-product'        => (new ProductsController())->add(),
+    'store-product'      => (new ProductsController())->store(),
+    'update-product'     => (new ProductsController())->edit(),
+
+    'comments'           => (new CommentController())->listComments(),
+    'delete-comment'     => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
+    'add-comment'        => (new CommentController())->addComment($_POST),
 
 
-    'comments' => (new CommentController())->listComments(),
-    'delete-comment' => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
-    'add-comment' => (new CommentController())->addComment($_POST),
+    // // '/'            => (new DashboardController())->index(),
+    // 'product'      => (new ProductsController())->list(),
+    // 'delete-product'       => (new ProductsController())->delete(),
+    // 'add-product'       => (new ProductsController())->add(),
+    // 'store-product'       => (new ProductsController())->store(),
+    // 'update-product'       => (new ProductsController())->edit(),
+
+
+
+    // 'comments' => (new CommentController())->listComments(),
+    // 'delete-comment' => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
+    // 'add-comment' => (new CommentController())->addComment($_POST),
     
+
 
 
     // quan li don hang
@@ -74,5 +93,7 @@ match ($act) {
     // 'chi-tiet-don-hang'      => (new DonHangController())->DetailData(),
 
 };
+
+
 
 

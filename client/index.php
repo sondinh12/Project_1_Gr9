@@ -1,5 +1,11 @@
 
+
 <?php 
+
+
+
+
+
 
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
@@ -15,6 +21,9 @@ require_once './controllers/clientProductController.php';
 require_once './controllers/clientCommentController.php';
 
 
+
+
+
 // Require toàn bộ file Models
 
 require_once './model/clientModel.php';
@@ -22,20 +31,24 @@ require_once './model/clientCategory.php';
 require_once './model/clientProduct.php';
 require_once './model/clientComment.php';
 
+
+
+
 // Route
 $act = $_GET['act'] ?? '/';
 match ($act) {
 
+
     // Trang chủ  
 
-    '/'                 => (new ClientProductController())->index(),
-    'login'             => (new clientController())->login(),
-    'logout'            =>(new clientController())->logout(),
-    'register'          =>(new clientController())->register(), 
-    'editpass'          =>(new clientController())->updatePass(),
-    'forgotpass'        =>(new clientController())->forgotPass(),
-    'resetform'         =>(new clientController())->resetForm(),
-    'resetpass'         =>(new clientController())->resetPass(),
+    // '/'                 => (new ClientProductController())->index(),
+    // 'login'             => (new clientController())->login(),
+    // 'logout'            =>(new clientController())->logout(),
+    // 'register'          =>(new clientController())->register(), 
+    // 'editpass'          =>(new clientController())->updatePass(),
+    // 'forgotpass'        =>(new clientController())->forgotPass(),
+    // 'resetform'         =>(new clientController())->resetForm(),
+    // 'resetpass'         =>(new clientController())->resetPass(),
 
 
     // Sản phẩm
@@ -55,5 +68,28 @@ match ($act) {
     'handleaction'      =>(new clientController())->handleCartAction(),
     'updatecart'        =>(new clientController())->updateToCart(),
     'add_commet'          => (new ClientCommentController())->addComment(),
+
+    // Trang chủ
+
+
+    '/'                   => (new ClientProductController())->index(),
+    'login'               => (new clientController())->login(),
+    'logout'              => (new clientController())->logout(),
+    'register'            => (new clientController())->register(),
+    'editpass'            => (new clientController())->updatePass(),
+    //Đang sửa
+    'forgotpass'          => (new clientController())->forgotPass(),
+    'resetform'           => (new clientController())->resetForm(),
+    'resetpass'           => (new clientController())->resetPass(),
+    // Sản phẩm
+    'list-product'        => (new clientProductController())->list_product(),
+    'product_in_category' => (new clientProductController())->list(),
+    'detail_product'      => (new ClientProductController())->detail(),
+    'add_commet'          => (new ClientCommentController())->addComment(),
+    'search_product'      => (new ClientProductController())->searchProduct(),
+
+
+
 };
 ?>
+

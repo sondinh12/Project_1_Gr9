@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+    data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
 
 
 <!-- Mirrored from themesbrand.com/velzon/html/master/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 29 Oct 2024 07:29:52 GMT -->
@@ -30,7 +31,7 @@
 
         require_once "views/layouts/siderbar.php";
         ?>
-        
+
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
@@ -39,21 +40,21 @@
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content">
-         
+
             <div class="page-content">
                 <div class="container-fluid">
 
                     <div class="row">
                         <div class="col">
 
-                        <div class="card">
+                            <div class="card">
                                 <div class="card-header align-items-center d-flex">
                                     <h4 class="card-title mb-0 flex-grow-1">Quản lý bình luận</h4>
-                                  
+
                                 </div><!-- end card header -->
 
                                 <div class="card-body">
-                                  
+
                                     <div class="live-preview">
                                         <div class="table-responsive">
                                             <table class="table table-striped table-nowrap align-middle mb-0">
@@ -68,34 +69,35 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php foreach ($comments as $index => $comment): ?>
-                                                    <tr>
-                                                        <td class="fw-medium"><?=$index + 1 ?></td>
-                                                        <td><?=$comment['id'] ?></td>
-                                                        <td><?=$comment['content'] ?></td>
-                                                        <td><?=$comment['date'] ?></td>
-                                                        <td><?=$comment['id_pro'] ?></td>
-                                                   
-                                                       
-                                                       
-                                                        <td>
-                                                                    <div class="hstack gap-3 flex-wrap">
+                                                    <?php foreach ($comments as $index => $comment): ?>
+                                                        <tr>
+                                                            <td class="fw-medium"><?= $index + 1; ?></td>
+                                                            <td><?= $comment['id'] ?></td>
+                                                            <td><?= $comment['content'] ?></td>
+                                                            <td><?= $comment['date'] ?></td>
+                                                            <td><?= $comment['id_pro'] ?></td>
+
+
+
+                                                            <td>
+                                                                <div class="hstack gap-3 flex-wrap">
                                                                     <a href="?act=delete-comment&id_cmt=<?= $comment['id_cmt'] ?>"
-                                                                     class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
-                                                                     
-                                                                    </div>
-                                                                </td>
-                                                    </tr>
-                                                  
-                                                   
-                                                    <? endforeach;
+                                                                        class="btn btn-danger"
+                                                                        onclick="return confirm('Bạn có chắc chắn muốn xóa?')">Xóa</a>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+
+                                                    <?php endforeach;
                                                     ?>
                                                 </tbody>
                                             </table>
                                         </div>
-                                    
-                                </div><!-- end card-body -->
-                            </div><!-- end card -->
+
+                                    </div><!-- end card-body -->
+                                </div><!-- end card -->
 
                             </div> <!-- end .h-100-->
 
@@ -147,7 +149,8 @@
     </div>
 
     <div class="customizer-setting d-none d-md-block">
-        <div class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+        <div class="btn-info rounded-pill shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas"
+            data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
             <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
         </div>
     </div>

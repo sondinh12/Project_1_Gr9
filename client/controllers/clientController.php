@@ -198,6 +198,7 @@ class clientController {
         // }
     }
 
+
     function profileUser(){ 
             if(isset($_SESSION['id'])){       
             $id = $_SESSION['id'];
@@ -295,6 +296,7 @@ class clientController {
             }
         }
     }
+
 }
 ?>
 
