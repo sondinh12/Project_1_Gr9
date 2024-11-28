@@ -1,5 +1,4 @@
-    <!-- Navbar Start -->
-    <div class="container-fluid mb-5">
+<div class="container-fluid mb-5">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
@@ -51,15 +50,35 @@
                             <a href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                            <?php
+                            if(isset($_SESSION['user_name'])){
+                                $user_name = $_SESSION['user_name'];
+                            ?>
+                            <span class="nav-link nav-item">Xin chào <?=$user_name?></span>
+                            <a href="?act=logout" class="nav-item nav-link">Log Out</a>
+                            <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <?php
+                                if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
+                                ?>
+                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <?php    
+                                }                                                             
+                                ?>
+                            <?php
+                            } else {
+                            ?>
+                                <a href="?act=login" class="nav-item nav-link">Login</a>
+                                <a href="?act=register" class="nav-item nav-link">Register</a>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="./assets/img/carousel-1.jpg" alt="Image">
+                            <img class="img-fluid" src="img/carousel-1.jpg" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
@@ -69,7 +88,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="./assets/img/carousel-2.jpg" alt="Image">
+                            <img class="img-fluid" src="img/carousel-2.jpg" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order</h4>
