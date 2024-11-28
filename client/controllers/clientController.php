@@ -316,8 +316,14 @@ class clientController {
     //selected product
     function checkoutPro(){
         if(isset($_POST['btn_checkout'])){
-            $id_user = $_SESSION['id'];
+            if(isset($_SESSION['id'])){
+                $id_user = $_SESSION['id'];
+                $id = $_SESSION['id'];
+                $info = $this->clientModel->getAllInfoUser( id: $id);
+                // var_dump($info);
+            }
             $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
+            
             if(empty($selectedPro)){
                 echo "Vui lòng chọn sản phẩm để thanh toán";
                 return;
