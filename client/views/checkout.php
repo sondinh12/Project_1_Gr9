@@ -145,8 +145,24 @@
                             <a href="?act=contact" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
+                        <?php
+                            if(isset($_SESSION['user_name'])){
+                                $user_name = $_SESSION['user_name'];
+                            ?>
+                            <a href="?act=profile"><span class="nav-link nav-item">Xin chào <?=$user_name?></span></a>
+                            <a href="?act=logout" class="nav-item nav-link">Log Out</a>
+                            <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <?php
+                                if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
+                                ?>
+                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <?php    
+                                }                                                             
+                                ?>
+                            <?php
+                            }
+                            
+                            ?>
                         </div>
                     </div>
                 </nav>
@@ -178,30 +194,30 @@
                     <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
                     <div class="row">
                         <div class="col-md-6 form-group">
-                            <label>First Name</label>
-                            <input class="form-control" type="text" placeholder="John">
+                            <label>Name</label>
+                            <input class="form-control" type="text" value="<?=$info['name_user']?>">
                         </div>
-                        <div class="col-md-6 form-group">
+                        <!-- <div class="col-md-6 form-group">
                             <label>Last Name</label>
                             <input class="form-control" type="text" placeholder="Doe">
-                        </div>
+                        </div> -->
                         <div class="col-md-6 form-group">
                             <label>E-mail</label>
-                            <input class="form-control" type="text" placeholder="example@email.com">
+                            <input class="form-control" type="text" value="<?=$info['email']?>">
                         </div>
                         <div class="col-md-6 form-group">
                             <label>Mobile No</label>
-                            <input class="form-control" type="text" placeholder="+123 456 789">
+                            <input class="form-control" type="text" value="<?=$info['phone']?>">
                         </div>
                         <div class="col-md-6 form-group">
-                            <label>Address Line 1</label>
-                            <input class="form-control" type="text" placeholder="123 Street">
+                            <label>Address</label>
+                            <input class="form-control" type="text" value="<?=$info['address']?>">
                         </div>
-                        <div class="col-md-6 form-group">
+                        <!-- <div class="col-md-6 form-group">
                             <label>Address Line 2</label>
                             <input class="form-control" type="text" placeholder="123 Street">
-                        </div>
-                        <div class="col-md-6 form-group">
+                        </div> -->
+                        <!-- <div class="col-md-6 form-group">
                             <label>Country</label>
                             <select class="custom-select">
                                 <option selected>United States</option>
@@ -209,19 +225,19 @@
                                 <option>Albania</option>
                                 <option>Algeria</option>
                             </select>
-                        </div>
-                        <div class="col-md-6 form-group">
+                        </div> -->
+                        <!-- <div class="col-md-6 form-group">
                             <label>City</label>
                             <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
+                        </div> -->
+                        <!-- <div class="col-md-6 form-group">
                             <label>State</label>
                             <input class="form-control" type="text" placeholder="New York">
-                        </div>
-                        <div class="col-md-6 form-group">
+                        </div> -->
+                        <!-- <div class="col-md-6 form-group">
                             <label>ZIP Code</label>
                             <input class="form-control" type="text" placeholder="123">
-                        </div>
+                        </div> -->
                         <div class="col-md-12 form-group">
                             <div class="custom-control custom-checkbox">
                                 <input type="checkbox" class="custom-control-input" id="newaccount">
@@ -294,34 +310,37 @@
                     </div>
                     <div class="card-body">
                         <h5 class="font-weight-medium mb-3">Products</h5>
+                        <?php foreach($productsSelect as $productSelectItem){?> 
                         <div class="d-flex justify-content-between">
-                            <p>Colorful Stylish Shirt 1</p>
-                            <p>$150</p>
+                            <p><?=$productSelectItem['name']?> x <?=$productSelectItem['quantity']?></p>
+                            <p><?=number_format($productSelectItem['price'], 0, ',', '.')?> VNĐ</p>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <?php } ?>
+                        <!-- <div class="d-flex justify-content-between">
                             <p>Colorful Stylish Shirt 2</p>
                             <p>$150</p>
                         </div>
                         <div class="d-flex justify-content-between">
                             <p>Colorful Stylish Shirt 3</p>
                             <p>$150</p>
-                        </div>
+                        </div> -->
                         <hr class="mt-0">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium">$150</h6>
+                            <h6 class="font-weight-medium"><?=number_format($totalCheckout, 0, ',', '.')?> VNĐ</h6>
                         </div>
-                        <div class="d-flex justify-content-between">
+                        <!-- <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">$10</h6>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold">$160</h5>
+                            <h5 class="font-weight-bold"><?=number_format($totalCheckout, 0, ',', '.')?> VNĐ</h5>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="card border-secondary mb-5">
                     <div class="card-header bg-secondary border-0">
@@ -342,7 +361,7 @@
                         </div>
                         <div class="">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">  
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>

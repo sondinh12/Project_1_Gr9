@@ -11,6 +11,27 @@ class clientModel {
         return $this->conn->query($sql)->fetch();
     }
 
+    function checkUsername($user_name){
+        $sql="select name_user from account where name_user='$user_name'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm ->execute();
+        return $stsm->fetch();
+    }
+
+    function checkEmail($email){
+        $sql="select email from account where email='$email'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm ->execute();
+        return $stsm->fetch();
+    }
+
+    function checkPhone($phone){
+        $sql="select phone from account where phone='$phone'";
+        $stsm = $this->conn->prepare($sql);
+        $stsm ->execute();
+        return $stsm->fetch();
+    }
+
     function getRoleByUsername($user_name){
         $sql="select role from account where name_user='$user_name'";
         $stmt = $this->conn->prepare($sql);
@@ -92,10 +113,10 @@ class clientModel {
         return $stmt->execute();
     }
 
-    function getAllProduct(){
-        $sql="select * from products order by id_pro desc";
-        return $this->conn->query($sql);
-    }
+    // function getAllProduct(){
+    //     $sql="select * from products order by id_pro desc";
+    //     return $this->conn->query($sql);
+    // }
 
     function checkProQuantity($pro_id){
         $sql="select quantity from products where id_pro='$pro_id'";
@@ -160,6 +181,15 @@ class clientModel {
         $stsm->execute();
         $result = $stsm->fetch();
         return $result['total_price'] ?? 0;
+    }
+
+    //select checkbox
+    function getSelectedPro($id_user,$pro_id){
+        $placeholders = implode(',', array_fill(0, count($pro_id), '?'));
+        $sql="select products.id_pro,products.name,products.price,cart.quantity from products inner join cart on products.id_pro = cart.pro_id where  cart.id_user = ? and cart.pro_id IN ($placeholders)";
+        $stsm = $this->conn->prepare($sql);
+        $stsm -> execute(array_merge([$id_user],$pro_id));
+        return $stsm->fetchAll();
     }
 }
 ?>

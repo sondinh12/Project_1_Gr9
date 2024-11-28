@@ -16,10 +16,10 @@ class clientController {
         $this->clientModel=new clientModel();
     }
 
-    function home(){
-        $product = $this->clientModel->getAllProduct();
-        require_once 'views/home.php';
-    }
+    // function index(){
+    //     // $product = $this->clientModel->getAllProduct();
+    //     require_once 'views/home.php';
+    // }
 
     function checkoutShow(){
         require_once 'views/checkout.php';
@@ -40,8 +40,8 @@ class clientController {
     function login(){
         require_once 'views/login.php';
         if(isset($_POST['btn_login'])){
-            $user_name = $_POST['user_name'];
-            $pass = $_POST['pass'];
+            $user_name = trim($_POST['user_name']);
+            $pass = trim($_POST['pass']);
             // $btn = $_POST['btn_login'];
             // var_dump($btn);
             if($this->clientModel->checkAcc($user_name,$pass)>0){
@@ -70,12 +70,27 @@ class clientController {
         require_once 'views/register.php';
         if(isset($_POST['btn_register'])){
             $user_name=$_POST['user_name'];
-            $pass=$_POST['pass'];
-            $email=$_POST['email'];
-            $phone=$_POST['phone'];
-            $address=$_POST['address'];
+            $pass=trim($_POST['pass']);
+            $email=trim($_POST['email']);
+            $phone=trim($_POST['phone']);
+            $address=trim($_POST['address']);
             $created_at = date('Y-m-d H:i:s');
             $updated_at = $created_at;
+
+            if($this->clientModel->checkUsername($user_name)){
+                echo "Tài khoản đã tồn tại";
+                return;
+            }
+
+            if($this->clientModel->checkEmail($email)){
+                echo "Email đã tồn tại";
+                return;
+            }
+
+            if($this->clientModel->checkPhone($phone)){
+                echo "Số điện thoại đã tồn tại";
+                return;
+            }
 
             if (empty($user_name) || empty($pass) || empty($email) || empty($phone) || empty($address)) {
                 echo "Vui lòng điền đầy đủ thông tin.";
@@ -278,7 +293,10 @@ class clientController {
                 
             } elseif(isset($_POST['btn_updatecart'])) {
                 $this->updateToCart();              
+            } elseif(isset($_POST['btn_checkout'])){
+                $this->checkoutPro();
             } 
+
         }
     }
     function updateToCart(){
@@ -297,6 +315,32 @@ class clientController {
                     header("location:?act=cart");
                 }
             }
+        }
+    }
+
+    //selected product
+    function checkoutPro(){
+        if(isset($_POST['btn_checkout'])){
+            if(isset($_SESSION['id'])){
+                $id_user = $_SESSION['id'];
+                $id = $_SESSION['id'];
+                $info = $this->clientModel->getAllInfoUser( id: $id);
+                // var_dump($info);
+            }
+            $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
+            
+            if(empty($selectedPro)){
+                echo "Vui lòng chọn sản phẩm để thanh toán";
+                return;
+            }
+            $productsSelect = $this->clientModel->getSelectedPro($id_user, $selectedPro);
+
+            $totalCheckout = 0;
+            foreach ($productsSelect as $products){
+                $totalCheckout += $products['price'] * $products['quantity'];
+            }
+            // var_dump($productsSelect);
+            require_once 'views/checkout.php';
         }
     }
 }
