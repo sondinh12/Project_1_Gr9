@@ -1,9 +1,8 @@
 
-<?php     
+<?php 
 
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-
 
 
 // Require file Common
@@ -33,6 +32,8 @@ match ($act) {
     'forgotpass'        =>(new clientController())->forgotPass(),
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
+
+
     // Sản phẩm
     'list-product'      =>(new clientProductController())->list_product(),
     'product_in_category' =>(new clientProductController())->list(),
@@ -41,7 +42,7 @@ match ($act) {
     'updateuser'        =>(new clientController())->updateUser(),
     'cart'              =>(new clientController())->showCart(),
     'contact'           =>(new clientController())->contactShow(),
-    'detail'            =>(new clientController())->detailShow(),
+    // 'detail'            =>(new clientController())->detailShow(),
     'checkout'          =>(new clientController())->checkoutShow(),
     'shop'              =>(new clientController())->shopShow(),
     'addcart'           =>(new clientController())->addToCart(),     

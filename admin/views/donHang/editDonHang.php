@@ -30,77 +30,47 @@
 
         require_once "views/layouts/siderbar.php";
         ?>
-        
+
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
 
         <!-- Start right Content here -->
         <div class="main-content">
-         
+
             <div class="page-content">
                 <div class="container-fluid">
 
                     <div class="row">
                         <div class="col">
 
-                        <div class="card">
+                            <div class="card">
                                 <div class="card-header align-items-center d-flex">
-                                    <h4 class="card-title mb-0 flex-grow-1">Cập nhật danh mục</h4>
-                                    
-                                </div><!-- end card header -->
-
+                                    <h4 class="card-title mb-0 flex-grow-1">Sửa đơn hàng</h4>
+                                </div>
+                                <!-- end card header -->
                                 <div class="card-body">
-                                   
                                     <div class="live-preview">
-                                        <form action="?act=sua-danh-muc&danh_muc_id=<?=$danhMuc['category_id']?>" method="Post">
+                                        <form action="?act=sua-don-hang" method="Post" enctype="multipart/form-data">
                                             <div class="row">
+                                                <!--end col-->
+                                                <div class="text-center">
+                                                    <div class="mb-3">
+                                                        <label for="ForminputState" class="form-label">Trạng thái</label>
+                                                        <select class="form-select" name="status">
+                                                            <!-- <option disabled>Chọn trạng thái</option> -->
+                                                            <option value="1" <?= $donhang['status'] == 1 ? 'selected' : '' ?>>Đang chờ duyệt</option>
+                                                            <option value="2" <?= $donhang['status'] == 2 ? 'selected' : '' ?>>Đã xác nhận</option>
+                                                            <option value="3" <?= $donhang['status'] == 3 ? 'selected' : '' ?>>Đang vận chuyển</option>
+                                                            <option value="4" <?= $donhang['status'] == 4 ? 'selected' : '' ?>>Đã giao</option>
+                                                        </select>
+                                                        <span class="text-danger">
+                                                            <?= !empty($_SESSION['errors']['status']) ? $_SESSION['errors']['status'] : '' ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                
-                                                <!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="citynameInput" class="form-label">Tên danh mục</label>
-                                                        <input type="text" class="form-control" placeholder="Nhập tên danh mục" name="ten_danh_muc" value="<?=$danhMuc['cate_name']?>" ?>"
-                                                   <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['ten_danh_muc']) ? $_SESSION['errors']['ten_danh_muc'] : '' ?>
-
-                                                   </span>
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="ForminputState" class="form-label" >Trạng thái</label>
-                                                      <select  class="form-select" name="trang_thai">
-                                                     <option selected disabled >Chọn trạng thái</option>
-                                                     <option value="1">Hiển thị</option>
-                                                     <option value="2">Không hiển thị  </option>
-
-                                                      </select>
-                                                      <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['trang_thai']) ? $_SESSION['errors']['trang_thai'] : '' ?>
-
-                                                   </span>
-                                                  
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="ForminputState" class="form-label" >Trạng thái</label>
-                                                      <select  class="form-select" name="trang_thai">
-                                                     <option selected disabled >Chọn trạng thái</option>
-                                                     <option value="1">Hiển thị</option>
-                                                     <option value="2">Không hiển thị  </option>
-
-                                                      </select>
-                                                      <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['trang_thai']) ? $_SESSION['errors']['trang_thai'] : '' ?>
-
-                                                   </span>
-                                                  
-                                                    </div>
-                                                </div>
-                                                <!--end col-->
+                                                <input type="hidden" name="id_orders" value="<?= $donhang['id_orders'] ?>">
                                                 <div class="col-lg-12">
                                                     <div class="text-center">
                                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -111,7 +81,7 @@
                                             <!--end row-->
                                         </form>
                                     </div>
-                                    
+
                                 </div>
                             </div>
 
