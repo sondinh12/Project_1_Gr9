@@ -14,6 +14,16 @@ define('DB_NAME'    , 'duan1_gr9');  // Tên database
 // define('DB_HOST'    , 'localhost');
 // define('DB_PORT'    , 3306);
 // define('DB_NAME'    , value: 'duan1_gr9');  // Tên database
+// =======
+
+// define('BASE_URL'   , 'http://localhost/Project_1/');
+
+
+// define('DB_HOST'    , 'localhost');
+// define('DB_PORT'    , 3306);
+// define('DB_NAME'    , 'duan1_gr9');  // Tên database
+
+// >>>>>>> be6c31dabfdc59f8ceca87cf1468304f801b8c7a
 
 
 // define('DB_PORT'    , 3306);
