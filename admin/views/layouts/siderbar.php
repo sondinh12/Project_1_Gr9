@@ -60,12 +60,31 @@
                     </a>
                 </li>
 
+
              
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="?act=comments">
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Quản lý Bình Luận</span>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarDonHang" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDonHang">
+                        <i class="ri-stack-line"></i> <span data-key="t-advance-ui">Danh sách đơn hàng</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarDonHang">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="?act=don-hang" class="nav-link" data-key="t-sweet-alerts">
+                                    Danh sách đơn hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Bán hàng</span></li> -->
+
 
             </ul>
         </div>

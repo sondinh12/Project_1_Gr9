@@ -1,9 +1,8 @@
 
-<?php     
+<?php 
 
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
-
 
 
 // Require file Common
@@ -37,6 +36,8 @@ match ($act) {
     'forgotpass'        =>(new clientController())->forgotPass(),
     'resetform'         =>(new clientController())->resetForm(),
     'resetpass'         =>(new clientController())->resetPass(),
+
+
     // Sản phẩm
     'list-product'      =>(new clientProductController())->list_product(),
     

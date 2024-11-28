@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 // Require file Common
@@ -18,8 +18,17 @@ require_once 'models/Comment.php';
 
 require_once './controllers/DanhMucController.php';
 
+require_once 'controllers/DonHangController.php';
+
+require_once 'controllers/ProductsAdminController.php';
+
+
 // Require toàn bộ file Models
 require_once './models/DanhMuc.php';
+
+
+
+require_once 'models/DonHang.php';
 
 
 require_once './controllers/ProductsAdminController.php';
@@ -37,7 +46,7 @@ match ($act) {
 
     '/'                => (new DashboardController())->index(),
     //quản lý dm sp
-    'danh-mucs'  => (new DanhMucController())->index(),
+    'danh-mucs'  => (new DanhMucController())->listCategory(),
     'form-them-danh-muc'  => (new DanhMucController())->create(),
     'them-danh-muc'  => (new DanhMucController())->store(),
     'form-sua-danh-muc'  => (new DanhMucController())->edit(),
@@ -46,14 +55,24 @@ match ($act) {
 
     // '/'            => (new DashboardController())->index(),
     'product'      => (new ProductsController())->list(),
-    'delete-product'       => (new ProductsController())->delete(), 
-    'add-product'       => (new ProductsController())->add(), 
-    'store-product'       => (new ProductsController())->store(), 
-    'update-product'       => (new ProductsController())->edit(), 
+    'delete-product'       => (new ProductsController())->delete(),
+    'add-product'       => (new ProductsController())->add(),
+    'store-product'       => (new ProductsController())->store(),
+    'update-product'       => (new ProductsController())->edit(),
+
 
     'comments' => (new CommentController())->listComments(),
     'delete-comment' => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
     'add-comment' => (new CommentController())->addComment($_POST),
     
 
+
+    // quan li don hang
+    'don-hang'      => (new DonHangController())->danhSachDonHang(),
+    'form-sua-don-hang'      => (new DonHangController())->formEditDonHang(),
+    'sua-don-hang'      => (new DonHangController())->postDonHang(),
+    // 'chi-tiet-don-hang'      => (new DonHangController())->DetailData(),
+
 };
+
+
