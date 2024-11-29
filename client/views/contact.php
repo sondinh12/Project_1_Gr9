@@ -77,7 +77,7 @@
                 </form>
             </div>
             <div class="col-lg-3 col-6 text-right">
-                <a href="" class="btn border">
+                <a href="?act=cart" class="btn border">
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
@@ -133,12 +133,12 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="./" class="nav-item nav-link">Home</a>
                             <a href="?act=shop" class="nav-item nav-link">Shop</a>
-                            <a href="?act=detail" class="nav-item nav-link">Shop Detail</a>
+                            <!-- <a href="?act=detail" class="nav-item nav-link">Shop Detail</a> -->
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="?act=cart" class="dropdown-item">Shopping Cart</a>
-                                    <a href="?act=checkout" class="dropdown-item">Checkout</a>
+                                    <!-- <a href="?act=checkout" class="dropdown-item">Checkout</a> -->
                                 </div>
                             </div>
                             <a href="?act=contact" class="nav-item nav-link active">Contact</a>
@@ -150,7 +150,7 @@
                             ?>
                             <a href="?act=profile"><span class="nav-link nav-item">Xin chào <?=$user_name?></span></a>
                             <a href="?act=logout" class="nav-item nav-link">Log Out</a>
-                            <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                            <!-- <a href="?act=editpass" class="nav-item nav-link">EditPass</a> -->
                                 <?php
                                 if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
                                 ?>

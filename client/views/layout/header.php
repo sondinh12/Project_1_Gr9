@@ -8,8 +8,9 @@
     <meta content="Free HTML Templates" name="keywords">
     <meta content="Free HTML Templates" name="description">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+     <!-- Favicon -->
+    <!-- <link href="img/favicon.ico" rel="icon"> -->
+    <link rel="icon" href="../client/assets/img/favicon.ico">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -19,8 +20,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="./assets/eshopper-1.0.0/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="../eshopper-1.0.0/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="./assets/css/style.css" rel="stylesheet">
+    <link href="../client/assets/css/style.css" rel="stylesheet">
 </head>

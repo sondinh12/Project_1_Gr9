@@ -35,7 +35,7 @@ match ($act) {
 
 
     // Sản phẩm
-    'list-product'      =>(new clientProductController())->list_product(),
+    // 'list-product'      =>(new clientProductController())->list_product(),
     'product_in_category' =>(new clientProductController())->list(),
     'detail_product'    =>(new ClientProductController())->detail(),
     'profile'           =>(new clientController())->profileUser(),
@@ -44,12 +44,13 @@ match ($act) {
     'contact'           =>(new clientController())->contactShow(),
     // 'detail'            =>(new clientController())->detailShow(),
     'checkout'          =>(new clientController())->checkoutShow(),
-    'shop'              =>(new clientController())->shopShow(),
+    'shop'              =>(new ClientProductController())->list_product(),
     'addcart'           =>(new clientController())->addToCart(),     
     'deletecart'        =>(new clientController())->deleteToCart(),  
     'handleaction'      =>(new clientController())->handleCartAction(),
     'updatecart'        =>(new clientController())->updateToCart(),
 
     'checkoutpro'       =>(new clientController())->checkoutPro(),
+    'totalSelected'     =>(new clientController())->totalSelected(),
 };
 ?>
