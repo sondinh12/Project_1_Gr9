@@ -51,6 +51,5 @@ match ($act) {
     'updatecart'        =>(new clientController())->updateToCart(),
 
     'checkoutpro'       =>(new clientController())->checkoutPro(),
-    'totalSelected'     =>(new clientController())->totalSelected(),
 };
 ?>
