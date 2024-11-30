@@ -27,9 +27,12 @@ class clientController {
             $pass = $_POST['pass'];
             // $btn = $_POST['btn_login'];
             // var_dump($btn);
-            if($this->clientModel->checkAcc($user_name,$pass)>0){
+            $entry = $this->clientModel->checkAcc($user_name,$pass);
+           
+            if($entry){
                 $role = $this->clientModel->getRoleByUsername($user_name);
                 $_SESSION['user_name'] = $user_name;
+                $_SESSION['id'] = $entry['id'];
                 $_SESSION['role'] = $role;
                 header("location:./");
             } 

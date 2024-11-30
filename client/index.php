@@ -24,6 +24,7 @@ require_once './model/clientProduct.php';
 require_once './model/clientComment.php';
 // Route
 $act = $_GET['act'] ?? '/';
+// var_dump($_SESSION);
 match ($act) {
 
     // Trang chủ
