@@ -295,6 +295,19 @@ class clientController {
             }
         }
     }
+
+    
+    public function lichSuDonHang(){
+        
+    }
+    public function chiTietDonHang(){
+
+    }
+    public function huyDonHang(){
+
+    }
+
 }
+
 ?>
 

@@ -50,5 +50,9 @@ match ($act) {
     'handleaction'      =>(new clientController())->handleCartAction(),
     'updatecart'        =>(new clientController())->updateToCart(),
 
+    // lich su don hang
+    'lich-su-don-hang'  =>(new clientController())->lichSuDonHang(),
+    'chi-tiet-don-hang' =>(new clientController())->chiTietDonHang(),
+    'huy-don-hang'      =>(new clientController())->huyDonHang(),
 };
 ?>
