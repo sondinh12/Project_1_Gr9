@@ -82,7 +82,7 @@
                     <i class="fas fa-heart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
-                <a href="" class="btn border">
+                <a href="?act=cart" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
                     <span class="badge">0</span>
                 </a>
@@ -120,26 +120,26 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="index.php?act=list-product" class="nav-item nav-link">Shop</a>
-                            <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
+                            <a href="?act=/" class="nav-item nav-link active">Home</a>
+                            <a href="?act=shop" class="nav-item nav-link">Shop</a>
+                            <!-- <a href="detail.html" class="nav-item nav-link">Shop Detail</a> -->
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                                    <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                    <a href="?act=cart" class="dropdown-item">Shopping Cart</a>
+                                    <!-- <a href="checkout.html" class="dropdown-item">Checkout</a> -->
                                 </div>
                             </div>
-                            <a href="contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="?act=contact" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                             <?php
                             if (isset($_SESSION['user_name'])) {
                                 $user_name = $_SESSION['user_name'];
                             ?>
-                                <span class="nav-link nav-item">Xin chào <?= $user_name ?></span>
+                                <a href="?act=profile"><span class="nav-link nav-item">Xin chào <?= $user_name ?></span></a>
                                 <a href="?act=logout" class="nav-item nav-link">Log Out</a>
-                                <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <!-- <a href="?act=editpass" class="nav-item nav-link">EditPass</a> -->
                                 <?php
                                 if (isset($_SESSION['role']) && $_SESSION['role'] === 1) {
                                 ?>

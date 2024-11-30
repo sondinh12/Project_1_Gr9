@@ -21,7 +21,7 @@ class ClientProductController{
 
         //Danh sách danh mục
         $categories = (new DanhMuc)->all();
-        require_once __DIR__ . '/../views/list-product.php';
+        require_once __DIR__ . '/../views/shop.php';
  
     }
     public function list()
