@@ -101,7 +101,7 @@
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
-                <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                <nav class="collapse  show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <?php foreach ($categories as $category ):?>
                         <a href="../client/index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>" class="btn btn-primary"><?= htmlspecialchars($category['cate_name']) ?></a>
@@ -258,7 +258,7 @@
                             <input type="hidden" name="price" value="<?=$product['price']?>">
                             <input type="hidden" min="1" value="1" name="quantity">
                         <a href="index.php?act=detail_product&id=<?= $product['id_pro'] ?>" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                        <button type="submit" class="btn btn-sm text-dark p-0" name="btn_addcart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
+                        <button type="submit" data-id="<?=$product['id_pro']?>" class="btn btn-sm text-dark p-0 btn_addcart" name="btn_addcart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
                         </form>
                     </div>
                 </div>
@@ -267,6 +267,15 @@
             </div>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.btn_addcart').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                const productId = this.getAttribute('data-id'); // Lấy ID sản phẩm
+                alert(`Thêm sản phẩm thành công!`);
+                // Thêm logic cập nhật sản phẩm ở đây
+            });
+        });
+    </script>
     <!-- Products End -->
 
 

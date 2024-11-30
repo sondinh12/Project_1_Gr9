@@ -102,23 +102,9 @@
                 </a>
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
-                            <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Men's Dresses</a>
-                                <a href="" class="dropdown-item">Women's Dresses</a>
-                                <a href="" class="dropdown-item">Baby's Dresses</a>
-                            </div>
-                        </div>
-                        <a href="" class="nav-item nav-link">Shirts</a>
-                        <a href="" class="nav-item nav-link">Jeans</a>
-                        <a href="" class="nav-item nav-link">Swimwear</a>
-                        <a href="" class="nav-item nav-link">Sleepwear</a>
-                        <a href="" class="nav-item nav-link">Sportswear</a>
-                        <a href="" class="nav-item nav-link">Jumpsuits</a>
-                        <a href="" class="nav-item nav-link">Blazers</a>
-                        <a href="" class="nav-item nav-link">Jackets</a>
-                        <a href="" class="nav-item nav-link">Shoes</a>
+                        <?php foreach ($categories as $category ):?>
+                            <a href="../client/index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>" class="btn btn-primary"><?= htmlspecialchars($category['cate_name']) ?></a>
+                        <?php endforeach;?>
                     </div>
                 </nav>
             </div>
@@ -210,7 +196,7 @@
                     
                         <?php foreach($cartShow as $key => $item){?>
                             <tr>  
-                                <td><input type="checkbox" name="selected_pro[]" value="<?=$item['pro_id']?>"></td>                    
+                                <td><input type="checkbox" class="btn_select" data-total="<?=$item['price'] * $item['quantity']?>" name="selected_pro[]" value="<?=$item['pro_id']?>"></td>                    
                                 <td class="align-middle"><img src="img/product-1.jpg" alt="" style="width: 50px;"><?=$item['name']?></td>
                                 <td class="align-middle"><?= number_format($item['price'], 0, ',', '.') ?> VNĐ</td>
                                 <td class="align-middle">
@@ -231,10 +217,10 @@
                                 </td>
                                 <td class="align-middle"><?=number_format($item['price'] * $item['quantity'],0, ',', '.')?> VNĐ</td>
                                 <td class="align-middle">
-                                    <button class="btn btn-sm btn-primary" style="width: 30px; height: 30px;" name="btn_updatecart" value="<?=$item['pro_id']?>">
+                                    <button class="btn btn-sm btn-primary btn_updatecart" id="btn_updatecart" data-id="<?=$item['pro_id']?>" style="width: 30px; height: 30px;" name="btn_updatecart" value="<?=$item['pro_id']?>">
                                         <i class="fa fa-check"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-primary"  name="btn_deletecart" value="<?=$item['pro_id']?>" style="width: 30px; height: 30px;">
+                                    <button class="btn btn-sm btn-primary btn_deletecart" id="btn_deletecart" data-id="<?=$item['pro_id']?>" name="btn_deletecart" value="<?=$item['pro_id']?>" style="width: 30px; height: 30px;">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </td>                                                       
@@ -351,7 +337,7 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-between mb-3 pt-1">
                                 <h6 class="font-weight-medium">Subtotal</h6>
-                                <h6 class="font-weight-medium">$150</h6>
+                                <h6 class="font-weight-medium"><span class="total_select"> 0 VNĐ</span></h6>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <h6 class="font-weight-medium">Shipping</h6>
@@ -361,7 +347,7 @@
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
                                 <h5 class="font-weight-bold">Total</h5>
-                                <h5 class="font-weight-bold"><?=number_format($totalPrice, 0, ',', '.')?> VNĐ</h5>
+                                <h5 class="font-weight-bold"><span class="total_select"> 0 VNĐ</span></h5>
                             </div>
                             <button class="btn btn-block btn-primary my-3 py-3" name="btn_checkout" type="submit">Proceed To Checkout</button>
                         </div>
@@ -370,6 +356,38 @@
         </div>
     </div>
     </form>
+    <script>
+        document.querySelectorAll('.btn_deletecart').forEach(function(button){
+            button.addEventListener('click',function(event) {
+                const proId = this.getAttribute('data_id')      
+                let confirmAction = confirm("Bạn muốn xóa giỏ sản phẩm khỏi hàng không?");
+                if (!confirmAction) {
+                    event.preventDefault(); 
+                }
+            })
+        })
+        document.querySelectorAll('.btn_updatecart').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                const productId = this.getAttribute('data-id');
+                alert(`Cập nhật sản phẩm ${productId} thành công!`);
+            });
+        });
+
+        document.querySelectorAll('.btn_select').forEach(function(checkbox) {
+            checkbox.addEventListener('change',function(){
+                const checkboxs = document.querySelectorAll('.btn_select');
+                var total = 0;
+                checkboxs.forEach(function(cb) {
+                    if(cb.checked){
+                        total+=parseInt(cb.getAttribute('data-total'));
+                    }
+                });
+                const totalElement = document.querySelectorAll('.total_select').forEach(function(totalElement){
+                    totalElement.textContent=total.toLocaleString('vi-VN') + "VNĐ"
+                });
+            });
+        });
+    </script>
     <!-- Cart End -->
 
 

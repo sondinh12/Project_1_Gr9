@@ -22,7 +22,9 @@ class clientController {
     }
 
     function contactShow(){
+        $categories = (new DanhMuc)->all();
         require_once 'views/contact.php';
+        
     }
 
     function detailShow(){
@@ -245,6 +247,7 @@ class clientController {
         $id=$_SESSION['id'];
         $cartShow = $this->clientModel->showCart($id);
         $totalPrice = $this->clientModel->totalCartPrice($id);
+        $categories = (new DanhMuc)->all();
         require_once 'views/cart.php';
     }
 
@@ -288,7 +291,7 @@ class clientController {
                 $this->deleteToCart();
                 
             } elseif(isset($_POST['btn_updatecart'])) {
-                $this->updateToCart();              
+                    $this->updateToCart();                             
             } elseif(isset($_POST['btn_checkout'])){
                 $this->checkoutPro();
             } 
@@ -335,6 +338,7 @@ class clientController {
             foreach ($productsSelect as $products){
                 $totalCheckout += $products['price'] * $products['quantity'];
             }
+            $categories = (new DanhMuc)->all();
             // var_dump($productsSelect);
             require_once 'views/checkout.php';
         }
