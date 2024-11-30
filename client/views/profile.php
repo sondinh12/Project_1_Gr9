@@ -80,7 +80,7 @@
 
                 <div class="list-group">
                     <a href="?act=profile" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
-                    <a href="#" class="list-group-item list-group-item-action">Đơn hàng</a>
+                    <a href="?act=lich-su-don-hang" class="list-group-item list-group-item-action">Đơn hàng</a>
                     <a href="?act=editpass" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
                     <a href="#" class="list-group-item list-group-item-action">Hỗ trợ</a>
                 </div>
