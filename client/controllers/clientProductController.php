@@ -8,7 +8,7 @@ class ClientProductController{
         // $productHighestPrice = (new Product)->();
 
         //Danh sách danh mục
-        $categories = (new DanhMuc)->all();
+        $categories = (new DanhMuc)->all();    
         require_once __DIR__ . '/../views/home.php';
  
     }
@@ -52,7 +52,6 @@ public function detail()
 {
     // Lấy id sản phẩm từ URL
     $id = $_GET['id'] ?? '';
-
     // Nếu không có id sản phẩm, chuyển hướng về trang chính
     if (empty($id)) {
         header("Location: index.php");
@@ -63,12 +62,16 @@ public function detail()
     $productModel = new Product();
     $product = $productModel->find_one($id);
 
+     // Lấy các sản phẩm cùng danh mục
+     $relatedProducts = $productModel->productsInCategory($product['id_cate']);
+
     // Nếu không tìm thấy sản phẩm, chuyển hướng về trang chính
     if (!$product) {
         header("Location: index.php");
         exit;
     }
     $categories = (new DanhMuc)->all();
+    
 
     // Hiển thị view chi tiết sản phẩm
     require_once __DIR__ . '/../views/detail.php';

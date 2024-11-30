@@ -215,47 +215,23 @@
     </div>
     <!-- Related Products Section -->
     <div class="container mt-5">
-        <h3>Related Products</h3>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 1</h5>
-                        <p class="card-text text-danger">$29.99</p>
+    <h3>Related Products</h3>
+    <div class="row">
+            <?php foreach ($relatedProducts as $pr): ?>
+                <div class="col-md-3">
+                    <div class="card">
+                        <!-- Hiển thị hình ảnh sản phẩm -->
+                        <img src="../admin/assets/images/<?= htmlspecialchars($pr['image'] ?? 'default.jpg') ?>" class="card-img-top" alt="<?= htmlspecialchars($pr['name'] ?? 'No name available') ?>">
+                        <div class="card-body">
+                            <!-- Hiển thị tên và giá sản phẩm -->
+                            <h5 class="card-title"><?= htmlspecialchars($pr['name'] ?? 'No name available') ?></h5>
+                            <p class="card-text text-danger"><?= htmlspecialchars($pr['price'] ?? 'Price not available') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 2</h5>
-                        <p class="card-text text-danger">$39.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 3</h5>
-                        <p class="card-text text-danger">$19.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 4</h5>
-                        <p class="card-text text-danger">$24.99</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php endforeach; ?>
     </div>
-
+</div>
 
     <?php require_once './views/layout/footer.php' ?>
 
