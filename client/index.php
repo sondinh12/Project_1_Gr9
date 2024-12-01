@@ -33,4 +33,5 @@ match ($act) {
     'handleaction'      =>(new clientController())->handleCartAction(),
     'updatecart'        =>(new clientController())->updateToCart(),
     'checkoutpro'       =>(new clientController())->checkoutPro(),
+    'placeorder'        =>(new clientController())->placeOrder(),
 };

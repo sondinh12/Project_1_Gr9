@@ -336,7 +336,52 @@ class clientController {
                 $totalCheckout += $products['price'] * $products['quantity'];
             }
             // var_dump($productsSelect);
+            // header("location: ?act=checkout");
             require_once 'views/checkout.php';
+        }
+    }
+
+    function placeOrder(){
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_placeorder'])){
+                $name_us = $_POST['name_user'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                $payment= $_POST['payment'];
+                $total = $_POST['total'];
+                $en_argen = $total;
+                // $prices = isset($_POST['price']) ? $_POST['price'] : [];
+                // $total_checkout = 0;
+                // foreach ($prices as $price){
+                //     $total_checkout += $price;
+                // }
+                $id_orders = $this->clientModel->createOrders($id_user,$name_us,$total,  $payment);
+
+                $cart_item = $this->clientModel->getCartByIdUser($id_user);
+                $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
+                if(empty($selectedPro)){
+                    echo "Vui lòng chọn sản phẩm để thanh toán";
+                    return;
+                }
+                foreach($cart_item as $item){
+                    $product_price = $item['price'];
+                    $product_quantity = isset($selectedPro[$item['pro_id']]) ? $selectedPro[$item['pro_id']] : 0;;
+                    $en_argen = $product_price * $product_quantity;
+                    if ($product_quantity <= 0) {
+                        echo "Sản phẩm không hợp lệ hoặc số lượng không đủ.";
+                        return;
+                    }
+                    // $product_quantity = $item['quantity'];
+                    // $product_price = isset($prices[$index]) ? $prices[$index] : 0;
+                    $this->clientModel->addOrdersDetail($id_orders,$item['pro_id'],$product_price,$product_quantity,$en_argen,$phone,$address);
+                    $this->clientModel->reduceStock($$item['pro_id'],$product_quantity);
+                }
+
+                $this->clientModel->clearCart($id_user);
+                // echo "sơn";
+                header("location: ?act=/");
+            } 
         }
     }
 }

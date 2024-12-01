@@ -191,5 +191,41 @@ class clientModel {
         $stsm -> execute(array_merge([$id_user],$pro_id));
         return $stsm->fetchAll();
     }
+
+    // Order
+    function createOrders($id_user,$name_us,$total,$payment){
+        $sql="insert into orders (id_us,name_us,total,payment,status,create_at,update_at) values('$id_user','$name_us','$total','$payment',1,NOw(),NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return $this->conn->lastInsertId();
+    }
+
+    function getCartByIdUser($id_user){
+        $sql="select * from cart where id_user='$id_user'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+    }
+
+    function addOrdersDetail($id_orders,$id_pro,$price,$quantity,$en_argen,$phone,$address){   
+        $sql="insert into orders_detail (id_orders,id_pro,quantity,price,en_argen,phone,address,create_at,update_at) values('$id_orders','$id_pro','$quantity','$price','$en_argen','$phone','$address',NOW(),NOW())";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return true;
+    }
+
+    function reduceStock($id_pro,$quantity){
+        $sql="update products set quantity = quantity - $quantity where id_pro='$id_pro'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return true;
+    }
+
+    function clearCart($id_user){
+        $sql="delete from cart where id_user='$id_user'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return true;
+    }
 }
 ?>
