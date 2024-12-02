@@ -36,6 +36,7 @@ require_once './model/clientComment.php';
 
 // Route
 $act = $_GET['act'] ?? '/';
+// var_dump($_SESSION);
 match ($act) {
 
 

@@ -42,11 +42,14 @@ class clientController {
             $pass = trim($_POST['pass']);
             // $btn = $_POST['btn_login'];
             // var_dump($btn);
-            if($this->clientModel->checkAcc($user_name,$pass)>0){
+            $entry = $this->clientModel->checkAcc($user_name,$pass);
+           
+            if($entry){
                 $role = $this->clientModel->getRoleByUsername($user_name);
                 $idUs = $this->clientModel->getIdUser($user_name);
                 // var_dump($idUs);
                 $_SESSION['user_name'] = $user_name;
+                $_SESSION['id'] = $entry['id'];
                 $_SESSION['role'] = $role;
                 $id=$idUs['id'];
                 $_SESSION['id'] = $id;
