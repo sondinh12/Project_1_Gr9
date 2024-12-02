@@ -349,6 +349,7 @@ class clientController {
                 $address = $_POST['address'];
                 $payment= $_POST['payment'];
                 $total = $_POST['total'];
+                $total = str_replace('.', '', $total);
                 $id_orders = $this->clientModel->createOrders($id_user,$name_us,$total,  $payment);
 
                 $cart_item = $this->clientModel->getCartByIdUser($id_user);
