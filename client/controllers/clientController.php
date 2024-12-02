@@ -379,20 +379,20 @@ class clientController {
                 foreach($cart_item as $item){
                     $pro_id = (int)$item['pro_id'];
                     $product_price = $item['price'];
-                    $product_quantity = isset($selectedPro[$pro_id]) ? $selectedPro[$pro_id] : 0;
-                    echo "Product ID: $pro_id<br>";
-    echo "SelectedPro: " . print_r($selectedPro, true) . "<br>";
-    echo "Product quantity: $product_quantity<br>";
+                    $quantity = isset($selectedPro[$pro_id]) ? $selectedPro[$pro_id] : 0;
+    //                 echo "Product ID: $pro_id<br>";
+    // echo "SelectedPro: " . print_r($selectedPro, true) . "<br>";
+    // echo "Product quantity: $quantity<br>";
                     // print_r($selectedPro[$item['pro_id']]);
-                    $en_argen = $product_price * $product_quantity;
-                    if ($product_quantity <= 0) {
+                    $en_argen = $product_price * $quantity;
+                    if ($quantity <= 0) {
                         echo "Sản phẩm không hợp lệ hoặc số lượng không đủ.";
                         return;
                     }
                     // $product_quantity = $item['quantity'];
                     // $product_price = isset($prices[$index]) ? $prices[$index] : 0;
-                    $this->clientModel->addOrdersDetail($id_orders,$pro_id,$product_price,$product_quantity,$en_argen,$phone,$address);
-                    $this->clientModel->reduceStock($item['pro_id'],$product_quantity);
+                    $this->clientModel->addOrdersDetail($id_orders,$pro_id,$product_price,$quantity,$en_argen,$phone,$address);
+                    $this->clientModel->reduceStock($pro_id,$quantity);
                     $this->clientModel->clearCart($id_user,$pro_id);
                 }
 

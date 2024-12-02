@@ -214,8 +214,8 @@ class clientModel {
         return true;
     }
 
-    function reduceStock($id_pro,$quantity){
-        $sql="update products set quantity = quantity - $quantity where id_pro='$id_pro'";
+    function reduceStock($pro_id,$quantity){
+        $sql="update products set quantity = quantity - $quantity where id_pro='$pro_id'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return true;
