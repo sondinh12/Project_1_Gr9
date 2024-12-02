@@ -17,9 +17,7 @@
                         <div class="d-flex flex-column justify-content-start">
                             <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
                             <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
                             <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
                             <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
                     </div>
@@ -65,14 +63,19 @@
 
 
     <!-- JavaScript Libraries -->
+    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <!-- <script src="lib/easing/easing.min.js"></script> -->
+    <script src="../eshopper-1.0.0/lib/easing/easing.min.js"></script>
+    <!-- <script src="lib/owlcarousel/owl.carousel.min.js"></script> -->
+     <script src="../eshopper-1.0.0/lib/owlcarousel/owl.carousel.min.js"></script>
 
     <!-- Contact Javascript File -->
-    <script src="./assets/mail/jqBootstrapValidation.min.js"></script>
-    <script src="./assets/mail/contact.js"></script>
+    <!-- <script src="mail/jqBootstrapValidation.min.js"></script> -->
+     <script src="../eshopper-1.0.0/mail/jqBootstrapValidation.min.js"></script>
+    <!-- <script src="mail/contact.js"></script> -->
+     <script src="../eshopper-1.0.0/mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script src="./assets/js/main.js"></script>
+    <script src="../eshopper-1.0.0/js/main.js"></script>

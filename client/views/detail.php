@@ -107,6 +107,7 @@
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
+
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
                     id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100" style="height: 210px; overflow-y: auto;">
@@ -116,6 +117,13 @@
                                 <?= htmlspecialchars($category['cate_name']) ?>
                             </a>
                         <?php endforeach; ?>
+
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                        <?php foreach ($categories as $category ):?>
+                        <a href="../client/index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>" class="btn btn-primary"><?= htmlspecialchars($category['cate_name']) ?></a>
+                        <?php endforeach;?>
+
                     </div>
                 </nav>
             </div>
@@ -132,15 +140,15 @@
                         <div class="navbar-nav mr-auto py-0">
                             <a href="./" class="nav-item nav-link">Home</a>
                             <a href="?act=shop" class="nav-item nav-link">Shop</a>
-                            <a href="?act=detail" class="nav-item nav-link active">Shop Detail</a>
+                            <!-- <a href="?act=detail" class="nav-item nav-link active">Shop Detail</a> -->
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
                                     <a href="?act=cart" class="dropdown-item">Shopping Cart</a>
-                                    <a href="?act=checkout" class="dropdown-item">Checkout</a>
+                                    <!-- <a href="?act=checkout" class="dropdown-item">Checkout</a> -->
                                 </div>
                             </div>
-                            <a href="?act=checkout" class="nav-item nav-link">Contact</a>
+                            <a href="?act=contact" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="navbar-nav ml-auto py-0">
                         <?php
@@ -150,7 +158,7 @@
                             ?>
                             <a href="?act=profile"><span class="nav-link nav-item">Xin chào <?=$user_name?></span></a>
                             <a href="?act=logout" class="nav-item nav-link">Log Out</a>
-                            <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                            <!-- <a href="?act=editpass" class="nav-item nav-link">EditPass</a> -->
                                 <?php
                                 if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
                                 ?>
@@ -204,17 +212,31 @@
                 <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>"
                     class="img-fluid border border-color:gray" alt="<?= htmlspecialchars($product['name']) ?>">
             </div>
-            <div class="col-md-6">
-                <h2><?= htmlspecialchars($product['name']) ?></h2>
-                <p><strong>Giá: $<?= htmlspecialchars($product['price']) ?></strong></p>
-                <p><strong>Số Lượng: <?= htmlspecialchars($product['quantity']) ?></strong></p>
-                <p><strong>Mô tả:</strong></p>
-                <p><?= htmlspecialchars($product['description']) ?></p>
-                <input type="number" class="btn btn-primary btn-lg form-control w-50" id="counter" value="1" min="1">
-                <button class="btn btn-primary btn-lg">Add to Cart</button>
-            </div>
+            <form action="?act=addcart" method="post">
+                <div class="col-md-6">
+                    <input type="hidden" name="pro_id" value="<?=$product['id_pro']?>">
+                    <input type="hidden" name="pro_name" value="<?=$product['name']?>">
+                    <input type="hidden" name="price" value="<?=$product['price']?>">
+                    <h2><?= htmlspecialchars($product['name']) ?></h2>
+                    <p><strong>Giá: $<?= htmlspecialchars($product['price']) ?></strong></p>
+                    <p><strong>Số Lượng: <?= htmlspecialchars($product['quantity']) ?></strong></p>
+                    <p><strong>Mô tả:</strong></p>
+                    <p><?= htmlspecialchars($product['description']) ?></p>
+                    <input type="number" class="btn btn-primary btn-lg form-control w-50 mb-3" name="quantity" id="counter" value="1" min="1">
+                    <button class="btn btn-primary btn-lg btn_addcart" data-id="<?=$product['id_pro']?>" name="btn_addcart" type="submit">Add to Cart</button>
+                </div>
+            </form>
         </div>
     </div>
+    <script>
+        document.querySelectorAll('.btn_addcart').forEach(function(button) {
+            button.addEventListener('click', function(event) {
+                const productId = this.getAttribute('data-id'); // Lấy ID sản phẩm
+                alert(`Thêm sản phẩm thành công!`);
+                // Thêm logic cập nhật sản phẩm ở đây
+            });
+        });
+    </script>
     </div>
     <div class="container mt-5">
         <div class="row">
@@ -259,47 +281,23 @@
     </div>
     <!-- Related Products Section -->
     <div class="container mt-5">
-        <h3>Related Products</h3>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 1</h5>
-                        <p class="card-text text-danger">$29.99</p>
+    <h3>Related Products</h3>
+    <div class="row">
+            <?php foreach ($relatedProducts as $pr): ?>
+                <div class="col-md-3">
+                    <div class="card">
+                        <!-- Hiển thị hình ảnh sản phẩm -->
+                        <img src="../admin/assets/images/<?= htmlspecialchars($pr['image'] ?? 'default.jpg') ?>" class="card-img-top" alt="<?= htmlspecialchars($pr['name'] ?? 'No name available') ?>">
+                        <div class="card-body">
+                            <!-- Hiển thị tên và giá sản phẩm -->
+                            <h5 class="card-title"><?= htmlspecialchars($pr['name'] ?? 'No name available') ?></h5>
+                            <p class="card-text text-danger"><?= htmlspecialchars($pr['price'] ?? 'Price not available') ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 2</h5>
-                        <p class="card-text text-danger">$39.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 3</h5>
-                        <p class="card-text text-danger">$19.99</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="https://via.placeholder.com/200" class="card-img-top" alt="Product 4">
-                    <div class="card-body">
-                        <h5 class="card-title">Product 4</h5>
-                        <p class="card-text text-danger">$24.99</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <?php endforeach; ?>
     </div>
-
+</div>
 
     <?php require_once './views/layout/footer.php' ?>
 

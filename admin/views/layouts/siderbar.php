@@ -50,7 +50,7 @@
             <ul class="navbar-nav" id="navbar-nav">
                 <li class="menu-title"><span data-key="t-menu">Quản lý</span></li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link" href="#">
+                    <a class="nav-link menu-link" href="?act=/">
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
                     </a>
                 </li>
@@ -66,6 +66,17 @@
                     <a class="nav-link menu-link" href="?act=comments">
                         <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Quản lý Bình Luận</span>
                     </a>
+
+                    <div class="collapse menu-dropdown" id="sidebarDanhMuc">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="?act=danh-mucs" class="nav-link" data-key="t-sweet-alerts">
+                                    Danh sách
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </li>
 
                 <li class="nav-item">
@@ -77,6 +88,21 @@
                             <li class="nav-item">
                                 <a href="?act=don-hang" class="nav-link" data-key="t-sweet-alerts">
                                     Danh sách đơn hàng
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#sidebarSanPham" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDonHang">
+                        <i class="ri-stack-line"></i> <span data-key="t-advance-ui">Danh sách sản phẩm</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="sidebarSanPham">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="?act=product" class="nav-link" data-key="t-sweet-alerts">
+                                    Danh sách sản phẩm
                                 </a>
                             </li>
                         </ul>

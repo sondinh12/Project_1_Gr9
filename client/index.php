@@ -52,17 +52,21 @@ match ($act) {
 
 
     // Sản phẩm
+
     'list-product'      =>(new clientProductController())->list_product(),
     
+
+    // 'list-product'      =>(new clientProductController())->list_product(),
+
     'product_in_category' =>(new clientProductController())->list(),
     'detail_product'    =>(new ClientProductController())->detail(),
     'profile'           =>(new clientController())->profileUser(),
     'updateuser'        =>(new clientController())->updateUser(),
     'cart'              =>(new clientController())->showCart(),
     'contact'           =>(new clientController())->contactShow(),
-    'detail'            =>(new clientController())->detailShow(),
+    // 'detail'            =>(new clientController())->detailShow(),
     'checkout'          =>(new clientController())->checkoutShow(),
-    'shop'              =>(new clientController())->shopShow(),
+    'shop'              =>(new ClientProductController())->list_product(),
     'addcart'           =>(new clientController())->addToCart(),     
     'deletecart'        =>(new clientController())->deleteToCart(),  
     'handleaction'      =>(new clientController())->handleCartAction(),
@@ -90,6 +94,13 @@ match ($act) {
 
 
 
+    // lich su don hang
+    'lich-su-don-hang'  =>(new clientController())->lichSuDonHang(),
+    'chi-tiet-don-hang' =>(new clientController())->chiTietDonHang(),
+    'huy-don-hang'      =>(new clientController())->huyDonHang(),
+
+    
+    'checkoutpro'       =>(new clientController())->checkoutPro(),
 };
 ?>
 
