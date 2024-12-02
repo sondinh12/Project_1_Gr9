@@ -85,10 +85,12 @@
                                                                     class="btn btn-soft-success">
                                                                     <i class="ri-edit-2-line"></i>
                                                                 </a>
-                                                                <a href="?act=chi-tiet-don-hang&id_orders=<?= $donhang['id_orders'] ?>"
-                                                                    class="btn btn-soft-success">
-                                                                    <i class="fa-solid fa-eye"></i>
+                                                            <td>
+                                                                <a href="?act=detail-don-hang&id_orders=<?= $donhang['id_orders'] ?>" class="btn btn-soft-success">
+                                                                    <i class="fa-solid fa-eye"></i> Chi tiết
                                                                 </a>
+                                                            </td>
+
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>

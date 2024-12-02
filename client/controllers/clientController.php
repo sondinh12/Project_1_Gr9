@@ -6,10 +6,13 @@ require_once 'PHPMailer/src/SMTP.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-class clientController {
+
+class clientController
+{
     public $clientModel;
-    function __construct(){
-        $this->clientModel=new clientModel();
+    function __construct()
+    {
+        $this->clientModel = new clientModel();
     }
 
     // function index(){
@@ -17,75 +20,77 @@ class clientController {
     //     require_once 'views/home.php';
     // }
 
-    function checkoutShow(){
+    function checkoutShow()
+    {
         require_once 'views/checkout.php';
     }
 
-    function contactShow(){
+    function contactShow()
+    {
         $categories = (new DanhMuc)->all();
         require_once 'views/contact.php';
-        
     }
 
-    function detailShow(){
+    function detailShow()
+    {
         require_once 'views/detail.php';
     }
 
-    function shopShow(){
+    function shopShow()
+    {
         require_once 'views/shop.php';
     }
 
-    function login(){
+    function login()
+    {
         require_once 'views/login.php';
-        if(isset($_POST['btn_login'])){
+        if (isset($_POST['btn_login'])) {
             $user_name = trim($_POST['user_name']);
             $pass = trim($_POST['pass']);
             // $btn = $_POST['btn_login'];
             // var_dump($btn);
-            if($this->clientModel->checkAcc($user_name,$pass)>0){
+            if ($this->clientModel->checkAcc($user_name, $pass) > 0) {
                 $role = $this->clientModel->getRoleByUsername($user_name);
                 $idUs = $this->clientModel->getIdUser($user_name);
                 // var_dump($idUs);
-                $_SESSION['user_name'] = $user_name;
-                $_SESSION['role'] = $role;
-                $id=$idUs['id'];
-                $_SESSION['id'] = $id;
+                $_SESSION['user'] = $idUs;
                 // var_dump($_SESSION['id']);
                 header("location:./");
-            } 
-            else{
+            } else {
                 echo "Không đăng nhập thành công, vui lòng kiểm tra lại!";
             }
         }
     }
 
-    function logout(){
+    function logout()
+    {
         unset($_SESSION['user_name']);
         header("location:./");
     }
 
-    function register(){
+    function register()
+    {
         require_once 'views/register.php';
-        if(isset($_POST['btn_register'])){
-            $user_name=$_POST['user_name'];
-            $pass=trim($_POST['pass']);
-            $email=trim($_POST['email']);
-            $phone=trim($_POST['phone']);
-            $address=trim($_POST['address']);
+        if (isset($_POST['btn_register'])) {
+            $user_name = $_POST['user_name'];
+            $pass = trim($_POST['pass']);
+            $email = trim($_POST['email']);
+            $phone = trim($_POST['phone']);
+            $address = trim($_POST['address']);
             $created_at = date('Y-m-d H:i:s');
             $updated_at = $created_at;
 
-            if($this->clientModel->checkUsername($user_name)){
+            if ($this->clientModel->checkUsername($user_name)) {
                 echo "Tài khoản đã tồn tại";
                 return;
             }
 
-            if($this->clientModel->checkEmail($email)){
+            if ($this->clientModel->checkEmail($email)) {
                 echo "Email đã tồn tại";
                 return;
             }
 
-            if($this->clientModel->checkPhone($phone)){
+            if ($this->clientModel->checkPhone($phone)) {
                 echo "Số điện thoại đã tồn tại";
                 return;
             }
@@ -98,12 +103,12 @@ class clientController {
                 echo "Email không hợp lệ. Vui lòng nhập đúng định dạng email";
                 return;
             }
-    
+
             if (!preg_match("/^0[0-9]{7,10}$/", $phone)) {
                 echo "Số điện thoại không hợp lệ. Vui lòng nhập số bắt đầu bằng 0 và từ 8-11 số";
                 return;
             }
-            if($this->clientModel->insertAcc($user_name,$pass,$email,$phone,$address,$created_at,$updated_at)){      
+            if ($this->clientModel->insertAcc($user_name, $pass, $email, $phone, $address, $created_at, $updated_at)) {
                 header("location:?act=login");
             } else {
                 echo "Không đăng ký thành công";
@@ -111,23 +116,24 @@ class clientController {
         }
     }
 
-    function updatePass(){
+    function updatePass()
+    {
         require_once 'views/editpass.php';
-        if(isset($_SESSION['user_name'])){
-            $user_name = $_SESSION['user_name'];         
-            if(isset($_POST['btn_editpass'])){
+        if (isset($_SESSION['user_name'])) {
+            $user_name = $_SESSION['user_name'];
+            if (isset($_POST['btn_editpass'])) {
                 $newPass = $_POST['new_pass'];
                 $oldPass = $_POST['old_pass'];
                 $rePass = $_POST['re_pass'];
                 $update_at = date('Y-m-d H:i:s');
-                if($this->clientModel->checkOldPass($user_name,$oldPass)){
-                    if($rePass === $newPass){
-                        if($this->clientModel->updatePass($user_name,$newPass,$update_at)){
-                            echo "Đổi mật khẩu thành công";                             
+                if ($this->clientModel->checkOldPass($user_name, $oldPass)) {
+                    if ($rePass === $newPass) {
+                        if ($this->clientModel->updatePass($user_name, $newPass, $update_at)) {
+                            echo "Đổi mật khẩu thành công";
                         } else {
                             echo "Đổi mật khẩu thất bại";
                         }
-                    } else{
+                    } else {
                         echo "Mật khẩu mới không đồng nhất";
                     }
                 } else {
@@ -139,24 +145,25 @@ class clientController {
 
 
 
-    function forgotPass(){
+    function forgotPass()
+    {
         require_once 'views/forgotpass.php';
         // echo date("Y-m-d H:i:s");
-        if(isset($_POST['btn_forgot'])){
+        if (isset($_POST['btn_forgot'])) {
             $email = $_POST['email'];
             $user = $this->clientModel->findByEmail($email);
-            if($user){
+            if ($user) {
                 $token = bin2hex(random_bytes(32));
                 $expixy = date("Y-m-d H:i:s", strtotime("+1 hour"));
                 // var_dump($expixy);
-                $this->clientModel->storeResetToken($email,$token,$expixy);
+                $this->clientModel->storeResetToken($email, $token, $expixy);
 
                 // Chỉnh sửa lại
                 $resetLink = "$token";
                 $subject = "Khôi phục mật khẩu";
                 $message = "Mã khôi phục mật khẩu của bạn: $resetLink";
                 try {
-                    $mail = new PHPMailer(true); 
+                    $mail = new PHPMailer(true);
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
@@ -166,7 +173,7 @@ class clientController {
                     $mail->Port = 587;
                     $mail->setFrom('no-reply@yourwebsite.com', 'Your Website');
                     $mail->addAddress($email);
-    
+
                     $mail->isHTML(true);
                     $mail->Subject = $subject;
                     $mail->Body    = $message;
@@ -177,29 +184,31 @@ class clientController {
                 } catch (Exception $e) {
                     echo "Gửi email thất bại. Lỗi: {$mail->ErrorInfo}";
                 }
-            } else{
+            } else {
                 echo "Email không tồn tại trong hệ thống";
             }
         }
     }
 
-    function resetForm(){
-            require_once 'views/resetPass.php';
+    function resetForm()
+    {
+        require_once 'views/resetPass.php';
     }
 
-    function resetPass(){
+    function resetPass()
+    {
         require_once 'views/resetPass.php';
-        if(isset($_POST['btn_reset'])){
+        if (isset($_POST['btn_reset'])) {
             $token = $_POST['token'];
             $newPassForgot = $_POST['new_pass'];
             $rePassForgot = $_POST['re_pass'];
             $update_at = date('Y-m-d H:i:s');
             // var_dump($token);
-            if($newPassForgot === $rePassForgot){
-                $user = $this->clientModel->findByToken( $token);
+            if ($newPassForgot === $rePassForgot) {
+                $user = $this->clientModel->findByToken($token);
                 // var_dump($user);
-                if($user){
-                    $this->clientModel->updatePassForgot($user['id'], $newPassForgot,$update_at);
+                if ($user) {
+                    $this->clientModel->updatePassForgot($user['id'], $newPassForgot, $update_at);
                     echo "Mật khẩu đã được đặt lại thành công";
                 } else {
                     echo "Token không hợp lệ hoặc đã hết hạn";
@@ -209,30 +218,32 @@ class clientController {
             }
             // var_dump($_POST);
             // die();
-        } 
+        }
         // else {
         //     echo "Form chưa được submit";
         // }
     }
 
-    function profileUser(){ 
-            if(isset($_SESSION['id'])){       
+    function profileUser()
+    {
+        if (isset($_SESSION['id'])) {
             $id = $_SESSION['id'];
             // var_dump($id);
             $info = $this->clientModel->getAllInfoUser($id);
             require_once 'views/profile.php';
-            }
+        }
     }
 
-    function updateUser(){
-        if(isset($_POST['btn_updateUs'])){
+    function updateUser()
+    {
+        if (isset($_POST['btn_updateUs'])) {
             $id = $_SESSION['id'];
             $user_name = $_POST['user_name'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
             $address = $_POST['address'];
             $update_at = date('Y-m-d H:i:s');
-            if($this->clientModel->updateUser($id,$user_name,$email,$phone,$address,$update_at)){
+            if ($this->clientModel->updateUser($id, $user_name, $email, $phone, $address, $update_at)) {
                 header("location:?act=profile");
             }
         }
@@ -240,123 +251,115 @@ class clientController {
 
     //cart
 
-    function showCart(){
-        if(!isset($_SESSION['id'])){
+    function showCart()
+    {
+        if (!isset($_SESSION['id'])) {
             header("location:?act=login");
         }
-        $id=$_SESSION['id'];
+        $id = $_SESSION['id'];
         $cartShow = $this->clientModel->showCart($id);
         $totalPrice = $this->clientModel->totalCartPrice($id);
         $categories = (new DanhMuc)->all();
         require_once 'views/cart.php';
     }
 
-    function addToCart(){
-        if(!isset($_SESSION['id'])){
+    function addToCart()
+    {
+        if (!isset($_SESSION['id'])) {
             header("location:?act=login");
-        } else{
+        } else {
             $id_user = $_SESSION['id'];
-            if(isset($_POST['btn_addcart'])){
-                $pro_id=$_POST['pro_id'];
-                $quantity=$_POST['quantity']; 
+            if (isset($_POST['btn_addcart'])) {
+                $pro_id = $_POST['pro_id'];
+                $quantity = $_POST['quantity'];
                 $price = $_POST['price'];
-                $pro_name=$_POST['pro_name'];
-                $addProToCart = $this->clientModel->addToCart($id_user,$pro_id,$pro_name,$quantity,$price);
-                if($addProToCart === true){
+                $pro_name = $_POST['pro_name'];
+                $addProToCart = $this->clientModel->addToCart($id_user, $pro_id, $pro_name, $quantity, $price);
+                if ($addProToCart === true) {
                     header("location:./");
-                } else{
+                } else {
                     echo $addProToCart;
                 }
             }
         }
     }
 
-    function deleteToCart(){
-        if(isset($_SESSION['id'])){
+    function deleteToCart()
+    {
+        if (isset($_SESSION['id'])) {
             $id_user = $_SESSION['id'];
-            if(isset($_POST['btn_deletecart'])){
+            if (isset($_POST['btn_deletecart'])) {
                 $pro_id = $_POST['btn_deletecart'];
-                if($this->clientModel->deleteToCart($id_user, $pro_id)){
+                if ($this->clientModel->deleteToCart($id_user, $pro_id)) {
                     // echo "<script>confirm('Bạn muốn xóa sản phẩm khỏi giỏ hàng chứ!');</script>";
                     header("location:?act=cart");
                 }
             }
         }
     }
-    
-    function handleCartAction(){
+
+    function handleCartAction()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Kiểm tra nút xóa sản phẩm
             if (isset($_POST['btn_deletecart'])) {
                 $this->deleteToCart();
-                
-            } elseif(isset($_POST['btn_updatecart'])) {
-                    $this->updateToCart();                             
-            } elseif(isset($_POST['btn_checkout'])){
+            } elseif (isset($_POST['btn_updatecart'])) {
+                $this->updateToCart();
+            } elseif (isset($_POST['btn_checkout'])) {
                 $this->checkoutPro();
-            } 
-
+            }
         }
     }
-    function updateToCart(){
-        if(isset($_SESSION['id'])){
+    function updateToCart()
+    {
+        if (isset($_SESSION['id'])) {
             $id_user = $_SESSION['id'];
-            if(isset($_POST['btn_updatecart'])){
+            if (isset($_POST['btn_updatecart'])) {
                 $pro_id = $_POST['btn_updatecart'];
                 // $newQuantity = $_POST['quantity'];
                 $quantityField = 'quantity-' . $pro_id;
                 $newQuantity = isset($_POST[$quantityField]) ? $_POST[$quantityField] : 1;
-                if(empty($newQuantity) || $newQuantity <= 0){
+                if (empty($newQuantity) || $newQuantity <= 0) {
                     $newQuantity = 1;
                 }
-                if($newQuantity > 0){
-                    $this->clientModel->updateCartQuantity($id_user,$pro_id,$newQuantity);
+                if ($newQuantity > 0) {
+                    $this->clientModel->updateCartQuantity($id_user, $pro_id, $newQuantity);
                     header("location:?act=cart");
                 }
             }
         }
     }
 
-    
+
 
 
     //selected product
-    function checkoutPro(){
-        if(isset($_POST['btn_checkout'])){
-            if(isset($_SESSION['id'])){
+    function checkoutPro()
+    {
+        if (isset($_POST['btn_checkout'])) {
+            if (isset($_SESSION['id'])) {
                 $id_user = $_SESSION['id'];
                 $id = $_SESSION['id'];
-                $info = $this->clientModel->getAllInfoUser( id: $id);
+                $info = $this->clientModel->getAllInfoUser(id: $id);
                 // var_dump($info);
             }
             $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
-            
-            if(empty($selectedPro)){
+
+            if (empty($selectedPro)) {
                 echo "Vui lòng chọn sản phẩm để thanh toán";
                 return;
             }
             $productsSelect = $this->clientModel->getSelectedPro($id_user, $selectedPro);
 
             $totalCheckout = 0;
-            foreach ($productsSelect as $products){
+            foreach ($productsSelect as $products) {
                 $totalCheckout += $products['price'] * $products['quantity'];
             }
             $categories = (new DanhMuc)->all();
             // var_dump($productsSelect);
             require_once 'views/checkout.php';
         }
-    }
-
-
-
-    public function lichSuDonHang(){
-        
-    }
-    public function chiTietDonHang(){
-
-    }
-    public function huyDonHang(){
-
     }
 }
 

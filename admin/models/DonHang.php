@@ -66,4 +66,29 @@ class DonHang
     {
         $this->conn = null;
     }
+
+
+    public function DetailDon($id)
+{
+    try {
+        // Lấy thông tin chi tiết đơn hàng từ bảng 'orders'
+        $sql = 'SELECT * FROM orders WHERE id_orders = :id';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $order = $stmt->fetch();
+
+        // Lấy các sản phẩm trong đơn hàng từ bảng 'orders_detail'
+        $sql_detail = 'SELECT * FROM orders_detail WHERE id_orders = :id';
+        $stmt_detail = $this->conn->prepare($sql_detail);
+        $stmt_detail->bindParam(':id', $id);
+        $stmt_detail->execute();
+        $order_details = $stmt_detail->fetchAll();
+
+        return ['order' => $order, 'details' => $order_details];
+    } catch (PDOException $e) {
+        echo 'Lỗi: ' . $e->getMessage();
+    }
+}
+
 }

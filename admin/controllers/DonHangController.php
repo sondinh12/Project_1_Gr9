@@ -48,4 +48,25 @@ class DonHangController
             }
         }
     }
+
+    // Hàm hiển thị chi tiết đơn hàng
+public function DetailDonHang()
+{
+    // Lấy id đơn hàng từ tham số URL
+    $id = $_GET['id_orders'];
+
+    // Lấy thông tin chi tiết đơn hàng từ model
+    $order_data = $this->donhang->DetailDon($id);
+
+    // Kiểm tra nếu dữ liệu trả về là hợp lệ
+    if ($order_data) {
+        $order = $order_data['order'];
+        require_once './views/donhang/detailDonHang.php';
+    } else {
+        $_SESSION['errors'] = 'Không tìm thấy đơn hàng!';
+        header('Location: ?act=don-hang');
+        exit();
+    }
+}
+
 }
