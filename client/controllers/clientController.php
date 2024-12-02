@@ -283,7 +283,6 @@ class clientController {
     
     function handleCartAction(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Kiểm tra nút xóa sản phẩm
             if (isset($_POST['btn_deletecart'])) {
                 $this->deleteToCart();
                 
@@ -345,12 +344,16 @@ class clientController {
         if(isset($_SESSION['id'])){
             $id_user = $_SESSION['id'];
             if(isset($_POST['btn_placeorder'])){
+                // echo '<pre>';
+                // print_r($_POST);
+                // echo '</pre>';
+                // die();
                 $name_us = $_POST['name_user'];
                 $phone = $_POST['phone'];
                 $address = $_POST['address'];
                 $payment= $_POST['payment'];
                 $total = $_POST['total'];
-                $en_argen = $total;
+                // $en_argen = $total;
                 // $prices = isset($_POST['price']) ? $_POST['price'] : [];
                 // $total_checkout = 0;
                 // foreach ($prices as $price){
@@ -360,13 +363,27 @@ class clientController {
 
                 $cart_item = $this->clientModel->getCartByIdUser($id_user);
                 $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
+                // if (isset($_POST['selected_pro'])) {
+                //     echo '<pre>';
+                //     print_r($_POST['selected_pro']);
+                //     echo '</pre>';
+                //     die();
+                // }
                 if(empty($selectedPro)){
                     echo "Vui lòng chọn sản phẩm để thanh toán";
                     return;
                 }
+                // echo '<pre>';
+                // print_r($cart_item);
+                // echo '</pre>';
                 foreach($cart_item as $item){
+                    $pro_id = (int)$item['pro_id'];
                     $product_price = $item['price'];
-                    $product_quantity = isset($selectedPro[$item['pro_id']]) ? $selectedPro[$item['pro_id']] : 0;;
+                    $product_quantity = isset($selectedPro[$pro_id]) ? $selectedPro[$pro_id] : 0;
+                    echo "Product ID: $pro_id<br>";
+    echo "SelectedPro: " . print_r($selectedPro, true) . "<br>";
+    echo "Product quantity: $product_quantity<br>";
+                    // print_r($selectedPro[$item['pro_id']]);
                     $en_argen = $product_price * $product_quantity;
                     if ($product_quantity <= 0) {
                         echo "Sản phẩm không hợp lệ hoặc số lượng không đủ.";
@@ -374,11 +391,12 @@ class clientController {
                     }
                     // $product_quantity = $item['quantity'];
                     // $product_price = isset($prices[$index]) ? $prices[$index] : 0;
-                    $this->clientModel->addOrdersDetail($id_orders,$item['pro_id'],$product_price,$product_quantity,$en_argen,$phone,$address);
-                    $this->clientModel->reduceStock($$item['pro_id'],$product_quantity);
+                    $this->clientModel->addOrdersDetail($id_orders,$pro_id,$product_price,$product_quantity,$en_argen,$phone,$address);
+                    $this->clientModel->reduceStock($item['pro_id'],$product_quantity);
+                    $this->clientModel->clearCart($id_user,$pro_id);
                 }
 
-                $this->clientModel->clearCart($id_user);
+                
                 // echo "sơn";
                 header("location: ?act=/");
             } 

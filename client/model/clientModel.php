@@ -7,7 +7,7 @@ class clientModel {
     //Tài khoản
     function checkAcc($user_name,$pass){
         // $pass=sha1($pass);
-        $sql="SELECT * from account where name_user='$user_name' and pass='$pass'";
+        $sql="select * from account where name_user='$user_name' and pass='$pass'";
         return $this->conn->query($sql)->fetch();
     }
 
@@ -221,8 +221,8 @@ class clientModel {
         return true;
     }
 
-    function clearCart($id_user){
-        $sql="delete from cart where id_user='$id_user'";
+    function clearCart($id_user,$pro_id){
+        $sql="delete from cart where id_user='$id_user' and pro_id='$pro_id'";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
         return true;

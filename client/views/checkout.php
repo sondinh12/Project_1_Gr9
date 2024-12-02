@@ -289,7 +289,7 @@
                             <?php foreach($productsSelect as $productSelectItem){?> 
                             <div class="d-flex justify-content-between">
                                 <p><?=$productSelectItem['name']?> x <?=$productSelectItem['quantity']?></p>
-                                <input type="hidden" name="selected_pro[<?=$productSelectItem['id_pro']?>]" value="<?=$productSelectItem['quantity']?>">
+                                <input type="hidden" name="selected_pro[<?=(int)$productSelectItem['id_pro']?>]" value="<?=$productSelectItem['quantity']?>">                             
                                 <input type="hidden" name="price" value="<?=number_format($productSelectItem['price'], 0, ',', '.')?>">
                                 <p><?=number_format($productSelectItem['price'], 0, ',', '.')?> VNĐ</p>
                             </div>
