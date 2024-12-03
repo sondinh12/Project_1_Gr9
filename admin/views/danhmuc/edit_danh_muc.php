@@ -84,22 +84,6 @@
                                                   
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="mb-3">
-                                                        <label for="ForminputState" class="form-label" >Trạng thái</label>
-                                                      <select  class="form-select" name="trang_thai">
-                                                     <option selected disabled >Chọn trạng thái</option>
-                                                     <option value="1">Hiển thị</option>
-                                                     <option value="2">Không hiển thị  </option>
-
-                                                      </select>
-                                                      <span class="text-danger">
-                                                    <?=!empty($_SESSION['errors']['trang_thai']) ? $_SESSION['errors']['trang_thai'] : '' ?>
-
-                                                   </span>
-                                                  
-                                                    </div>
-                                                </div>
                                                 <!--end col-->
                                                 <div class="col-lg-12">
                                                     <div class="text-center">
