@@ -118,13 +118,6 @@
                             </a>
                         <?php endforeach; ?>
 
-                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
-                    <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                        <?php foreach ($categories as $category ):?>
-                        <a href="../client/index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>" class="btn btn-primary"><?= htmlspecialchars($category['cate_name']) ?></a>
-                        <?php endforeach;?>
-
-                    </div>
                 </nav>
             </div>
             <div class="col-lg-9">
@@ -165,17 +158,6 @@
                                 <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
                                 <?php    
                                 }                                                             
-
-                                ?>
-                                <span class="nav-link nav-item">Xin chào <?= $user_name ?></span>
-                                <a href="?act=logout" class="nav-item nav-link">Log Out</a>
-                                <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
-                                <?php
-                                if (isset($_SESSION['role']) && $_SESSION['role'] === 1) {
-                                    ?>
-                                    <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
-                                    <?php
-                                }
 
                                 ?>
                                 <?php

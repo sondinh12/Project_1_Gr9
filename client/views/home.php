@@ -277,26 +277,6 @@
             </div>
 
 
-            <?php foreach($product as $key => $item){?>
-                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                    <div class="card product-item border-0 mb-4">
-                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                            <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                        </div>
-                      
-                        <div class="card-footer d-flex justify-content-between bg-light border">
-                            <form action="?act=addcart" method="post" class="w-100 d-flex justify-content-between">
-                                <input type="hidden" name="pro_id" value="<?=$item['id_pro']?>">
-                                <input type="hidden" name="pro_name" value="<?=$item['name']?>">
-                                <input type="hidden" name="price" value="<?=$item['price']?>">
-                                <input type="hidden" min="1" value="1" name="quantity">
-                            <button type="button" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</button>
-                            <button type="submit" class="btn btn-sm text-dark p-0" name="btn_addcart"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
             <!-- <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                 <div class="card product-item border-0 mb-4">
                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
