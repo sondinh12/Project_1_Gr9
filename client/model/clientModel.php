@@ -91,6 +91,7 @@ class clientModel {
         $stmt->execute();
     }
 
+
     //user
     function getIdUser($user_name){
         $sql="select id from account where name_user='$user_name'";
@@ -175,13 +176,25 @@ class clientModel {
         return true;
     }
 
-    function totalCartPrice($id){
+    function totalCartPrice($id): mixed{
         $sql="select sum(price*quantity) as total_price from cart where id_user='$id'";
         $stsm = $this->conn->prepare($sql);
         $stsm->execute();
         $result = $stsm->fetch();
         return $result['total_price'] ?? 0;
     }
+
+      // Hàm tìm kiếm sản phẩm theo tên
+      function searchProductByName($keyword) {
+        $sql = "SELECT id_pro, name, price, image, description, quantity, id_cate, create_at, update_at 
+                FROM products 
+                WHERE name LIKE :keyword";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':keyword' => '%' . $keyword . '%']); // Sử dụng bind để tránh SQL Injection
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về danh sách sản phẩm tìm được
+
+        }
+
 
     //select checkbox
     function getSelectedPro($id_user,$pro_id){
@@ -191,5 +204,10 @@ class clientModel {
         $stsm -> execute(array_merge([$id_user],$pro_id));
         return $stsm->fetchAll();
     }
+
 }
+
+
+    
+
 ?>

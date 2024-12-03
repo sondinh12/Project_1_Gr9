@@ -13,7 +13,8 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
 
     <!-- Font Awesome -->
@@ -24,6 +25,13 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../client/assets/css/style.css" rel="stylesheet">
+    <?php
+
+
+    ?>
+
+   
+
 </head>
 
 <body>
@@ -61,7 +69,8 @@
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
                 <a href="" class="text-decoration-none">
-                    <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                    <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                            class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
@@ -92,22 +101,37 @@
     <div class="container-fluid">
         <div class="row border-top px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
+                <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100"
+                    data-toggle="collapse" href="#navbar-vertical"
+                    style="height: 65px; margin-top: -1px; padding: 0 30px;">
                     <h6 class="m-0">Categories</h6>
                     <i class="fa fa-angle-down text-dark"></i>
                 </a>
+
+                <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light"
+                    id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+                    <div class="navbar-nav w-100" style="height: 210px; overflow-y: auto;">
+                        <?php foreach ($categories as $category): ?>
+                            <a href="index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>"
+                                class="btn btn-primary">
+                                <?= htmlspecialchars($category['cate_name']) ?>
+                            </a>
+                        <?php endforeach; ?>
+
                 <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
                         <?php foreach ($categories as $category ):?>
                         <a href="../client/index.php?act=product_in_category&category_id=<?= $category['category_id'] ?>" class="btn btn-primary"><?= htmlspecialchars($category['cate_name']) ?></a>
                         <?php endforeach;?>
+
                     </div>
                 </nav>
             </div>
             <div class="col-lg-9">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
                     <a href="" class="text-decoration-none d-block d-lg-none">
-                        <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
+                        <h1 class="m-0 display-5 font-weight-semi-bold"><span
+                                class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                     </a>
                     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
@@ -130,6 +154,7 @@
                         <?php
                             if(isset($_SESSION['user_name'])){
                                 $user_name = $_SESSION['user_name'];
+
                             ?>
                             <a href="?act=profile"><span class="nav-link nav-item">Xin chào <?=$user_name?></span></a>
                             <a href="?act=logout" class="nav-item nav-link">Log Out</a>
@@ -140,13 +165,25 @@
                                 <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
                                 <?php    
                                 }                                                             
+
                                 ?>
-                            <?php
+                                <span class="nav-link nav-item">Xin chào <?= $user_name ?></span>
+                                <a href="?act=logout" class="nav-item nav-link">Log Out</a>
+                                <a href="?act=editpass" class="nav-item nav-link">EditPass</a>
+                                <?php
+                                if (isset($_SESSION['role']) && $_SESSION['role'] === 1) {
+                                    ?>
+                                    <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                    <?php
+                                }
+
+                                ?>
+                                <?php
                             } else {
-                            ?>
+                                ?>
                                 <a href="?act=login" class="nav-item nav-link">Login</a>
                                 <a href="?act=register" class="nav-item nav-link">Register</a>
-                            <?php
+                                <?php
                             }
                             ?>
                         </div>
@@ -172,7 +209,8 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-6">
-                <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>" class="img-fluid border border-color:gray" alt="<?= htmlspecialchars($product['name']) ?>">
+                <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>"
+                    class="img-fluid border border-color:gray" alt="<?= htmlspecialchars($product['name']) ?>">
             </div>
             <form action="?act=addcart" method="post">
                 <div class="col-md-6">
@@ -204,20 +242,35 @@
         <div class="row">
             <div class="col-md-6">
                 <h4 class="mb-4">Comment</h4>
-                <div class="media mb-4">
-                    <div class="media-body">
-                        <h6>Tên<small> - <i>Ngày bình luận</i></small></h6>
-                        <p>Nội dung commet</p>
+                <?php
+                foreach ($comments as $key => $comment) {
+                    ?>
+                    <div class="media mb-4">
+                        <div class="media-body w-full">
+                            <h6><small><i>Ngày bình luận:
+                                        <?php echo date('d/m/Y', strtotime($comment['date'])) ?>
+                                    </i></small></h6>
+                            <p>
+                                <?php echo $comment['content']; ?>
+                            </p>
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
+
+
+
             </div>
             <div class="col-md-6">
                 <h4 class="mb-4">Leave a review</h4>
                 <small>Your email address will not be published. Required fields are marked *</small>
-                <form>
+                <form method="post" action="?act=add_commet">
+                    <input type="text" name="id_pro" value="<?php echo $_GET['id']; ?>" hidden>
                     <div class="form-group">
                         <label for="message">Your Review *</label>
-                        <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
+                        <textarea id="message" name="content" cols="30" rows="5" class="form-control"
+                            required></textarea>
                     </div>
                     <div class="form-group mb-0">
                         <input type="submit" value="Leave Your Review" class="btn btn-primary px-3">
