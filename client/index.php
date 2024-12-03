@@ -87,11 +87,11 @@ match ($act) {
     'resetform'           => (new clientController())->resetForm(),
     'resetpass'           => (new clientController())->resetPass(),
     // Sản phẩm
-    'list-product'        => (new clientProductController())->list_product(),
-    'product_in_category' => (new clientProductController())->list(),
-    'detail_product'      => (new ClientProductController())->detail(),
-    'add_commet'          => (new ClientCommentController())->addComment(),
-    'search_product'      => (new ClientProductController())->searchProduct(),
+    // 'list-product'        => (new clientProductController())->list_product(),
+    // 'product_in_category' => (new clientProductController())->list(),
+    // 'detail_product'      => (new ClientProductController())->detail(),
+    // 'add_commet'          => (new ClientCommentController())->addComment(),
+    // 'search_product'      => (new ClientProductController())->searchProduct(),
 
 
 
