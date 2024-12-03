@@ -286,7 +286,6 @@ class clientController {
     
     function handleCartAction(){
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            // Kiểm tra nút xóa sản phẩm
             if (isset($_POST['btn_deletecart'])) {
                 $this->deleteToCart();
                 
@@ -340,7 +339,43 @@ class clientController {
             }
             $categories = (new DanhMuc)->all();
             // var_dump($productsSelect);
+            // header("location: ?act=checkout");
             require_once 'views/checkout.php';
+        }
+    }
+
+    function placeOrder(){
+        if(isset($_SESSION['id'])){
+            $id_user = $_SESSION['id'];
+            if(isset($_POST['btn_placeorder'])){
+                $name_us = $_POST['name_user'];
+                $phone = $_POST['phone'];
+                $address = $_POST['address'];
+                $payment= $_POST['payment'];
+                $total = $_POST['total'];
+                $total = str_replace('.', '', $total);
+                $id_orders = $this->clientModel->createOrders($id_user,$name_us,$total,  $payment);
+
+                $cart_item = $this->clientModel->getCartByIdUser($id_user);
+                $selectedPro = isset($_POST['selected_pro']) ? $_POST['selected_pro'] : [];
+                if(empty($selectedPro)){
+                    echo "Vui lòng chọn sản phẩm để thanh toán";
+                    return;
+                }
+                foreach($cart_item as $item){
+                    $pro_id = (int)$item['pro_id'];
+                    $product_price = $item['price'];
+                    $quantity = isset($selectedPro[$pro_id]) ? $selectedPro[$pro_id] : 0;
+                    $en_argen = $product_price * $quantity;
+                    if (!isset($selectedPro[$pro_id])) {
+                        continue;
+                    }
+                    $this->clientModel->addOrdersDetail($id_orders,$pro_id,$product_price,$quantity,$en_argen,$phone,$address);
+                    $this->clientModel->reduceStock($pro_id,$quantity);
+                    $this->clientModel->clearCart($id_user,$pro_id);
+                }
+                header("location: ?act=/");
+            } 
         }
     }
 }
