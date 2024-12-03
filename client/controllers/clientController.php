@@ -316,6 +316,9 @@ class clientController {
         }
     }
 
+    
+
+
     //selected product
     function checkoutPro(){
         if(isset($_POST['btn_checkout'])){
@@ -378,6 +381,17 @@ class clientController {
             } 
         }
     }
+
+    public function lichSuDonHang(){
+        
+    }
+    public function chiTietDonHang(){
+
+    }
+    public function huyDonHang(){
+
+    }
 }
+
 ?>
 
