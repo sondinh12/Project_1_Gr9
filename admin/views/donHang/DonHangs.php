@@ -40,7 +40,7 @@
                                                     <tr>
                                                         <th scope="col">STT</th>
                                                         <th scope="col">ID Khách</th>
-                                                        <th scope="col">Tên hàng</th>
+                                                        <th scope="col">Tên khách hàng</th>
                                                         <th scope="col">Tổng đơn hàng</th>
                                                         <th scope="col">Trạng thái</th>
                                                         <th scope="col">Phương thức thanh toán</th>
@@ -59,12 +59,16 @@
                                                             <td>
                                                                 <?php
                                                                 echo $donhang['status'] == 1
-                                                                    ? '<span class="badge bg-success">Đang chờ duyệt</span>'
-                                                                    : ($donhang['status'] == 2
-                                                                        ? '<span class="badge bg-success">Đã xác nhận</span>'
-                                                                        : ($donhang['status'] == 3
-                                                                            ? '<span class="badge bg-success">Đang vận chuyển</span>'
-                                                                            : '<span class="badge bg-success">Đã giao</span>'));
+                                                                ? '<span class="badge bg-success">Đang chờ duyệt</span>'
+                                                                : ($donhang['status'] == 2
+                                                                    ? '<span class="badge bg-success">Đã xác nhận</span>'
+                                                                    : ($donhang['status'] == 3
+                                                                        ? '<span class="badge bg-success">Đang vận chuyển</span>'
+                                                                        : ($donhang['status'] == 4
+                                                                            ? '<span class="badge bg-success">Đã giao</span>'
+                                                                            : ($donhang['status'] == 5
+                                                                                ? '<span class="badge bg-danger">Đã hủy</span>'
+                                                                                : ''))));
                                                                 ?>
                                                             </td>
                                                             <td>

@@ -25,12 +25,6 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../client/assets/css/style.css" rel="stylesheet">
-    <?php
-
-
-    ?>
-
-   
 
 </head>
 
@@ -203,7 +197,7 @@
                     <p><strong>Giá: $<?= htmlspecialchars($product['price']) ?></strong></p>
                     <p><strong>Số Lượng: <?= htmlspecialchars($product['quantity']) ?></strong></p>
                     <p><strong>Mô tả:</strong></p>
-                    <p><?= htmlspecialchars($product['description']) ?></p>
+                    <p class="description"><?= htmlspecialchars($product['description']) ?></p>
                     <input type="number" class="btn btn-primary btn-lg form-control w-50 mb-3" name="quantity" id="counter" value="1" min="1">
                     <button class="btn btn-primary btn-lg btn_addcart" data-id="<?=$product['id_pro']?>" name="btn_addcart" type="submit">Add to Cart</button>
                 </div>
@@ -294,7 +288,7 @@
         <div class="text-center mb-4">
             <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
         </div>
-        <div class="row px-xl-5">
+        <!-- <div class="row px-xl-5">
             <div class="col">
                 <div class="owl-carousel related-carousel">
                     <div class="card product-item border-0">
@@ -374,7 +368,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <!-- Products End -->
 

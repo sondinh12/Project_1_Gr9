@@ -24,6 +24,8 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../client/assets/css/style.css" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -130,12 +132,9 @@
                             </div>
                             <a href="?act=contact" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a href="" class="nav-item nav-link">Login</a>
-                            <a href="" class="nav-item nav-link">Register</a>
-                            <a href="?act=lich-su-don-hang" class="nav-item nav-link">Đơn hàng</a>
 
-                        <?php
+                        <div class="navbar-nav ml-auto py-0">
+                            <?php
                             if(isset($_SESSION['user_name'])){
                                 $user_name = $_SESSION['user_name'];
                             ?>
@@ -145,13 +144,18 @@
                                 <?php
                                 if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
                                 ?>
-                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <a href="../admin/index.php" class="nav-item nav-link">Đăng nhập Admin</a>
+
                                 <?php    
                                 }                                                             
                                 ?>
                             <?php
+                            } else {
+                            ?>
+                                <a href="?act=login" class="nav-item nav-link">Login</a>
+                                <a href="?act=register" class="nav-item nav-link">Register</a>
+                            <?php
                             }
-                            
                             ?>
                         </div>
                     </div>
@@ -339,52 +343,31 @@
                             </div>
                         </div> -->
                         <div class="card-footer border-secondary bg-transparent">
-                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" name="btn_placeorder" type="submit">Place Order</button>
+                            <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3 btn_place" name="btn_placeorder" type="submit">Place Order</button>
                         </div>
                         <!-- <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Shipping</h6>
                             <h6 class="font-weight-medium">$10</h6>
                         </div> -->
                     </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <div class="d-flex justify-content-between mt-2">   
-                            <h5 class="font-weight-bold">Total</h5>
-                            <h5 class="font-weight-bold"><?=number_format($totalCheckout, 0, ',', '.')?> VNĐ</h5>
-                        </div>
-                    </div>
                     
                 </div>
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Payment</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                <label class="custom-control-label" for="paypal">Paypal</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                <label class="custom-control-label" for="directcheck">Direct Check</label>
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">  
-                                <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Place Order</button>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </form>
+    <script>
+        document.querySelectorAll('.btn_place').forEach(function(button) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert("Đặt hàng thành công! Bạn đã hoàn tất đơn hàng.");
+                this.submit();
+            });
+        });
+    </script>
+
+
+
     <!-- Checkout End -->
 
 

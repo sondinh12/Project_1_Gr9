@@ -16,7 +16,6 @@
     <?php
     require_once "views/layouts/libs_css.php";
     ?>
-
 </head>
 
 <body>
@@ -55,14 +54,15 @@
                                             <div class="row">
                                                 <!--end col-->
                                                 <div class="text-center">
-                                                    <div class="mb-3">
-                                                        <label for="ForminputState" class="form-label">Trạng thái</label>
-                                                        <select class="form-select" name="status">
+                                                    <div class="mb-3 form-group">
+                                                        <label for="status" class="form-label">Trạng thái</label>
+                                                        <select class="form-select" name="status" id="statusChange" onchange="handleStatusChange()">
                                                             <!-- <option disabled>Chọn trạng thái</option> -->
                                                             <option value="1" <?= $donhang['status'] == 1 ? 'selected' : '' ?>>Đang chờ duyệt</option>
                                                             <option value="2" <?= $donhang['status'] == 2 ? 'selected' : '' ?>>Đã xác nhận</option>
                                                             <option value="3" <?= $donhang['status'] == 3 ? 'selected' : '' ?>>Đang vận chuyển</option>
                                                             <option value="4" <?= $donhang['status'] == 4 ? 'selected' : '' ?>>Đã giao</option>
+                                                            <option value="5" <?= $donhang['status'] == 5 ? 'selected' : '' ?>>Đã hủy</option>
                                                         </select>
                                                         <span class="text-danger">
                                                             <?= !empty($_SESSION['errors']['status']) ? $_SESSION['errors']['status'] : '' ?>
@@ -81,7 +81,29 @@
                                             <!--end row-->
                                         </form>
                                     </div>
+                                    <script>
+                                        function handleStatusChange() {
+                                            var previousStatus = <?php echo $donhang['status']; ?>;
+                                            var statusSelect = document.getElementById("statusChange");
+                                            var selectedValue = statusSelect.value;
+                                            
+                                            if (selectedValue === "5") {
+                                                statusSelect.disabled = true;
+                                            } else {
+                                                
+                                                if (selectedValue < previousStatus) {                                                
+                                                    alert("Bạn không thể chọn trạng thái này.");
+                                                    statusSelect.value = previousStatus;
+                                                } else {
+                                                    statusSelect.disabled = false;
+                                                    previousStatus = selectedValue;
+                                                }
+                                            } 
+                                            
+                                        }
 
+                                        handleStatusChange();
+                                    </script>
                                 </div>
                             </div>
 

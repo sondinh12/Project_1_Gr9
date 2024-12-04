@@ -9,43 +9,41 @@ class ClientDonHang {
 
     public function lichSuDonHang() {
        
-        if (!isset($_SESSION['user'])) {
+        if (!isset($_SESSION['id'])) {
             echo "Vui lòng đăng nhập để xem lịch sử đơn hàng.";
             return;
         }
+        $id = $_SESSION['id'];
         $orders = $this->donhang->getOdersByUserId(); 
         require_once "views/lichSuDonHang.php";
     }
 
 
     public function chiTietDonHang() {
-        echo '<pre>';
-        print_r($_SESSION['user']);
-        echo '<pre>';
-        // if (!isset($_GET['id'])) {
-        //     echo "Cần có ID đơn hàng.";
-        //     return;
-        // }
-
-        // $orderId = $_GET['id'];
-        // $orderDetail = $this->donhang->getOrderDetail($orderId);
+        $orderId = $_GET['id'];
+        $orderDetails = $this->donhang->getOrderDetail($orderId);
         require_once "views/chiTietDonHang.php";
     }
 
-    // public function huyDonHang() {
-    //     if (!isset($_GET['id'])) {
-    //         echo "Cần có ID đơn hàng để hủy.";
-    //         return;
-    //     }
-
-    //     $orderId = $_GET['id'];
-    //     $result = $this->donhang->cancelOrder($orderId);
-
-    //     if ($result) {
-    //         echo "Đơn hàng đã được hủy thành công.";
-    //     } else {
-    //         echo "Hủy đơn hàng thất bại.";
-    //     }
-    // }
+    public function huyDonHang() {
+        if (!isset($_POST['id'])) {
+            echo "Cần có ID đơn hàng để hủy.";
+            return;
+        } 
+        $orderId = (int)$_POST['id'];
+        var_dump($orderId);
+        if(isset($_POST['btn_cancel_orders'])){
+            $orders = $this->donhang->getOdersByUserId(); 
+            // var_dump($orders);
+            $result = $this->donhang->cancelOrder($orderId);
+            // var_dump($result);
+            if ($result) {
+                // echo "<script>alert('Đơn hàng đã được hủy thành công.');</script>";
+                header("location: ?act=lich-su-don-hang");
+            } else {
+                echo "Lỗi";
+            }
+        }
+    }
 }
 ?>

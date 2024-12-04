@@ -86,14 +86,14 @@ match ($act) {
     // 'product_in_category' => (new clientProductController())->list(),
     // 'detail_product'      => (new ClientProductController())->detail(),
     // 'add_commet'          => (new ClientCommentController())->addComment(),
-    // 'search_product'      => (new ClientProductController())->searchProduct(),
+    'search_product'      => (new ClientProductController())->searchProduct(),
 
 
 
     // lich su don hang
     'lich-su-don-hang'  => (new ClientDonHang())->lichSuDonHang(),
     'chi-tiet-don-hang' => (new ClientDonHang())->chiTietDonHang(),
-    // 'huy-don-hang'      =>(new ClientDonhang())->huyDonHang(),
+    'cacel_orders'      =>(new ClientDonhang())->huyDonHang(),
 
     'checkoutpro'       =>(new clientController())->checkoutPro(),
 

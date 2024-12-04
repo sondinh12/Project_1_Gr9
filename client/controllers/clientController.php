@@ -53,7 +53,11 @@ class clientController
                 $role = $this->clientModel->getRoleByUsername($user_name);
                 $idUs = $this->clientModel->getIdUser($user_name);
                 // var_dump($idUs);
-                $_SESSION['user'] = $idUs;
+                // $_SESSION['user'] = $idUs;
+                $_SESSION['user_name'] = $user_name;
+                $_SESSION['role'] = $role;
+                $id=$idUs['id'];
+                $_SESSION['id'] = $id;
                 // var_dump($_SESSION['id']);
                 header("location:./");
             } else {
