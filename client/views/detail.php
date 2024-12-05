@@ -149,7 +149,7 @@
                                 <?php
                                 if(isset($_SESSION['role']) && $_SESSION['role'] === 1){
                                 ?>
-                                <a href="" class="nav-item nav-link">Đăng nhập Admin</a>
+                                <a href="../admin/index.php" class="nav-item nav-link">Đăng nhập Admin</a>
                                 <?php    
                                 }                                                             
 
@@ -183,27 +183,37 @@
     <!-- Page Header End -->
 
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>"
-                    class="img-fluid border border-color:gray" alt="<?= htmlspecialchars($product['name']) ?>">
-            </div>
+    <div class="row align-items-center">
+
+        <div class="col-md-6 text-center"> 
+            <img src="../admin/assets/images/<?= htmlspecialchars($product['image']) ?>" 
+                 class="img-fluid border border-secondary" 
+                 alt="<?= htmlspecialchars($product['name']) ?>">
+        </div>
+
+        <div class="col-md-6">
             <form action="?act=addcart" method="post">
-                <div class="col-md-6">
-                    <input type="hidden" name="pro_id" value="<?=$product['id_pro']?>">
-                    <input type="hidden" name="pro_name" value="<?=$product['name']?>">
-                    <input type="hidden" name="price" value="<?=$product['price']?>">
-                    <h2><?= htmlspecialchars($product['name']) ?></h2>
-                    <p><strong>Giá: $<?= htmlspecialchars($product['price']) ?></strong></p>
-                    <p><strong>Số Lượng: <?= htmlspecialchars($product['quantity']) ?></strong></p>
-                    <p><strong>Mô tả:</strong></p>
-                    <p class="description"><?= htmlspecialchars($product['description']) ?></p>
-                    <input type="number" class="btn btn-primary btn-lg form-control w-50 mb-3" name="quantity" id="counter" value="1" min="1">
-                    <button class="btn btn-primary btn-lg btn_addcart" data-id="<?=$product['id_pro']?>" name="btn_addcart" type="submit">Add to Cart</button>
+                <input type="hidden" name="pro_id" value="<?= $product['id_pro'] ?>">
+                <input type="hidden" name="pro_name" value="<?= $product['name'] ?>">
+                <input type="hidden" name="price" value="<?= $product['price'] ?>">
+                <h2><?= htmlspecialchars($product['name']) ?></h2>
+                <p><strong>Giá: $<?= htmlspecialchars($product['price']) ?></strong></p>
+                <p><strong>Số Lượng: <?= htmlspecialchars($product['quantity']) ?></strong></p>
+                <p><strong>Mô tả:</strong></p>
+                <p class="description"><?= htmlspecialchars($product['description']) ?></p>
+                <div class="d-flex align-items-center mb-3">
+                    <input type="number" class="form-control me-2"name="quantity" id="counter" value="1" min="1" style="width: 100px;">                  
+                    <button class="btn btn-primary btn-lg btn_addcart" data-id="<?= $product['id_pro'] ?>"  name="btn_addcart" type="submit">
+                        Add to Cart
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+</div>
+
+</div>
+
     <script>
         document.querySelectorAll('.btn_addcart').forEach(function(button) {
             button.addEventListener('click', function(event) {
@@ -263,7 +273,9 @@
                 <div class="col-md-3">
                     <div class="card">
                         <!-- Hiển thị hình ảnh sản phẩm -->
-                        <img src="../admin/assets/images/<?= htmlspecialchars($pr['image'] ?? 'default.jpg') ?>" class="card-img-top" alt="<?= htmlspecialchars($pr['name'] ?? 'No name available') ?>">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style="height: 270px; object-fit: cover;">
+                        <img class="img-fluid w-100" src="../admin/assets/images/<?= $pr['image'] ?>" alt="">
+                    </div>
                         <div class="card-body">
                             <!-- Hiển thị tên và giá sản phẩm -->
                             <h5 class="card-title"><?= htmlspecialchars($pr['name'] ?? 'No name available') ?></h5>

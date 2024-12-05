@@ -204,7 +204,9 @@
             <?php foreach ($products as $product): ?>
                 <div class="col-md-3">
                     <div class="card mb-4">
-                        <img src="../admin/assets/images/<?= $product['image'] ?>" class="card-img-top" alt="<?= htmlspecialchars($product['name']) ?>">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0" style="height: 270px; object-fit: cover;">
+                            <img class="img-fluid w-100" src="../admin/assets/images/<?= $product['image'] ?>" alt="">
+                        </div>
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($product['name']) ?></h5>
                             <p class="card-text">Giá: $<?= $product['price'] ?></p>

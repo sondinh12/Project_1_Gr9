@@ -181,7 +181,7 @@
 
 
     <!-- Checkout Start -->
-    <form action="?act=placeorder" method="post">
+    <form action="?act=placeorder" method="post" onsubmit="return alert('Mua hàng thành công')">
         <div class="container-fluid pt-5">
             <div class="row px-xl-5">
                 <div class="col-lg-8">
@@ -192,10 +192,6 @@
                                 <label>Name</label>
                                 <input class="form-control" type="text" value="<?=$info['name_user']?>" name="name_user">
                             </div>
-                            <!-- <div class="col-md-6 form-group">
-                                <label>Last Name</label>
-                                <input class="form-control" type="text" placeholder="Doe">
-                            </div> -->
                             <div class="col-md-6 form-group">
                                 <label>E-mail</label>
                                 <input class="form-control" type="text" value="<?=$info['email']?>" name="email">
@@ -288,23 +284,11 @@
                                 <p><?=number_format($productSelectItem['price'], 0, ',', '.')?> VNĐ</p>
                             </div>
                             <?php } ?>
-                            <!-- <div class="d-flex justify-content-between">
-                                <p>Colorful Stylish Shirt 2</p>
-                                <p>$150</p>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <p>Colorful Stylish Shirt 3</p>
-                                <p>$150</p>
-                            </div> -->
                             <hr class="mt-0">
                             <div class="d-flex justify-content-between mb-3 pt-1">
                                 <h6 class="font-weight-medium">Subtotal</h6>
                                 <h6 class="font-weight-medium"><?=number_format($totalCheckout, 0, ',', '.')?> VNĐ</h6>
                             </div>
-                            <!-- <div class="d-flex justify-content-between">
-                                <h6 class="font-weight-medium">Shipping</h6>
-                                <h6 class="font-weight-medium">$10</h6>
-                            </div> -->
                         </div>
                         <div class="card-footer border-secondary bg-transparent">
                             <div class="d-flex justify-content-between mt-2">
@@ -322,33 +306,9 @@
                                 <option value="2">Chuyển khoản</option>
                             </select>
                         </div>
-                        <!-- <div class="card-body">
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                    <label class="custom-control-label" for="paypal">Paypal</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                    <label class="custom-control-label" for="directcheck">Direct Check</label>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" name="payment" id="banktransfer">  
-                                    <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="card-footer border-secondary bg-transparent">
                             <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3 btn_place" name="btn_placeorder" type="submit">Place Order</button>
                         </div>
-                        <!-- <div class="d-flex justify-content-between">
-                            <h6 class="font-weight-medium">Shipping</h6>
-                            <h6 class="font-weight-medium">$10</h6>
-                        </div> -->
                     </div>
                     
                 </div>

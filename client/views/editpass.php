@@ -4,96 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
-        /* Thiết lập chung cho toàn bộ trang */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-}
-
-/* Tiêu đề của form */
-h3 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Form chính */
-form {
-    background: #ffffff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-}
-
-/* Các nhãn của input */
-form label {
-    display: block;
-    margin-bottom: 8px;
-    color: #555;
-    font-size: 14px;
-}
-
-/* Các ô nhập liệu */
-form input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-    transition: border-color 0.3s ease;
-}
-
-/* Khi ô nhập được chọn */
-form input:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* Nút bấm đổi mật khẩu */
-form button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
-
-/* Khi rê chuột vào nút */
-form button:hover {
-    background-color: #0056b3;
-}
-
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            min-height: 100vh;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .list-group-item-action {
+            transition: background-color 0.3s ease;
+        }
+        .list-group-item-action:hover {
+            background-color: #e9ecef;
+        }
     </style>
-    
 </head>
 <body>
-    <h3>Đổi mật khẩu</h3>
-    <form action="" method="POST">
-        <label for="old_pass">Mật khẩu hiện tại:</label>
-        <input type="password" id="old_pass" name="old_pass" required>
-        <br><br>
-        <label for="new_pass">Mật khẩu mới:</label>
-        <input type="password" id="new_pass" name="new_pass" required>
-        <br><br>
-        <label for="re_pass">Nhập lại mật khẩu mới:</label>
-        <input type="password" name="re_pass" id="re_pass">
-        <br><br>
-        <button type="submit" name="btn_editpass">Đổi mật khẩu</button>
-    </form>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">E Shopper</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="?act=/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?act=shop">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?act=logout">Đăng xuất</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3 mb-3">
+                <div class="list-group">
+                    <a href="?act=profile" class="list-group-item list-group-item-action">Thông tin cá nhân</a>
+                    <a href="?act=lich-su-don-hang" class="list-group-item list-group-item-action">Đơn hàng</a>
+                    <a href="?act=editpass" class="list-group-item list-group-item-action">Đổi mật khẩu</a>
+                    <a href="#" class="list-group-item list-group-item-action">Hỗ trợ</a>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <h3 class="text-center">Đổi mật khẩu</h3>
+                <div class="form-container">
+                    <form action="" method="POST">
+                        <div class="mb-3">
+                            <label for="old_pass" class="form-label">Mật khẩu hiện tại:</label>
+                            <input type="password" id="old_pass" name="old_pass" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="new_pass" class="form-label">Mật khẩu mới:</label>
+                            <input type="password" id="new_pass" name="new_pass" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="re_pass" class="form-label">Nhập lại mật khẩu mới:</label>
+                            <input type="password" name="re_pass" id="re_pass" class="form-control" required>
+                        </div>
+                        <button type="submit" name="btn_editpass" class="btn btn-primary w-100">Đổi mật khẩu</button>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
