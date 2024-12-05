@@ -25,13 +25,14 @@ require_once 'controllers/ProductsAdminController.php';
 
 // Require toàn bộ file Models
 require_once './models/DanhMuc.php';
-
+require_once './models/StatisticsModel.php';
 
 
 require_once 'models/DonHang.php';
 
 
 require_once './controllers/ProductsAdminController.php';
+require_once './controllers/StatisticsController.php';
 
 // Require toàn bộ file Models
 require_once './model/Products.php';
@@ -58,7 +59,7 @@ match ($act) {
     'sua-danh-muc'       => (new DanhMucController())->update(),
     'xoa-danh-mucs'      => (new DanhMucController())->destroy(),
 
-    '/'                  => (new DashboardController())->index(),
+    // '/'                  => (new DashboardController())->index(),
     'product'            => (new ProductsController())->list(),
     'delete-product'     => (new ProductsController())->delete(),
     'add-product'        => (new ProductsController())->add(),
@@ -68,30 +69,15 @@ match ($act) {
     'comments'           => (new CommentController())->listComments(),
     'delete-comment'     => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
     'add-comment'        => (new CommentController())->addComment($_POST),
-
-
-    // // '/'            => (new DashboardController())->index(),
-    // 'product'      => (new ProductsController())->list(),
-    // 'delete-product'       => (new ProductsController())->delete(),
-    // 'add-product'       => (new ProductsController())->add(),
-    // 'store-product'       => (new ProductsController())->store(),
-    // 'update-product'       => (new ProductsController())->edit(),
-
-
-
-    // 'comments' => (new CommentController())->listComments(),
-    // 'delete-comment' => (new CommentController())->deleteComment($_GET['id_cmt'] ?? 0),
-    // 'add-comment' => (new CommentController())->addComment($_POST),
     
-
-
-
     // quan li don hang
     'don-hang'      => (new DonHangController())->danhSachDonHang(),
     'form-sua-don-hang'      => (new DonHangController())->formEditDonHang(),
     'sua-don-hang'      => (new DonHangController())->postDonHang(),
     'detail-don-hang'      => (new DonHangController())->DetailDonHang(),
 
+    //Thống kê
+    'statistics'            =>(new StatisticsController())->statistics(),
 };
 
 

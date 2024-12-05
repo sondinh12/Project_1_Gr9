@@ -109,6 +109,20 @@
                     </div>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link menu-link" href="#Statistics" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDonHang">
+                        <i class="ri-stack-line"></i> <span data-key="t-advance-ui">Thống kê</span>
+                    </a>
+                    <div class="collapse menu-dropdown" id="Statistics">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="?act=statistics" class="nav-link" data-key="t-sweet-alerts">
+                                    Thống kê
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <!-- <li class="menu-title"><i class="ri-more-fill"></i> <span data-key="t-pages">Bán hàng</span></li> -->
 
 

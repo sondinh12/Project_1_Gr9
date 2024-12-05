@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Quản lý Đơn hàng | NN Shop</title>
+    <title>Quản lý Đơn hàng | E Shopper</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Quản lý đơn hàng NN Shop" name="description" />
     <meta content="NN Shop Team" name="author" />
@@ -118,11 +118,11 @@
                         <div class="col-sm-6">
                             <script>
                                 document.write(new Date().getFullYear())
-                            </script> © NN Shop.
+                            </script> © E Shopper.
                         </div>
                         <div class="col-sm-6">
                             <div class="text-sm-end d-none d-sm-block">
-                                Design & Develop by NN Shop Team
+                                Design & Develop by E Shopper Team
                             </div>
                         </div>
                     </div>
