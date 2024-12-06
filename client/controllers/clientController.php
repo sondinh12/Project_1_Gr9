@@ -280,7 +280,7 @@ class clientController
                 $pro_name = $_POST['pro_name'];
                 $addProToCart = $this->clientModel->addToCart($id_user, $pro_id, $pro_name, $quantity, $price);
                 if ($addProToCart === true) {
-                    header("location:./");
+                    header("location:?act=detail_product&id=$pro_id");
                 } else {
                     echo $addProToCart;
                 }
